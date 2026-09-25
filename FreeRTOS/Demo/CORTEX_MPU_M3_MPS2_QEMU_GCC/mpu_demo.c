@@ -81,6 +81,31 @@ static void prvROAccessTask( void * pvParameters );
  */
 static void prvRWAccessTask( void * pvParameters );
 
+/**
+ * @brief Print one safety-property result on UART0.
+ *
+ * The read-only task runs unprivileged, so it cannot call printf(): C library
+ * globals lie outside its MPU regions. UART0 is already inside the
+ * general-peripherals region, which is readable and writable by unprivileged
+ * code. This does not change any MPU permission.
+ */
+static void prvReportPropertyResult( const char * pcMessage );
+
+/*-----------------------------------------------------------*/
+
+static void prvReportPropertyResult( const char * pcMessage )
+{
+    /* CMSDK UART0 DATA register. Same address used by syscall.c. */
+    volatile uint32_t * const pulUartData = ( volatile uint32_t * ) 0x40004000UL;
+
+    while( *pcMessage != '\0' )
+    {
+        *pulUartData = ( uint32_t ) ( ( uint8_t ) *pcMessage );
+        pcMessage++;
+    }
+
+    *pulUartData = ( uint32_t ) '\n';
+}
 /*-----------------------------------------------------------*/
 
 static void prvROAccessTask( void * pvParameters )
@@ -115,6 +140,17 @@ static void prvROAccessTask( void * pvParameters )
          * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
         /*configASSERT( ucROTaskFaultTracker[ 0 ] == 0 ); */
 
+        /* SP1: the fault handler clears the tracker only after the expected
+         * MPU fault. A cleared tracker means the write was rejected. */
+        if( ucROTaskFaultTracker[ 0 ] == 0 )
+        {
+            prvReportPropertyResult( "SP1 PASS: read-only memory isolation preserved" );
+        }
+        else
+        {
+            prvReportPropertyResult( "SP1 FAIL: read-only memory isolation violated" );
+        }
+
         #if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
         {
             /* Generate an SVC to raise the privilege. Since privilege
@@ -137,6 +173,17 @@ static void prvROAccessTask( void * pvParameters )
             /* Ensure that the above line did generate MemFault and the fault
              * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
             /*configASSERT( ucROTaskFaultTracker[ 0 ] == 0 ); */
+
+            /* SP2: a second MPU fault after the rejected privilege request
+             * means the task is still unprivileged. */
+            if( ucROTaskFaultTracker[ 0 ] == 0 )
+            {
+                prvReportPropertyResult( "SP2 PASS: unauthorized privilege escalation rejected" );
+            }
+            else
+            {
+                prvReportPropertyResult( "SP2 FAIL: privilege containment violated" );
+            }
         }
         #else /* if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
         {

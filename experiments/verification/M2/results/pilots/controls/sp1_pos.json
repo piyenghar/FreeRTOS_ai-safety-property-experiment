@@ -1,0 +1,14 @@
+{
+  "L1_build": "PASS",
+  "source_note": "standalone l3_sp1.c oracle firmware",
+  "mpu_demo_sha256": "",
+  "uart_log": "/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/results/pilots/controls/sp1_pos.uart.log",
+  "kind": "standalone_oracle_firmware",
+  "property": "sp1",
+  "control": "pos",
+  "expect": "HOLD",
+  "hold_count": 10,
+  "violation_count": 0,
+  "verdict": "PASS",
+  "L2_verdict": "N/A"
+}

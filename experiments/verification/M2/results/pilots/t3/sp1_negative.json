@@ -1,0 +1,36 @@
+{
+  "L1_build": "PASS",
+  "source_note": "isolated SP1-neg patch of pilot/m2-t3-enhancement mpu_demo.c (RO->RW); pilot branches untouched",
+  "mpu_demo_sha256": "87e9eedb1ecfba1581f99d2b8db79cdc02005be08b23dac1fc8139f0e0c0c11c",
+  "uart_log": "/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/results/pilots/t3/sp1_negative.uart.log",
+  "kind": "pilot_mpu_demo_uart",
+  "pilot": "t3",
+  "control": "neg",
+  "counts": {
+    "sp1_pass": 0,
+    "sp1_fail": 10,
+    "sp2_pass": 0,
+    "sp2_fail": 10,
+    "t1_log": 0,
+    "t3_cycles": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "L3_SP1": "VIOLATION_DETECTED",
+  "L3_SP2": "NOT_EVALUATED_IN_SP1_NEG",
+  "L3_verdict": "PASS",
+  "L2": {
+    "applicable": false,
+    "verdict": "N/A"
+  },
+  "L2_verdict": "N/A"
+}

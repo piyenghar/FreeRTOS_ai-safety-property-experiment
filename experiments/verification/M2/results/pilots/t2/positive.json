@@ -1,0 +1,26 @@
+{
+  "L1_build": "PASS",
+  "source_note": "worktree pilot/m2-t2-refactor actual mpu_demo.c",
+  "mpu_demo_sha256": "d85085e9f56e72bdaad6ff014b67df9279bfb1c9b70cbe7033b9ca106d7bcea3",
+  "uart_log": "/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/results/pilots/t2/positive.uart.log",
+  "kind": "pilot_mpu_demo_uart",
+  "pilot": "t2",
+  "control": "pos",
+  "counts": {
+    "sp1_pass": 10,
+    "sp1_fail": 0,
+    "sp2_pass": 10,
+    "sp2_fail": 0,
+    "t1_log": 0,
+    "t3_cycles": []
+  },
+  "L3_SP1": "HOLD",
+  "L3_SP2": "HOLD",
+  "L3_verdict": "PASS",
+  "L2": {
+    "applicable": true,
+    "criterion": "behaviour-preserving: SP1/SP2 PASS with no FAIL",
+    "verdict": "PASS"
+  },
+  "L2_verdict": "PASS"
+}

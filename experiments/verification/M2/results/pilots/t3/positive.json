@@ -1,0 +1,49 @@
+{
+  "L1_build": "PASS",
+  "source_note": "worktree pilot/m2-t3-enhancement actual mpu_demo.c",
+  "mpu_demo_sha256": "4092357d81e30a4b2394268c67aa5fdfc1a2391cd16e2b6e859a1a856cc27e53",
+  "uart_log": "/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/results/pilots/t3/positive.uart.log",
+  "kind": "pilot_mpu_demo_uart",
+  "pilot": "t3",
+  "control": "pos",
+  "counts": {
+    "sp1_pass": 10,
+    "sp1_fail": 0,
+    "sp2_pass": 10,
+    "sp2_fail": 0,
+    "t1_log": 0,
+    "t3_cycles": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "L3_SP1": "HOLD",
+  "L3_SP2": "HOLD",
+  "L3_verdict": "PASS",
+  "L2": {
+    "applicable": true,
+    "criterion": "T3_CYCLE increments from 1",
+    "t3_cycles": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "verdict": "PASS"
+  },
+  "L2_verdict": "PASS"
+}

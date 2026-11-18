@@ -1,0 +1,32 @@
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 1
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 2
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 3
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 4
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 5
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 6
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 7
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 8
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 9
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T3_CYCLE: 10
+qemu-system-arm: terminating on signal 15 from pid 4244 (timeout)
+EXIT:124

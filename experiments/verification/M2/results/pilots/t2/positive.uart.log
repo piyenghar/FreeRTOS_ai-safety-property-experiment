@@ -1,0 +1,22 @@
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+qemu-system-arm: terminating on signal 15 from pid 4024 (timeout)
+EXIT:124

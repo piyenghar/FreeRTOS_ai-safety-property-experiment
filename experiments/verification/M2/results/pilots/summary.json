@@ -1,0 +1,77 @@
+{
+  "pilots": {
+    "t1": {
+      "positive": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD",
+        "mpu_demo_sha256": "8c520c2fe4758624c73b30d48ad47d669d5b695e39dd0b4a84a37dd62935a88c"
+      },
+      "sp1_negative_control": {
+        "L1": "PASS",
+        "L3": "PASS",
+        "L3_SP1": "VIOLATION_DETECTED"
+      }
+    },
+    "t2": {
+      "positive": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD",
+        "mpu_demo_sha256": "d85085e9f56e72bdaad6ff014b67df9279bfb1c9b70cbe7033b9ca106d7bcea3"
+      },
+      "sp1_negative_control": {
+        "L1": "PASS",
+        "L3": "PASS",
+        "L3_SP1": "VIOLATION_DETECTED"
+      }
+    },
+    "t3": {
+      "positive": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD",
+        "mpu_demo_sha256": "4092357d81e30a4b2394268c67aa5fdfc1a2391cd16e2b6e859a1a856cc27e53"
+      },
+      "sp1_negative_control": {
+        "L1": "PASS",
+        "L3": "PASS",
+        "L3_SP1": "VIOLATION_DETECTED"
+      }
+    }
+  },
+  "controls": {
+    "sp1_pos": {
+      "verdict": "PASS",
+      "hold_count": 10,
+      "violation_count": 0
+    },
+    "sp1_neg": {
+      "verdict": "PASS",
+      "hold_count": 0,
+      "violation_count": 10
+    },
+    "sp2_pos": {
+      "verdict": "PASS",
+      "hold_count": 9,
+      "violation_count": 0
+    },
+    "sp2_neg": {
+      "verdict": "PASS",
+      "hold_count": 0,
+      "violation_count": 9
+    }
+  },
+  "notes": {
+    "pilot_L3_uses_actual_mpu_demo": true,
+    "pilot_L3_host_oracle": "Positive: SP1/SP2 PASS required, FAIL forbidden on UART from worktree-built pilot binary. SP1-neg: isolated RO->RW copy of that pilot mpu_demo.c must yield VIOLATION.",
+    "standalone_controls": "Existing MemFault/value/nPRIV firmware under sp1/ and sp2/.",
+    "pilot_branches_unmodified": true
+  }
+}

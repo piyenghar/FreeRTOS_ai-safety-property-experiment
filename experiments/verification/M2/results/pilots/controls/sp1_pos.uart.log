@@ -1,0 +1,33 @@
+L3_SP1_CONTROL: positive
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+L3_SP1_EVIDENCE: memfault_seen=1
+L3_SP1_EVIDENCE: value_unchanged=1
+L3_SP1_ORACLE: HOLD
+qemu-system-arm: terminating on signal 15 from pid 3603 (timeout)
+EXIT:124

@@ -1,0 +1,32 @@
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+SP1 FAIL: read-only memory isolation violated
+SP2 FAIL: privilege containment violated
+T1_LOG: MPU test cycle completed
+qemu-system-arm: terminating on signal 15 from pid 3845 (timeout)
+EXIT:124

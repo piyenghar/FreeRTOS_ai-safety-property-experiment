@@ -3,14 +3,18 @@
 Isolated QEMU/ARM-GCC builds that check FreeRTOS MPU safety properties without
 modifying `FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c` or pilot branches.
 
-**Applicability:** this harness tests its own standalone firmware, not T1/T2/T3
-`mpu_demo.c` binaries. See [APPLICABILITY.md](APPLICABILITY.md). Do not claim
-pilot L3 is independently verified by these runs alone.
+**Applicability:** standalone `sp1/`/`sp2/` firmware calibrates oracles; pilot
+integration builds each pilot’s actual `mpu_demo.c` in Git worktrees. See
+[APPLICABILITY.md](APPLICABILITY.md) and `results/pilots/REPORT.md`.
 
 ## Quick run
 
 ```bash
+# Standalone SP1/SP2 pos/neg oracle firmware
 ./scripts/run_l3.sh
+
+# T1/T2/T3 worktree builds + host L3 oracle + controls
+./scripts/run_pilot_integration.sh
 ```
 
 ## Reports

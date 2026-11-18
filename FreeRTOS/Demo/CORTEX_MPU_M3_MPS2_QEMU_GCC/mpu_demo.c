@@ -220,6 +220,9 @@ static void prvROAccessTask( void * pvParameters )
         }
         #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
 
+        /* T1 development logging: one message per completed MPU test cycle. */
+        prvReportPropertyResult( "T1_LOG: MPU test cycle completed" );
+
         /* Wait for a second. */
         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
     }

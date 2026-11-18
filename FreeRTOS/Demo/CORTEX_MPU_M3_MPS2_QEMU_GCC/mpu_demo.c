@@ -91,6 +91,11 @@ static void prvRWAccessTask( void * pvParameters );
  */
 static void prvReportPropertyResult( const char * pcMessage );
 
+/**
+ * @brief Report the completed MPU test-cycle counter as T3_CYCLE: <n>.
+ */
+static void prvReportCycleCount( uint32_t ulCycle );
+
 /*-----------------------------------------------------------*/
 
 static void prvReportPropertyResult( const char * pcMessage )
@@ -108,9 +113,56 @@ static void prvReportPropertyResult( const char * pcMessage )
 }
 /*-----------------------------------------------------------*/
 
+static void prvReportCycleCount( uint32_t ulCycle )
+{
+    char pcMessage[ 24 ];
+    char acDigits[ 10 ];
+    const char * pcPrefix = "T3_CYCLE: ";
+    uint32_t ulValue = ulCycle;
+    UBaseType_t uxIndex = 0;
+    UBaseType_t uxDigitCount = 0;
+
+    /* Build "T3_CYCLE: <number>" without printf(); libc formatting may touch
+     * memory outside this unprivileged task's MPU regions. */
+    while( *pcPrefix != '\0' )
+    {
+        pcMessage[ uxIndex ] = *pcPrefix;
+        uxIndex++;
+        pcPrefix++;
+    }
+
+    if( ulValue == 0U )
+    {
+        acDigits[ uxDigitCount ] = '0';
+        uxDigitCount++;
+    }
+    else
+    {
+        while( ulValue > 0U )
+        {
+            acDigits[ uxDigitCount ] = ( char ) ( '0' + ( ulValue % 10U ) );
+            uxDigitCount++;
+            ulValue /= 10U;
+        }
+    }
+
+    while( uxDigitCount > 0U )
+    {
+        uxDigitCount--;
+        pcMessage[ uxIndex ] = acDigits[ uxDigitCount ];
+        uxIndex++;
+    }
+
+    pcMessage[ uxIndex ] = '\0';
+    prvReportPropertyResult( pcMessage );
+}
+/*-----------------------------------------------------------*/
+
 static void prvROAccessTask( void * pvParameters )
 {
     uint8_t ucVal;
+    /* Kept on the task stack: unprivileged RO task cannot write BSS globals. */
+    uint32_t ulMpuTestCycleCount = 0;
 
     /* Unused parameters. */
     ( void ) pvParameters;
@@ -219,6 +271,10 @@ static void prvROAccessTask( void * pvParameters )
             configASSERT( ucROTaskFaultTracker[ 0 ] == 0 );
         }
         #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+
+        /* T3 functional enhancement: count completed MPU test cycles. */
+        ulMpuTestCycleCount++;
+        prvReportCycleCount( ulMpuTestCycleCount );
 
         /* Wait for a second. */
         vTaskDelay( pdMS_TO_TICKS( 1000 ) );

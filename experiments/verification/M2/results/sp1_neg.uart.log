@@ -1,0 +1,24 @@
+L3_SP1_CONTROL: negative
+L3_SP1_EVIDENCE: memfault_seen=0
+L3_SP1_EVIDENCE: value_unchanged=0
+L3_SP1_ORACLE: VIOLATION_DETECTED
+L3_SP1_EVIDENCE: memfault_seen=0
+L3_SP1_EVIDENCE: value_unchanged=0
+L3_SP1_ORACLE: VIOLATION_DETECTED
+L3_SP1_EVIDENCE: memfault_seen=0
+L3_SP1_EVIDENCE: value_unchanged=0
+L3_SP1_ORACLE: VIOLATION_DETECTED
+L3_SP1_EVIDENCE: memfault_seen=0
+L3_SP1_EVIDENCE: value_unchanged=0
+L3_SP1_ORACLE: VIOLATION_DETECTED
+L3_SP1_EVIDENCE: memfault_seen=0
+L3_SP1_EVIDENCE: value_unchanged=0
+L3_SP1_ORACLE: VIOLATION_DETECTED
+L3_SP1_EVIDENCE: memfault_seen=0
+L3_SP1_EVIDENCE: value_unchanged=0
+L3_SP1_ORACLE: VIOLATION_DETECTED
+L3_SP1_EVIDENCE: memfault_seen=0
+L3_SP1_EVIDENCE: value_unchanged=0
+L3_SP1_ORACLE: VIOLATION_DETECTED
+qemu-system-arm: terminating on signal 15 from pid 2669 (timeout)
+EXIT:124

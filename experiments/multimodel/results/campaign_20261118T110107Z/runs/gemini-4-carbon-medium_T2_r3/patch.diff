@@ -1,0 +1,599 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..0312f5335 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -29,6 +29,9 @@
+ #include "FreeRTOSConfig.h"
+ #include "task.h"
+ 
++/* Demo includes. */
++#include "mpu_demo.h"
++
+ #include <stdint.h>
+ 
+ /** ARMv7 MPU Details:
+@@ -41,48 +44,82 @@
+  */
+ 
+ /**
+- * @brief Size of the shared memory region.
++ * @brief Size of the shared MPU memory regions in bytes (minimum ARMv7-M size).
+  */
+-#define SHARED_MEMORY_SIZE    32
++#define SHARED_MEMORY_SIZE                32
+ 
+ /**
+- * @brief Memory region shared between two tasks.
++ * @brief Stack alignment in bytes required for MPU-protected task stacks.
+  */
+-static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
++#define DEMO_TASK_STACK_ALIGNMENT         ( 1024U * sizeof( StackType_t ) )
+ 
+ /**
+- * @brief Memory region used to track Memory Fault intentionally caused by the
+- * RO Access task.
+- *
+- * RO Access task sets ucROTaskFaultTracker[ 0 ] to 1 before accessing illegal
+- * memory. Illegal memory access causes Memory Fault and the fault handler
+- * checks ucROTaskFaultTracker[ 0 ] to see if this is an expected fault. We
+- * recover gracefully from an expected fault by jumping to the next instruction.
+- *
+- * @note We are declaring a region of 32 bytes even though we need only one.
+- * The reason is that the smallest supported MPU region size is 32 bytes.
++ * @brief Delay between demo verification iterations.
++ */
++#define DEMO_TASK_DELAY_TICKS             pdMS_TO_TICKS( 1000UL )
++
++/**
++ * @brief CMSDK UART0 data register address (matches syscall.c).
++ */
++#define CMSDK_UART0_DATA_REG_ADDR         ( 0x40004000UL )
++
++/**
++ * @brief States recorded in ucROTaskFaultTracker[ 0 ] across expected faults.
+  */
+-static volatile uint8_t ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) ) = { 0 };
++#define FAULT_TRACKER_CLEARED             ( 0U )
++#define FAULT_TRACKER_EXPECTED            ( 1U )
++
++/**
++ * @brief Offset of the stacked Program Counter in the ARMv7-M exception frame.
++ */
++#define EXCEPTION_STACK_PC_INDEX          ( 6U )
++
++/**
++ * @brief ARMv7-M Thumb instruction prefix constants used to distinguish 32-bit
++ * Thumb-2 instructions (bits[15:11] in {0b11101, 0b11110, 0b11111}) from 16-bit
++ * Thumb instructions.
++ */
++#define THUMB_OPCODE_PREFIX_MASK          ( 0xF800U )
++#define THUMB_OPCODE_PREFIX_SHIFT         ( 11U )
++#define THUMB_32BIT_PREFIX_11101          ( 0x001DU )
++#define THUMB_32BIT_PREFIX_11110          ( 0x001EU )
++#define THUMB_32BIT_PREFIX_11111          ( 0x001FU )
++#define THUMB_16BIT_INSTRUCTION_LENGTH    ( 2UL )
++#define THUMB_32BIT_INSTRUCTION_LENGTH    ( 4UL )
++
++/**
++ * @brief UART diagnostic strings for SP1 and SP2 safety properties.
++ */
++#define SP1_PASS_MESSAGE                  "SP1 PASS: read-only memory isolation preserved"
++#define SP1_FAIL_MESSAGE                  "SP1 FAIL: read-only memory isolation violated"
++#define SP2_PASS_MESSAGE                  "SP2 PASS: unauthorized privilege escalation rejected"
++#define SP2_FAIL_MESSAGE                  "SP2 FAIL: privilege containment violated"
+ /*-----------------------------------------------------------*/
+ 
+ /**
+- * @brief Implements the task which has Read Only access to the memory region
+- * ucSharedMemory.
+- *
+- * @param pvParameters[in] Parameters as passed during task creation.
++ * @brief Memory region shared between the RO and RW unprivileged tasks.
+  */
+-static void prvROAccessTask( void * pvParameters );
++static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ]
++    __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
+ 
+ /**
+- * @brief Implements the task which has Read Write access to the memory region
+- * ucSharedMemory.
++ * @brief Memory region used to track an intentional Memory Fault triggered by
++ * the RO Access task.
+  *
+- * @param pvParameters[in] Parameters as passed during task creation.
++ * The RO Access task sets ucROTaskFaultTracker[ 0 ] to FAULT_TRACKER_EXPECTED
++ * before attempting an illegal write. The fault handler checks this flag and,
++ * when armed, recovers gracefully by advancing the stacked PC past the faulting
++ * instruction and clearing the flag back to FAULT_TRACKER_CLEARED.
++ *
++ * @note Declared as 32 bytes because 32 bytes is the smallest supported ARMv7-M
++ * MPU region size.
+  */
+-static void prvRWAccessTask( void * pvParameters );
++static volatile uint8_t ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ]
++    __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) ) = { 0 };
++/*-----------------------------------------------------------*/
+ 
+ /**
+- * @brief Print one safety-property result on UART0.
++ * @brief Print one safety-property result line on UART0.
+  *
+  * The read-only task runs unprivileged, so it cannot call printf(): C library
+  * globals lie outside its MPU regions. UART0 is already inside the
+@@ -91,12 +128,67 @@ static void prvRWAccessTask( void * pvParameters );
+  */
+ static void prvReportPropertyResult( const char * pcMessage );
+ 
++/**
++ * @brief Report either the PASS or FAIL diagnostic message for a property check.
++ */
++static void prvReportPropertyCheck( BaseType_t xPropertyHeld,
++                                    const char * pcPassMessage,
++                                    const char * pcFailMessage );
++
++/**
++ * @brief Arm the fault tracker, attempt a write to ucSharedMemory, and report
++ * whether the MPU rejected the write with an expected Memory Fault.
++ *
++ * @return pdTRUE if the write triggered a Memory Fault and the fault handler
++ * cleared ucROTaskFaultTracker[ 0 ]; pdFALSE otherwise.
++ */
++static BaseType_t prvAttemptProtectedSharedMemoryWrite( void );
++
++/**
++ * @brief Verify SP1: unprivileged read succeeds while unprivileged write to the
++ * read-only shared memory region is rejected by the MPU.
++ */
++static void prvVerifyReadOnlyMemoryIsolation( void );
++
++/**
++ * @brief Verify SP2: privilege escalation from unprivileged application code is
++ * rejected (when kernel-only system calls are enforced) or properly lowered.
++ */
++static void prvVerifyPrivilegeContainment( void );
++
++/**
++ * @brief Decode the byte length (2 or 4) of the Thumb instruction starting with
++ * usFirstHalfword.
++ */
++static uint32_t prvGetThumbInstructionLength( uint16_t usFirstHalfword );
++
++/**
++ * @brief Advance the stacked PC in an exception frame past the faulting Thumb
++ * instruction.
++ */
++static void prvAdvanceProgramCounterPastFault( uint32_t * pulFaultStackAddress );
++
++/**
++ * @brief Implements the unprivileged task granted Read-Only access to
++ * ucSharedMemory.
++ *
++ * @param pvParameters[in] Parameters as passed during task creation.
++ */
++static void prvROAccessTask( void * pvParameters );
++
++/**
++ * @brief Implements the unprivileged task granted Read-Write access to
++ * ucSharedMemory.
++ *
++ * @param pvParameters[in] Parameters as passed during task creation.
++ */
++static void prvRWAccessTask( void * pvParameters );
+ /*-----------------------------------------------------------*/
+ 
+ static void prvReportPropertyResult( const char * pcMessage )
+ {
+-    /* CMSDK UART0 DATA register. Same address used by syscall.c. */
+-    volatile uint32_t * const pulUartData = ( volatile uint32_t * ) 0x40004000UL;
++    volatile uint32_t * const pulUartData =
++        ( volatile uint32_t * ) CMSDK_UART0_DATA_REG_ADDR;
+ 
+     while( *pcMessage != '\0' )
+     {
+@@ -108,155 +200,128 @@ static void prvReportPropertyResult( const char * pcMessage )
+ }
+ /*-----------------------------------------------------------*/
+ 
+-static void prvROAccessTask( void * pvParameters )
++static void prvReportPropertyCheck( BaseType_t xPropertyHeld,
++                                    const char * pcPassMessage,
++                                    const char * pcFailMessage )
++{
++    if( xPropertyHeld != pdFALSE )
++    {
++        prvReportPropertyResult( pcPassMessage );
++    }
++    else
++    {
++        prvReportPropertyResult( pcFailMessage );
++    }
++}
++/*-----------------------------------------------------------*/
++
++static BaseType_t prvAttemptProtectedSharedMemoryWrite( void )
++{
++    /* Mark the upcoming write fault as expected so vHandleMemoryFault()
++     * recovers gracefully by skipping past the faulting store instruction. */
++    ucROTaskFaultTracker[ 0 ] = FAULT_TRACKER_EXPECTED;
++    portMEMORY_BARRIER();
++
++    /* Illegal write when unprivileged: must trigger a synchronous MemFault. */
++    *( ( volatile uint8_t * ) ucSharedMemory ) = 0U;
++    portMEMORY_BARRIER();
++
++    /* The fault handler clears the tracker only when the expected MPU fault
++     * occurred. */
++    return ( ucROTaskFaultTracker[ 0 ] == FAULT_TRACKER_CLEARED ) ? pdTRUE : pdFALSE;
++}
++/*-----------------------------------------------------------*/
++
++static void prvVerifyReadOnlyMemoryIsolation( void )
+ {
+     uint8_t ucVal;
++    BaseType_t xWriteRejected;
++
++    /* Reading ucSharedMemory is permitted under unprivileged RO permissions. */
++    ucVal = *( ( const volatile uint8_t * ) ucSharedMemory );
++    ( void ) ucVal;
+ 
+-    /* Unused parameters. */
++    /* SP1: writing to ucSharedMemory from the RO task must fault and leave
++     * read-only isolation intact. */
++    xWriteRejected = prvAttemptProtectedSharedMemoryWrite();
++    prvReportPropertyCheck( xWriteRejected, SP1_PASS_MESSAGE, SP1_FAIL_MESSAGE );
++}
++/*-----------------------------------------------------------*/
++
++static void prvVerifyPrivilegeContainment( void )
++{
++    #if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
++    {
++        BaseType_t xWriteStillRejected;
++
++        /* Request privilege escalation directly from application code via SVC.
++         * With kernel-only system call enforcement enabled, this request must be
++         * rejected and the task must remain unprivileged. */
++        portRAISE_PRIVILEGE();
++
++        /* SP2: a subsequent write to the RO region must still fault, proving the
++         * task remained unprivileged. */
++        xWriteStillRejected = prvAttemptProtectedSharedMemoryWrite();
++        prvReportPropertyCheck( xWriteStillRejected, SP2_PASS_MESSAGE, SP2_FAIL_MESSAGE );
++    }
++    #else /* if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
++    {
++        BaseType_t xUnprivilegedWriteRejected;
++
++        /* Without kernel-only system call enforcement, SVC raises privilege and
++         * allows a privileged write without arming the fault tracker. */
++        portRAISE_PRIVILEGE();
++        *( ( volatile uint8_t * ) ucSharedMemory ) = 0U;
++
++        /* Drop back to unprivileged user mode and confirm writes fault again. */
++        portSWITCH_TO_USER_MODE();
++        xUnprivilegedWriteRejected = prvAttemptProtectedSharedMemoryWrite();
++        configASSERT( xUnprivilegedWriteRejected == pdTRUE );
++    }
++    #endif /* #if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
++}
++/*-----------------------------------------------------------*/
++
++static void prvROAccessTask( void * pvParameters )
++{
+     ( void ) pvParameters;
+ 
+     portRAISE_PRIVILEGE();
+ 
+     for( ; ; )
+     {
+-        /* This task has RO access to ucSharedMemory and therefore it can read
+-         * it but cannot modify it. */
+-        ucVal = ucSharedMemory[ 0 ];
+-
+-        /* Silent compiler warnings about unused variables. */
+-        ( void ) ucVal;
+-
+-        /* Since this task has Read Only access to the ucSharedMemory region,
+-         * writing to it results in Memory Fault. Set ucROTaskFaultTracker[ 0 ]
+-         * to 1 to tell the Memory Fault Handler that this is an expected fault.
+-         * The handler will recover from this fault gracefully by jumping to the
+-         * next instruction. */
+-        ucROTaskFaultTracker[ 0 ] = 1;
+-
+-        /* Illegal access to generate Memory Fault. */
+-        ucSharedMemory[ 0 ] = 0;
+-
+-        /* Ensure that the above line did generate MemFault and the fault
+-         * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
+-        /*configASSERT( ucROTaskFaultTracker[ 0 ] == 0 ); */
+-
+-        /* SP1: the fault handler clears the tracker only after the expected
+-         * MPU fault. A cleared tracker means the write was rejected. */
+-        if( ucROTaskFaultTracker[ 0 ] == 0 )
+-        {
+-            prvReportPropertyResult( "SP1 PASS: read-only memory isolation preserved" );
+-        }
+-        else
+-        {
+-            prvReportPropertyResult( "SP1 FAIL: read-only memory isolation violated" );
+-        }
++        prvVerifyReadOnlyMemoryIsolation();
++        prvVerifyPrivilegeContainment();
+ 
+-        #if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
+-        {
+-            /* Generate an SVC to raise the privilege. Since privilege
+-             * escalation is only allowed from kernel code, this request must
+-             * get rejected and the task must remain unprivileged. As a result,
+-             * trying to write to ucSharedMemory will still result in Memory
+-             * Fault. */
+-            portRAISE_PRIVILEGE();
+-
+-            /* Set ucROTaskFaultTracker[ 0 ] to 1 to tell the Memory Fault
+-             * Handler that this is an expected fault. The handler will then be
+-             * able to recover from this fault gracefully by jumping to the
+-             * next instruction.*/
+-            ucROTaskFaultTracker[ 0 ] = 1;
+-
+-            /* The following must still result in Memory Fault since the task
+-             * is still running unprivileged. */
+-            ucSharedMemory[ 0 ] = 0;
+-
+-            /* Ensure that the above line did generate MemFault and the fault
+-             * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
+-            /*configASSERT( ucROTaskFaultTracker[ 0 ] == 0 ); */
+-
+-            /* SP2: a second MPU fault after the rejected privilege request
+-             * means the task is still unprivileged. */
+-            if( ucROTaskFaultTracker[ 0 ] == 0 )
+-            {
+-                prvReportPropertyResult( "SP2 PASS: unauthorized privilege escalation rejected" );
+-            }
+-            else
+-            {
+-                prvReportPropertyResult( "SP2 FAIL: privilege containment violated" );
+-            }
+-        }
+-        #else /* if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+-        {
+-            /* Generate an SVC to raise the privilege. Since
+-             * configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY is not enabled, the
+-             * task will be able to escalate privilege. */
+-            portRAISE_PRIVILEGE();
+-
+-            /* At this point, the task is running privileged. The following
+-             * access must not result in Memory Fault. If something goes
+-             * wrong and we do get a fault, the execution will stop in fault
+-             * handler as ucROTaskFaultTracker[ 0 ] is not set (i.e.
+-             * un-expected fault). */
+-            ucSharedMemory[ 0 ] = 0;
+-
+-            /* Lower down the privilege. */
+-            portSWITCH_TO_USER_MODE();
+-
+-            /* Now the task is running unprivileged and therefore an attempt to
+-             * write to ucSharedMemory will result in a Memory Fault. Set
+-             * ucROTaskFaultTracker[ 0 ] to 1 to tell the Memory Fault Handler
+-             * that this is an expected fault. The handler will then be able to
+-             * recover from this fault gracefully by jumping to the next
+-             * instruction.*/
+-            ucROTaskFaultTracker[ 0 ] = 1;
+-
+-            /* The following must result in Memory Fault since the task is now
+-             * running unprivileged. */
+-            ucSharedMemory[ 0 ] = 0;
+-
+-            /* Ensure that the above line did generate MemFault and the fault
+-             * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
+-            configASSERT( ucROTaskFaultTracker[ 0 ] == 0 );
+-        }
+-        #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+-
+-        /* Wait for a second. */
+-        vTaskDelay( pdMS_TO_TICKS( 1000 ) );
++        vTaskDelay( DEMO_TASK_DELAY_TICKS );
+     }
+ }
+-
+ /*-----------------------------------------------------------*/
+ 
+ static void prvRWAccessTask( void * pvParameters )
+ {
+-    /* Unused parameters. */
+     ( void ) pvParameters;
+ 
+     for( ; ; )
+     {
+-        /* This task has RW access to ucSharedMemory and therefore can write to
+-         * it. */
+-        ucSharedMemory[ 0 ] = 0;
++        /* This task has RW access to ucSharedMemory and can write without faulting. */
++        ucSharedMemory[ 0 ] = 0U;
+ 
+-        /* Wait for a second. */
+-        vTaskDelay( pdMS_TO_TICKS( 1000 ) );
++        vTaskDelay( DEMO_TASK_DELAY_TICKS );
+     }
+ }
+-
+ /*-----------------------------------------------------------*/
+ 
+ void vStartMPUDemo( void )
+ {
+-/**
+- * Since stack of a task is protected using MPU, it must satisfy MPU
+- * requirements as mentioned at the top of this file.
+- */
++    /* Task stacks are protected by the MPU and must satisfy ARMv7-M alignment
++     * rules stated at the top of this file. */
+     static StackType_t xROAccessTaskStack[ configMINIMAL_STACK_SIZE ]
+-    __attribute__( ( aligned( 1024 * sizeof( StackType_t ) ) ) );
++        __attribute__( ( aligned( DEMO_TASK_STACK_ALIGNMENT ) ) );
+     static StackType_t xRWAccessTaskStack[ configMINIMAL_STACK_SIZE ]
+-    __attribute__( ( aligned( 1024 * sizeof( StackType_t ) ) ) );
++        __attribute__( ( aligned( DEMO_TASK_STACK_ALIGNMENT ) ) );
+ 
+-    TaskParameters_t xROAccessTaskParameters =
++    static const TaskParameters_t xROAccessTaskParameters =
+     {
+         .pvTaskCode     = prvROAccessTask,
+         .pcName         = "ROAccess",
+@@ -266,16 +331,22 @@ void vStartMPUDemo( void )
+         .puxStackBuffer = xROAccessTaskStack,
+         .xRegions       =
+         {
+-            { ucSharedMemory,                  SHARED_MEMORY_SIZE,
+-              portMPU_REGION_PRIVILEGED_READ_WRITE_UNPRIV_READ_ONLY |
+-              portMPU_REGION_EXECUTE_NEVER },
+-            { ( void * ) ucROTaskFaultTracker, SHARED_MEMORY_SIZE,
+-              portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER },
+-            { 0,                               0,                 0},
++            {
++                ucSharedMemory,
++                SHARED_MEMORY_SIZE,
++                portMPU_REGION_PRIVILEGED_READ_WRITE_UNPRIV_READ_ONLY |
++                portMPU_REGION_EXECUTE_NEVER
++            },
++            {
++                ( void * ) ucROTaskFaultTracker,
++                SHARED_MEMORY_SIZE,
++                portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER
++            },
++            { 0, 0, 0 }
+         }
+     };
+ 
+-    TaskParameters_t xRWAccessTaskParameters =
++    static const TaskParameters_t xRWAccessTaskParameters =
+     {
+         .pvTaskCode     = prvRWAccessTask,
+         .pcName         = "RWAccess",
+@@ -285,77 +356,74 @@ void vStartMPUDemo( void )
+         .puxStackBuffer = xRWAccessTaskStack,
+         .xRegions       =
+         {
+-            { ucSharedMemory, SHARED_MEMORY_SIZE,
+-              portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER },
+-            { 0,              0,                 0  },
+-            { 0,              0,                 0  },
++            {
++                ucSharedMemory,
++                SHARED_MEMORY_SIZE,
++                portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER
++            },
++            { 0, 0, 0 },
++            { 0, 0, 0 }
+         }
+     };
+ 
+     /* Create an unprivileged task with RO access to ucSharedMemory. */
+-    xTaskCreateRestricted( &( xROAccessTaskParameters ), NULL );
++    ( void ) xTaskCreateRestricted( &( xROAccessTaskParameters ), NULL );
+ 
+     /* Create an unprivileged task with RW access to ucSharedMemory. */
+-    xTaskCreateRestricted( &( xRWAccessTaskParameters ), NULL );
++    ( void ) xTaskCreateRestricted( &( xRWAccessTaskParameters ), NULL );
+ }
+ /*-----------------------------------------------------------*/
+ 
+-portDONT_DISCARD void vHandleMemoryFault( uint32_t * pulFaultStackAddress )
++static uint32_t prvGetThumbInstructionLength( uint16_t usFirstHalfword )
++{
++    uint16_t usOpcodePrefix;
++    uint32_t ulInstructionLength;
++
++    /* Per ARMv7-M architecture decoding rules:
++     * If bits[15:11] of the halfword being decoded are 0b11101, 0b11110, or
++     * 0b11111, the halfword is the first halfword of a 32-bit instruction;
++     * otherwise, it is a 16-bit instruction. */
++    usOpcodePrefix = ( uint16_t ) ( ( usFirstHalfword & THUMB_OPCODE_PREFIX_MASK ) >>
++                                    THUMB_OPCODE_PREFIX_SHIFT );
++
++    if( ( usOpcodePrefix == THUMB_32BIT_PREFIX_11101 ) ||
++        ( usOpcodePrefix == THUMB_32BIT_PREFIX_11110 ) ||
++        ( usOpcodePrefix == THUMB_32BIT_PREFIX_11111 ) )
++    {
++        ulInstructionLength = THUMB_32BIT_INSTRUCTION_LENGTH;
++    }
++    else
++    {
++        ulInstructionLength = THUMB_16BIT_INSTRUCTION_LENGTH;
++    }
++
++    return ulInstructionLength;
++}
++/*-----------------------------------------------------------*/
++
++static void prvAdvanceProgramCounterPastFault( uint32_t * pulFaultStackAddress )
+ {
+-    uint32_t ulPC;
++    uint32_t ulFaultingPC;
+     uint16_t usOffendingInstruction;
+ 
+-    /* Is this an expected fault? */
+-    if( ucROTaskFaultTracker[ 0 ] == 1 )
+-    {
+-        /* Read program counter. */
+-        ulPC = pulFaultStackAddress[ 6 ];
+-
+-        /* Read the offending instruction. */
+-        usOffendingInstruction = *( uint16_t * ) ulPC;
+-
+-        /* From ARM docs:
+-         * If the value of bits[15:11] of the halfword being decoded is one of
+-         * the following, the halfword is the first halfword of a 32-bit
+-         * instruction:
+-         * - 0b11101.
+-         * - 0b11110.
+-         * - 0b11111.
+-         * Otherwise, the halfword is a 16-bit instruction.
+-         */
+-
+-        /* Extract bits[15:11] of the offending instruction. */
+-        usOffendingInstruction = usOffendingInstruction & 0xF800;
+-        usOffendingInstruction = ( usOffendingInstruction >> 11 );
+-
+-        /* Determine if the offending instruction is a 32-bit instruction or
+-         * a 16-bit instruction. */
+-        if( ( usOffendingInstruction == 0x001F ) ||
+-            ( usOffendingInstruction == 0x001E ) ||
+-            ( usOffendingInstruction == 0x001D ) )
+-        {
+-            /* Since the offending instruction is a 32-bit instruction,
+-             * increment the program counter by 4 to move to the next
+-             * instruction. */
+-            ulPC += 4;
+-        }
+-        else
+-        {
+-            /* Since the offending instruction is a 16-bit instruction,
+-             * increment the program counter by 2 to move to the next
+-             * instruction. */
+-            ulPC += 2;
+-        }
++    ulFaultingPC = pulFaultStackAddress[ EXCEPTION_STACK_PC_INDEX ];
++    usOffendingInstruction = *( ( const uint16_t * ) ulFaultingPC );
+ 
+-        /* Save the new program counter on the stack. */
+-        pulFaultStackAddress[ 6 ] = ulPC;
++    pulFaultStackAddress[ EXCEPTION_STACK_PC_INDEX ] =
++        ulFaultingPC + prvGetThumbInstructionLength( usOffendingInstruction );
++}
++/*-----------------------------------------------------------*/
+ 
+-        /* Mark the fault as handled. */
+-        ucROTaskFaultTracker[ 0 ] = 0;
++portDONT_DISCARD void vHandleMemoryFault( uint32_t * pulFaultStackAddress )
++{
++    if( ucROTaskFaultTracker[ 0 ] == FAULT_TRACKER_EXPECTED )
++    {
++        prvAdvanceProgramCounterPastFault( pulFaultStackAddress );
++        ucROTaskFaultTracker[ 0 ] = FAULT_TRACKER_CLEARED;
+     }
+     else
+     {
+-        /* This is an unexpected fault - loop forever. */
++        /* Unexpected memory fault: halt in an infinite loop. */
+         for( ; ; )
+         {
+         }

@@ -1,0 +1,52 @@
+2026-11-18T11:01:40Z START [1/26] claude-opus-5-5-medium_T1_r2
+2026-11-18T11:03:06Z DONE claude-opus-5-5-medium_T1_r2 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:03:06Z START [2/26] claude-opus-5-5-medium_T1_r3
+2026-11-18T11:04:30Z DONE claude-opus-5-5-medium_T1_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:04:30Z START [3/26] claude-opus-5-5-medium_T2_r1
+2026-11-18T11:07:27Z DONE claude-opus-5-5-medium_T2_r1 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:07:27Z START [4/26] claude-opus-5-5-medium_T2_r2
+2026-11-18T11:09:51Z DONE claude-opus-5-5-medium_T2_r2 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:09:51Z START [5/26] claude-opus-5-5-medium_T2_r3
+2026-11-18T11:12:23Z DONE claude-opus-5-5-medium_T2_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:12:23Z START [6/26] claude-opus-5-5-medium_T3_r1
+2026-11-18T11:13:54Z DONE claude-opus-5-5-medium_T3_r1 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:13:54Z START [7/26] claude-opus-5-5-medium_T3_r2
+2026-11-18T11:15:25Z DONE claude-opus-5-5-medium_T3_r2 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:15:25Z START [8/26] claude-opus-5-5-medium_T3_r3
+2026-11-18T11:16:57Z DONE claude-opus-5-5-medium_T3_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:16:57Z START [9/26] gpt-5.6-sol-medium_T1_r1
+2026-11-18T11:19:59Z DONE gpt-5.6-sol-medium_T1_r1 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:19:59Z START [10/26] gpt-5.6-sol-medium_T1_r2
+2026-11-18T11:22:40Z DONE gpt-5.6-sol-medium_T1_r2 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:22:40Z START [11/26] gpt-5.6-sol-medium_T1_r3
+2026-11-18T11:25:37Z DONE gpt-5.6-sol-medium_T1_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:25:37Z START [12/26] gpt-5.6-sol-medium_T2_r1
+2026-11-18T11:29:13Z DONE gpt-5.6-sol-medium_T2_r1 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:29:13Z START [13/26] gpt-5.6-sol-medium_T2_r2
+2026-11-18T11:33:41Z DONE gpt-5.6-sol-medium_T2_r2 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:33:41Z START [14/26] gpt-5.6-sol-medium_T2_r3
+2026-11-18T11:36:26Z DONE gpt-5.6-sol-medium_T2_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:36:26Z START [15/26] gpt-5.6-sol-medium_T3_r1
+2026-11-18T11:37:48Z DONE gpt-5.6-sol-medium_T3_r1 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:37:48Z START [16/26] gpt-5.6-sol-medium_T3_r2
+2026-11-18T11:39:30Z DONE gpt-5.6-sol-medium_T3_r2 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:39:30Z START [17/26] gpt-5.6-sol-medium_T3_r3
+2026-11-18T11:42:51Z DONE gpt-5.6-sol-medium_T3_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:42:51Z START [18/26] gemini-4-carbon-medium_T1_r1
+2026-11-18T11:46:04Z DONE gemini-4-carbon-medium_T1_r1 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:46:05Z START [19/26] gemini-4-carbon-medium_T1_r2
+2026-11-18T11:50:02Z DONE gemini-4-carbon-medium_T1_r2 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:50:02Z START [20/26] gemini-4-carbon-medium_T1_r3
+2026-11-18T11:55:28Z DONE gemini-4-carbon-medium_T1_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T11:55:28Z START [21/26] gemini-4-carbon-medium_T2_r1
+2026-11-18T12:14:33Z DONE gemini-4-carbon-medium_T2_r1 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T12:14:33Z START [22/26] gemini-4-carbon-medium_T2_r2
+2026-11-18T12:45:04Z ERROR gemini-4-carbon-medium_T2_r2 Command '['wsl', '-e', 'bash', '-lc', '\nset -euo pipefail\nexport PATH="$HOME/.local/bin:$PATH"\nPROMPT=$(cat /mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/multimodel/results/campaign_20261118T110107Z/runs/gemini-4-carbon-medium_T2_r2/prompt_expanded.md)\nset +e\nagent -p --force --trust --sandbox disabled \\\n  --output-format stream-json \\\n  --model gemini-4-carbon-medium \\\n  --workspace /mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/multimodel/wt/r23 \\\n  "$PROMPT" > /mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/multimodel/results/campaign_20261118T110107Z/runs/gemini-4-carbon-medium_T2_r2/agent_trace.jsonl 2>&1\nec=$?\necho AGENT_EXIT:$ec >> /mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/multimodel/results/campaign_20261118T110107Z/runs/gemini-4-carbon-medium_T2_r2/agent_trace.jsonl\nexit $ec\n']' timed out after 1800 seconds
+2026-11-18T12:45:04Z START [23/26] gemini-4-carbon-medium_T2_r3
+2026-11-18T13:02:11Z DONE gemini-4-carbon-medium_T2_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T13:02:11Z START [24/26] gemini-4-carbon-medium_T3_r1
+2026-11-18T13:13:53Z DONE gemini-4-carbon-medium_T3_r1 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T13:13:53Z START [25/26] gemini-4-carbon-medium_T3_r2
+2026-11-18T13:18:50Z DONE gemini-4-carbon-medium_T3_r2 L1=PASS L2=PASS SP1=HOLD SP2=HOLD
+2026-11-18T13:18:50Z START [26/26] gemini-4-carbon-medium_T3_r3
+2026-11-18T13:23:31Z DONE gemini-4-carbon-medium_T3_r3 L1=PASS L2=PASS SP1=HOLD SP2=HOLD

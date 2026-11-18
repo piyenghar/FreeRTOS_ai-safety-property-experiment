@@ -1,0 +1,20 @@
+# Transient worktrees and dry-runs (not campaign evidence)
+wt/
+worktrees/
+results/dryrun_*/
+
+# Local probe helpers / caches
+**/__pycache__/
+_probe_agent.sh
+_search_models.sh
+_ps.sh
+_ps2.sh
+_list_models.sh
+_verify_models.sh
+
+# Build objects if ever dropped under this tree
+*.o
+*.axf
+*.elf
+*.map
+*.d

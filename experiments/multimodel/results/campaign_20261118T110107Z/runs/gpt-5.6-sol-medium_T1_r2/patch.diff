@@ -1,0 +1,37 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..8c1063e44 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -111,6 +111,7 @@ static void prvReportPropertyResult( const char * pcMessage )
+ static void prvROAccessTask( void * pvParameters )
+ {
+     uint8_t ucVal;
++    BaseType_t xSP1Passed;
+ 
+     /* Unused parameters. */
+     ( void ) pvParameters;
+@@ -145,10 +146,12 @@ static void prvROAccessTask( void * pvParameters )
+         if( ucROTaskFaultTracker[ 0 ] == 0 )
+         {
+             prvReportPropertyResult( "SP1 PASS: read-only memory isolation preserved" );
++            xSP1Passed = pdTRUE;
+         }
+         else
+         {
+             prvReportPropertyResult( "SP1 FAIL: read-only memory isolation violated" );
++            xSP1Passed = pdFALSE;
+         }
+ 
+         #if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
+@@ -179,6 +182,11 @@ static void prvROAccessTask( void * pvParameters )
+             if( ucROTaskFaultTracker[ 0 ] == 0 )
+             {
+                 prvReportPropertyResult( "SP2 PASS: unauthorized privilege escalation rejected" );
++
++                if( xSP1Passed == pdTRUE )
++                {
++                    prvReportPropertyResult( "T1_LOG: MPU test cycle completed" );
++                }
+             }
+             else
+             {

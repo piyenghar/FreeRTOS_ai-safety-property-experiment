@@ -1,0 +1,148 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..4029b1f32 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -81,6 +81,13 @@ static void prvROAccessTask( void * pvParameters );
+  */
+ static void prvRWAccessTask( void * pvParameters );
+ 
++/**
++ * @brief Attempt a write that must be rejected by the read-only MPU region.
++ *
++ * @return pdTRUE when the expected Memory Fault was handled, otherwise pdFALSE.
++ */
++static BaseType_t prvProtectedWriteWasRejected( void );
++
+ /**
+  * @brief Print one safety-property result on UART0.
+  *
+@@ -91,6 +98,26 @@ static void prvRWAccessTask( void * pvParameters );
+  */
+ static void prvReportPropertyResult( const char * pcMessage );
+ 
++/**
++ * @brief Report the pass or fail message for one safety property.
++ */
++static void prvReportPropertyOutcome( BaseType_t xPropertyHolds,
++                                      const char * pcPassMessage,
++                                      const char * pcFailMessage );
++
++/*-----------------------------------------------------------*/
++
++static BaseType_t prvProtectedWriteWasRejected( void )
++{
++    /* Tell the Memory Fault handler that the following access is expected. */
++    ucROTaskFaultTracker[ 0 ] = 1;
++
++    /* The read-only task's MPU permissions must reject this write. */
++    ucSharedMemory[ 0 ] = 0;
++
++    /* The handler clears the tracker after recovering from the fault. */
++    return ( ucROTaskFaultTracker[ 0 ] == 0 ) ? pdTRUE : pdFALSE;
++}
+ /*-----------------------------------------------------------*/
+ 
+ static void prvReportPropertyResult( const char * pcMessage )
+@@ -108,9 +135,24 @@ static void prvReportPropertyResult( const char * pcMessage )
+ }
+ /*-----------------------------------------------------------*/
+ 
++static void prvReportPropertyOutcome( BaseType_t xPropertyHolds,
++                                      const char * pcPassMessage,
++                                      const char * pcFailMessage )
++{
++    if( xPropertyHolds == pdTRUE )
++    {
++        prvReportPropertyResult( pcPassMessage );
++    }
++    else
++    {
++        prvReportPropertyResult( pcFailMessage );
++    }
++}
++/*-----------------------------------------------------------*/
++
+ static void prvROAccessTask( void * pvParameters )
+ {
+-    uint8_t ucVal;
++    uint8_t ucSharedValue;
+ 
+     /* Unused parameters. */
+     ( void ) pvParameters;
+@@ -121,35 +163,17 @@ static void prvROAccessTask( void * pvParameters )
+     {
+         /* This task has RO access to ucSharedMemory and therefore it can read
+          * it but cannot modify it. */
+-        ucVal = ucSharedMemory[ 0 ];
++        ucSharedValue = ucSharedMemory[ 0 ];
+ 
+         /* Silent compiler warnings about unused variables. */
+-        ( void ) ucVal;
+-
+-        /* Since this task has Read Only access to the ucSharedMemory region,
+-         * writing to it results in Memory Fault. Set ucROTaskFaultTracker[ 0 ]
+-         * to 1 to tell the Memory Fault Handler that this is an expected fault.
+-         * The handler will recover from this fault gracefully by jumping to the
+-         * next instruction. */
+-        ucROTaskFaultTracker[ 0 ] = 1;
+-
+-        /* Illegal access to generate Memory Fault. */
+-        ucSharedMemory[ 0 ] = 0;
+-
+-        /* Ensure that the above line did generate MemFault and the fault
+-         * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
+-        /*configASSERT( ucROTaskFaultTracker[ 0 ] == 0 ); */
++        ( void ) ucSharedValue;
+ 
+         /* SP1: the fault handler clears the tracker only after the expected
+          * MPU fault. A cleared tracker means the write was rejected. */
+-        if( ucROTaskFaultTracker[ 0 ] == 0 )
+-        {
+-            prvReportPropertyResult( "SP1 PASS: read-only memory isolation preserved" );
+-        }
+-        else
+-        {
+-            prvReportPropertyResult( "SP1 FAIL: read-only memory isolation violated" );
+-        }
++        prvReportPropertyOutcome(
++            prvProtectedWriteWasRejected(),
++            "SP1 PASS: read-only memory isolation preserved",
++            "SP1 FAIL: read-only memory isolation violated" );
+ 
+         #if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
+         {
+@@ -160,30 +184,12 @@ static void prvROAccessTask( void * pvParameters )
+              * Fault. */
+             portRAISE_PRIVILEGE();
+ 
+-            /* Set ucROTaskFaultTracker[ 0 ] to 1 to tell the Memory Fault
+-             * Handler that this is an expected fault. The handler will then be
+-             * able to recover from this fault gracefully by jumping to the
+-             * next instruction.*/
+-            ucROTaskFaultTracker[ 0 ] = 1;
+-
+-            /* The following must still result in Memory Fault since the task
+-             * is still running unprivileged. */
+-            ucSharedMemory[ 0 ] = 0;
+-
+-            /* Ensure that the above line did generate MemFault and the fault
+-             * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
+-            /*configASSERT( ucROTaskFaultTracker[ 0 ] == 0 ); */
+-
+             /* SP2: a second MPU fault after the rejected privilege request
+              * means the task is still unprivileged. */
+-            if( ucROTaskFaultTracker[ 0 ] == 0 )
+-            {
+-                prvReportPropertyResult( "SP2 PASS: unauthorized privilege escalation rejected" );
+-            }
+-            else
+-            {
+-                prvReportPropertyResult( "SP2 FAIL: privilege containment violated" );
+-            }
++            prvReportPropertyOutcome(
++                prvProtectedWriteWasRejected(),
++                "SP2 PASS: unauthorized privilege escalation rejected",
++                "SP2 FAIL: privilege containment violated" );
+         }
+         #else /* if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+         {

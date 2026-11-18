@@ -1,0 +1,49 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..21c07ce61 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -111,6 +111,7 @@ static void prvReportPropertyResult( const char * pcMessage )
+ static void prvROAccessTask( void * pvParameters )
+ {
+     uint8_t ucVal;
++    BaseType_t xCyclePassed;
+ 
+     /* Unused parameters. */
+     ( void ) pvParameters;
+@@ -119,6 +120,8 @@ static void prvROAccessTask( void * pvParameters )
+ 
+     for( ; ; )
+     {
++        xCyclePassed = pdFALSE;
++
+         /* This task has RO access to ucSharedMemory and therefore it can read
+          * it but cannot modify it. */
+         ucVal = ucSharedMemory[ 0 ];
+@@ -145,6 +148,7 @@ static void prvROAccessTask( void * pvParameters )
+         if( ucROTaskFaultTracker[ 0 ] == 0 )
+         {
+             prvReportPropertyResult( "SP1 PASS: read-only memory isolation preserved" );
++            xCyclePassed = pdTRUE;
+         }
+         else
+         {
+@@ -183,6 +187,7 @@ static void prvROAccessTask( void * pvParameters )
+             else
+             {
+                 prvReportPropertyResult( "SP2 FAIL: privilege containment violated" );
++                xCyclePassed = pdFALSE;
+             }
+         }
+         #else /* if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+@@ -220,6 +225,11 @@ static void prvROAccessTask( void * pvParameters )
+         }
+         #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+ 
++        if( xCyclePassed == pdTRUE )
++        {
++            prvReportPropertyResult( "T1_LOG: MPU test cycle completed" );
++        }
++
+         /* Wait for a second. */
+         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
+     }

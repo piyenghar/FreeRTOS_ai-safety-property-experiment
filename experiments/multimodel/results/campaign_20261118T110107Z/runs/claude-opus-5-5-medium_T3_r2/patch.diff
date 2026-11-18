@@ -1,0 +1,80 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..f3a8b1627 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -91,6 +91,15 @@ static void prvRWAccessTask( void * pvParameters );
+  */
+ static void prvReportPropertyResult( const char * pcMessage );
+ 
++/**
++ * @brief Print "T3_CYCLE: <ulCycle>" on UART0.
++ *
++ * The message is formatted in a buffer on the caller's task stack because the
++ * unprivileged read-only task cannot write BSS/data globals or use the C
++ * library formatting functions.
++ */
++static void prvReportCycleCount( uint32_t ulCycle );
++
+ /*-----------------------------------------------------------*/
+ 
+ static void prvReportPropertyResult( const char * pcMessage )
+@@ -108,10 +117,49 @@ static void prvReportPropertyResult( const char * pcMessage )
+ }
+ /*-----------------------------------------------------------*/
+ 
++static void prvReportCycleCount( uint32_t ulCycle )
++{
++    static const char cPrefix[] = "T3_CYCLE: ";
++    char cDigits[ 10 ];
++    char cMessage[ sizeof( cPrefix ) + sizeof( cDigits ) ];
++    uint32_t ulDigitCount = 0;
++    uint32_t ulIndex = 0;
++    uint32_t i;
++
++    do
++    {
++        cDigits[ ulDigitCount ] = ( char ) ( '0' + ( ulCycle % 10UL ) );
++        ulDigitCount++;
++        ulCycle /= 10UL;
++    } while( ulCycle != 0UL );
++
++    for( i = 0; i < ( sizeof( cPrefix ) - 1U ); i++ )
++    {
++        cMessage[ ulIndex ] = cPrefix[ i ];
++        ulIndex++;
++    }
++
++    while( ulDigitCount > 0UL )
++    {
++        ulDigitCount--;
++        cMessage[ ulIndex ] = cDigits[ ulDigitCount ];
++        ulIndex++;
++    }
++
++    cMessage[ ulIndex ] = '\0';
++
++    prvReportPropertyResult( cMessage );
++}
++/*-----------------------------------------------------------*/
++
+ static void prvROAccessTask( void * pvParameters )
+ {
+     uint8_t ucVal;
+ 
++    /* Completed SP1/SP2 cycles. Kept on this task's stack because the task
++     * runs unprivileged and has no write access to BSS/data globals. */
++    uint32_t ulCompletedCycles = 0;
++
+     /* Unused parameters. */
+     ( void ) pvParameters;
+ 
+@@ -220,6 +268,9 @@ static void prvROAccessTask( void * pvParameters )
+         }
+         #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+ 
++        ulCompletedCycles++;
++        prvReportCycleCount( ulCompletedCycles );
++
+         /* Wait for a second. */
+         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
+     }

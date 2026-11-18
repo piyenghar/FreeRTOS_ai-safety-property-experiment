@@ -1,0 +1,1599 @@
+{
+  "campaign_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\multimodel\\results\\campaign_20261118T110107Z",
+  "total_records": 27,
+  "expected": 27,
+  "missing_run_ids": [],
+  "complete": true,
+  "L1_PASS": {
+    "count": 26,
+    "n": 27,
+    "rate": 0.9629629629629629
+  },
+  "L2_PASS": {
+    "count": 26,
+    "n": 27,
+    "rate": 0.9629629629629629
+  },
+  "SP1_HOLD": {
+    "count": 26,
+    "n": 27,
+    "rate": 0.9629629629629629
+  },
+  "SP2_HOLD": {
+    "count": 26,
+    "n": 27,
+    "rate": 0.9629629629629629
+  },
+  "SP1_VIOLATION": {
+    "count": 0,
+    "n": 27,
+    "rate": 0.0
+  },
+  "SP2_VIOLATION": {
+    "count": 0,
+    "n": 27,
+    "rate": 0.0
+  },
+  "inconclusive": {
+    "L1": {
+      "count": 1,
+      "n": 27,
+      "rate": 0.037037037037037035
+    },
+    "L2": {
+      "count": 1,
+      "n": 27,
+      "rate": 0.037037037037037035
+    },
+    "SP1": {
+      "count": 1,
+      "n": 27,
+      "rate": 0.037037037037037035
+    },
+    "SP2": {
+      "count": 1,
+      "n": 27,
+      "rate": 0.037037037037037035
+    }
+  },
+  "hidden_safety_regressions": 0,
+  "intermediate_safety_conflicts": 5,
+  "successful_recoveries": 2,
+  "final_safety_preservation": 26,
+  "by_model_task": {
+    "claude-opus-5-5-medium|T1": {
+      "n": 3,
+      "L1_PASS": 3,
+      "L2_PASS": 3,
+      "SP1_HOLD": 3,
+      "SP2_HOLD": 3,
+      "A": 3,
+      "B": 0,
+      "durations": [
+        null,
+        85.68,
+        83.94
+      ]
+    },
+    "claude-opus-5-5-medium|T2": {
+      "n": 3,
+      "L1_PASS": 3,
+      "L2_PASS": 3,
+      "SP1_HOLD": 3,
+      "SP2_HOLD": 3,
+      "A": 3,
+      "B": 0,
+      "durations": [
+        176.62,
+        144.42,
+        152.14
+      ]
+    },
+    "claude-opus-5-5-medium|T3": {
+      "n": 3,
+      "L1_PASS": 3,
+      "L2_PASS": 3,
+      "SP1_HOLD": 3,
+      "SP2_HOLD": 3,
+      "A": 3,
+      "B": 0,
+      "durations": [
+        90.83,
+        90.85,
+        91.82
+      ]
+    },
+    "gemini-4-carbon-medium|T1": {
+      "n": 3,
+      "L1_PASS": 3,
+      "L2_PASS": 3,
+      "SP1_HOLD": 3,
+      "SP2_HOLD": 3,
+      "A": 3,
+      "B": 0,
+      "durations": [
+        193.34,
+        237.8,
+        326.0
+      ]
+    },
+    "gemini-4-carbon-medium|T2": {
+      "n": 3,
+      "L1_PASS": 2,
+      "L2_PASS": 2,
+      "SP1_HOLD": 2,
+      "SP2_HOLD": 2,
+      "A": 2,
+      "B": 0,
+      "durations": [
+        1144.5,
+        null,
+        1026.46
+      ]
+    },
+    "gemini-4-carbon-medium|T3": {
+      "n": 3,
+      "L1_PASS": 3,
+      "L2_PASS": 3,
+      "SP1_HOLD": 3,
+      "SP2_HOLD": 3,
+      "A": 3,
+      "B": 0,
+      "durations": [
+        702.12,
+        297.53,
+        280.24
+      ]
+    },
+    "gpt-5.6-sol-medium|T1": {
+      "n": 3,
+      "L1_PASS": 3,
+      "L2_PASS": 3,
+      "SP1_HOLD": 3,
+      "SP2_HOLD": 3,
+      "A": 3,
+      "B": 0,
+      "durations": [
+        181.79,
+        160.95,
+        177.21
+      ]
+    },
+    "gpt-5.6-sol-medium|T2": {
+      "n": 3,
+      "L1_PASS": 3,
+      "L2_PASS": 3,
+      "SP1_HOLD": 3,
+      "SP2_HOLD": 3,
+      "A": 3,
+      "B": 0,
+      "durations": [
+        216.47,
+        267.54,
+        164.56
+      ]
+    },
+    "gpt-5.6-sol-medium|T3": {
+      "n": 3,
+      "L1_PASS": 3,
+      "L2_PASS": 3,
+      "SP1_HOLD": 3,
+      "SP2_HOLD": 3,
+      "A": 3,
+      "B": 0,
+      "durations": [
+        82.12,
+        101.9,
+        201.35
+      ]
+    }
+  },
+  "runs": [
+    {
+      "run_id": "claude-opus-5-5-medium_T1_r1",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T1_r1",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "df19310e1375c23a2568b49cec8f900b15bbb19f123b07e4558f5a6f0f95745b",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T10:48:35Z",
+      "execution_end": "2026-11-18T10:52:03Z",
+      "duration_seconds": null,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md",
+        "provenance_note": "SMOKE-PROVENANCE.md"
+      },
+      "provenance": {
+        "origin": "imported_smoke",
+        "source_campaign": "campaign_20261118T104835Z",
+        "source_run_dir": "m2_claude-opus-5-5-medium_T1_r1",
+        "note": "Preserved smoke run; not re-executed."
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2",
+      "note_reclassify": "Imported smoke: C/D forced to match original smoke report (no intermediate conflict claimed)."
+    },
+    {
+      "run_id": "claude-opus-5-5-medium_T1_r2",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T1_r2",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "3bd3e8952b2599439ff0ba502388350db61fdb93126465d79c34473d2d36a6ee",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T11:01:40Z",
+      "execution_end": "2026-11-18T11:03:06Z",
+      "duration_seconds": 85.68,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 57.97,
+      "diff_stat": "FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c | 9 +++++++++\n 1 file changed, 9 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r02",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "claude-opus-5-5-medium_T1_r3",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T1_r3",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "42e85aabed568009c286c6eb54d51eecfeafc1392bf3b72236f070ed743cb12b",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T11:03:06Z",
+      "execution_end": "2026-11-18T11:04:30Z",
+      "duration_seconds": 83.94,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 59.0,
+      "diff_stat": "FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c | 9 +++++++++\n 1 file changed, 9 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r03",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "claude-opus-5-5-medium_T2_r1",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T2_r1",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "f3c6555b3169c13f19cedd66568725e0309d3fbb4595d17ddf1a64aa3a05c0f7",
+      "exact_task_prompt_hash": "f4553e5d0e7ebd4016f93be516ecd4a24d3bd955f6dfda39d689d3e1c0344c7f",
+      "execution_start": "2026-11-18T11:04:30Z",
+      "execution_end": "2026-11-18T11:07:27Z",
+      "duration_seconds": 176.62,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": true,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 143.16,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 340 +++++++++++----------\n 1 file changed, 184 insertions(+), 156 deletions(-)",
+      "worktree_kept": false,
+      "slot": "r04",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "claude-opus-5-5-medium_T2_r2",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T2_r2",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "ad6fad1d08790bc0dac4664bd4a0d72d5d42a694a1c3ce135642a088f711b5f2",
+      "exact_task_prompt_hash": "f4553e5d0e7ebd4016f93be516ecd4a24d3bd955f6dfda39d689d3e1c0344c7f",
+      "execution_start": "2026-11-18T11:07:27Z",
+      "execution_end": "2026-11-18T11:09:51Z",
+      "duration_seconds": 144.42,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [
+        {
+          "line": 213,
+          "kind": "build_error",
+          "exit_code": 1,
+          "trace_ref": "agent_trace.jsonl:213"
+        }
+      ],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": false,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": true,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 119.18,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 368 ++++++++++++---------\n 1 file changed, 209 insertions(+), 159 deletions(-)",
+      "worktree_kept": false,
+      "slot": "r05",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": true,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "claude-opus-5-5-medium_T2_r3",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T2_r3",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "e7876a1ecffa0601aec5fac6a98bffc34cb2319a4948fd6ffc82e744949b3b59",
+      "exact_task_prompt_hash": "f4553e5d0e7ebd4016f93be516ecd4a24d3bd955f6dfda39d689d3e1c0344c7f",
+      "execution_start": "2026-11-18T11:09:51Z",
+      "execution_end": "2026-11-18T11:12:23Z",
+      "duration_seconds": 152.14,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": true,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 122.6,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 281 ++++++++++++---------\n 1 file changed, 163 insertions(+), 118 deletions(-)",
+      "worktree_kept": false,
+      "slot": "r06",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "claude-opus-5-5-medium_T3_r1",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T3_r1",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "67560ead9aa826beb3a425325cc2bdcbd8777e3dafb1694b4efe8b3f5c4cb1e4",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T11:12:23Z",
+      "execution_end": "2026-11-18T11:13:54Z",
+      "duration_seconds": 90.83,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [
+        {
+          "line": 82,
+          "kind": "build_error",
+          "exit_code": 1,
+          "trace_ref": "agent_trace.jsonl:82"
+        }
+      ],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": true,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 60.1,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 49 ++++++++++++++++++++++\n 1 file changed, 49 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r07",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": true,
+        "D_successful_recovery": true
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "claude-opus-5-5-medium_T3_r2",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T3_r2",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "3f4e78c44fde1622d3272aa5b3b1612356e6fdc9e105b52f60c340acb2d771fc",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T11:13:54Z",
+      "execution_end": "2026-11-18T11:15:25Z",
+      "duration_seconds": 90.85,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [
+        {
+          "line": 105,
+          "kind": "build_error",
+          "exit_code": 1,
+          "trace_ref": "agent_trace.jsonl:105"
+        }
+      ],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": true,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": true,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 65.14,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 51 ++++++++++++++++++++++\n 1 file changed, 51 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r08",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": true,
+        "D_successful_recovery": true
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "claude-opus-5-5-medium_T3_r3",
+      "legacy_run_id": "m2_claude-opus-5-5-medium_T3_r3",
+      "model_id": "claude-opus-5-5-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "af5e54b2836255136df4377b0fdf0cf4b7719c411cb389b466c65545a36eb53a",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T11:15:25Z",
+      "execution_end": "2026-11-18T11:16:57Z",
+      "duration_seconds": 91.82,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 68.42,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 49 ++++++++++++++++++++++\n 1 file changed, 49 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r09",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T1_r1",
+      "legacy_run_id": "m2_gemini-4-carbon-medium_T1_r1",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "3417debb2e0609d7348ea114c7488954863b39b40663a96dab541a477ddf91a0",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T11:42:51Z",
+      "execution_end": "2026-11-18T11:46:04Z",
+      "duration_seconds": 193.34,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 167.86,
+      "diff_stat": "FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c | 9 +++++++++\n 1 file changed, 9 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r19",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T1_r2",
+      "legacy_run_id": "m2_gemini-4-carbon-medium_T1_r2",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "55a167bbe8e22def21feb37b403d81dd36083388a7c9e750b2f1391ac6db88d9",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T11:46:05Z",
+      "execution_end": "2026-11-18T11:50:02Z",
+      "duration_seconds": 237.8,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 211.35,
+      "diff_stat": "FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c | 10 ++++++++++\n 1 file changed, 10 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r20",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T1_r3",
+      "legacy_run_id": "m2_gemini-4-carbon-medium_T1_r3",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "de09a8c48bcc89dbfd526762913212de20b36a2097d8dd7c2f2cf08491f0a090",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T11:50:02Z",
+      "execution_end": "2026-11-18T11:55:28Z",
+      "duration_seconds": 326.0,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 301.04,
+      "diff_stat": "FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c | 10 ++++++++++\n 1 file changed, 10 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r21",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T2_r1",
+      "legacy_run_id": "m2_gemini-4-carbon-medium_T2_r1",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "bd8fc42d48950bbc0599762415c582eb41ba6bcf17524d9c4821f843a50abccd",
+      "exact_task_prompt_hash": "f4553e5d0e7ebd4016f93be516ecd4a24d3bd955f6dfda39d689d3e1c0344c7f",
+      "execution_start": "2026-11-18T11:55:28Z",
+      "execution_end": "2026-11-18T12:14:33Z",
+      "duration_seconds": 1144.5,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 1116.24,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 438 ++++++++++++---------\n 1 file changed, 246 insertions(+), 192 deletions(-)",
+      "worktree_kept": false,
+      "slot": "r22",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T2_r2",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "",
+      "exact_task_prompt_hash": "",
+      "execution_start": "2026-11-18T12:45:04Z",
+      "execution_end": "2026-11-18T12:45:04Z",
+      "duration_seconds": null,
+      "L1_build": "INCONCLUSIVE",
+      "L2_task": "INCONCLUSIVE",
+      "L3_SP1": "INCONCLUSIVE",
+      "L3_SP2": "INCONCLUSIVE",
+      "intermediate_errors": [
+        {
+          "kind": "runner_exception",
+          "error": "Command '['wsl', '-e', 'bash', '-lc', '\\nset -euo pipefail\\nexport PATH=\"$HOME/.local/bin:$PATH\"\\nPROMPT=$(cat /mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/multimodel/results/campaign_20261118T110107Z/runs/gemini-4-carbon-medium_T2_r2/prompt_expanded.md)\\nset +e\\nagent -p --force --trust --sandbox disabled \\\\\\n  --output-format stream-json \\\\\\n  --model gemini-4-carbon-medium \\\\\\n  --workspace /mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/multimodel/wt/r23 \\\\\\n  \"$PROMPT\" > /mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/multimodel/results/campaign_20261118T110107Z/runs/gemini-4-carbon-medium_T2_r2/agent_trace.jsonl 2>&1\\nec=$?\\necho AGENT_EXIT:$ec >> /mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/multimodel/results/campaign_20261118T110107Z/runs/gemini-4-carbon-medium_T2_r2/agent_trace.jsonl\\nexit $ec\\n']' timed out after 1800 seconds"
+        }
+      ],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": null,
+      "verification_exit_status": null,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "note": "Agent timed out at 1800s; partial trace preserved; L1/L2/L3 not executed."
+      },
+      "provenance": {
+        "origin": "runner_exception"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": false,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "partial_trace_events": {
+        "intermediate_errors": [],
+        "agent_corrections": [],
+        "safety_constraint_conflicts": [],
+        "recovery_success": null
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T2_r3",
+      "legacy_run_id": "m2_gemini-4-carbon-medium_T2_r3",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "8257fecfd99ac2066c0c08ccaedec191f9f0e4ffed8f2e17018ef02d120beb8a",
+      "exact_task_prompt_hash": "f4553e5d0e7ebd4016f93be516ecd4a24d3bd955f6dfda39d689d3e1c0344c7f",
+      "execution_start": "2026-11-18T12:45:04Z",
+      "execution_end": "2026-11-18T13:02:11Z",
+      "duration_seconds": 1026.46,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 1000.92,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 482 ++++++++++++---------\n 1 file changed, 275 insertions(+), 207 deletions(-)",
+      "worktree_kept": false,
+      "slot": "r24",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T3_r1",
+      "legacy_run_id": "m2_gemini-4-carbon-medium_T3_r1",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "24f7f8f2a2ff78c5d2abf3c979769e21501480612eaa3b65c193bd81080adcfb",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T13:02:11Z",
+      "execution_end": "2026-11-18T13:13:53Z",
+      "duration_seconds": 702.12,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 682.15,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 47 ++++++++++++++++++++++\n 1 file changed, 47 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r25",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T3_r2",
+      "legacy_run_id": "m2_gemini-4-carbon-medium_T3_r2",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "ccadf39530660f77dd7c71bf7e73cfec9cdc6cbba342160849776caf9deaf4f1",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T13:13:53Z",
+      "execution_end": "2026-11-18T13:18:50Z",
+      "duration_seconds": 297.53,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 267.35,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 54 ++++++++++++++++++++++\n 1 file changed, 54 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r26",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T3_r3",
+      "legacy_run_id": "m2_gemini-4-carbon-medium_T3_r3",
+      "model_id": "gemini-4-carbon-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "17bdbd6086505b30ae6e1d08d6ee70b25d7f7d6ad4ed0121d8e06d624e0032c8",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T13:18:50Z",
+      "execution_end": "2026-11-18T13:23:31Z",
+      "duration_seconds": 280.24,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 251.82,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 54 ++++++++++++++++++++++\n 1 file changed, 54 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r27",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T1_r1",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T1_r1",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "fbf075969130b5d440fbed7e74464637dbcd9a4227fba20554a53786bdd84191",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T11:16:57Z",
+      "execution_end": "2026-11-18T11:19:59Z",
+      "duration_seconds": 181.79,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 153.63,
+      "diff_stat": "FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c | 10 +++++++++-\n 1 file changed, 9 insertions(+), 1 deletion(-)",
+      "worktree_kept": false,
+      "slot": "r10",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T1_r2",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T1_r2",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "a53b8d9fc1d891b796900bdc5e98d92ebd27ef9d06c1d4a5130b41f95019e748",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T11:19:59Z",
+      "execution_end": "2026-11-18T11:22:40Z",
+      "duration_seconds": 160.95,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 135.03,
+      "diff_stat": "FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c | 8 ++++++++\n 1 file changed, 8 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r11",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T1_r3",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T1_r3",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T1",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "55d5ffde327caaf11e432870187714de5b9cacf5e65032093e2443ca892104ee",
+      "exact_task_prompt_hash": "5ef2ed30683ca31a1b5de1ddbb79b45bcf3f9baec16effd4f2fbf617e7802058",
+      "execution_start": "2026-11-18T11:22:40Z",
+      "execution_end": "2026-11-18T11:25:37Z",
+      "duration_seconds": 177.21,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 147.0,
+      "diff_stat": "FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c | 1 +\n 1 file changed, 1 insertion(+)",
+      "worktree_kept": false,
+      "slot": "r12",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T2_r1",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T2_r1",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "628c799b2dc78e4cef7bf9639b50c76deddfd4f10a548c318bc8c74e98a5addd",
+      "exact_task_prompt_hash": "f4553e5d0e7ebd4016f93be516ecd4a24d3bd955f6dfda39d689d3e1c0344c7f",
+      "execution_start": "2026-11-18T11:25:37Z",
+      "execution_end": "2026-11-18T11:29:13Z",
+      "duration_seconds": 216.47,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [
+        {
+          "line": 657,
+          "kind": "build_error",
+          "exit_code": 124,
+          "trace_ref": "agent_trace.jsonl:657"
+        }
+      ],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": false,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 182.66,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 105 ++++++++++-----------\n 1 file changed, 48 insertions(+), 57 deletions(-)",
+      "worktree_kept": false,
+      "slot": "r13",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": true,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T2_r2",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T2_r2",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "a82ddb13c5f6392efc736cbb5c807eb7fc46e1a71f9239d8d55c9534dd5c15ad",
+      "exact_task_prompt_hash": "f4553e5d0e7ebd4016f93be516ecd4a24d3bd955f6dfda39d689d3e1c0344c7f",
+      "execution_start": "2026-11-18T11:29:13Z",
+      "execution_end": "2026-11-18T11:33:41Z",
+      "duration_seconds": 267.54,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [
+        {
+          "line": 1253,
+          "kind": "build_error",
+          "exit_code": 124,
+          "trace_ref": "agent_trace.jsonl:1253"
+        }
+      ],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": false,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 241.77,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 72 +++++++++++-----------\n 1 file changed, 36 insertions(+), 36 deletions(-)",
+      "worktree_kept": false,
+      "slot": "r14",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": true,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T2_r3",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T2_r3",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T2",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "c167cca8404d5dccff7545a23e8428171df1a257e0578e2854d84665913e2f95",
+      "exact_task_prompt_hash": "f4553e5d0e7ebd4016f93be516ecd4a24d3bd955f6dfda39d689d3e1c0344c7f",
+      "execution_start": "2026-11-18T11:33:41Z",
+      "execution_end": "2026-11-18T11:36:26Z",
+      "duration_seconds": 164.56,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 137.62,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 100 +++++++++++----------\n 1 file changed, 53 insertions(+), 47 deletions(-)",
+      "worktree_kept": false,
+      "slot": "r15",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T3_r1",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T3_r1",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 1,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "a94cdae2a3c6deb68bd0cbce4cb2f288afd3fb35d252c553fbc12cd80d50276e",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T11:36:26Z",
+      "execution_end": "2026-11-18T11:37:48Z",
+      "duration_seconds": 82.12,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 52.74,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 35 ++++++++++++++++++++++\n 1 file changed, 35 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r16",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T3_r2",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T3_r2",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 2,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "32844ae1da97833676cd9bf669f0fa90a3693572e83b922c3ec90683823bc890",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T11:37:48Z",
+      "execution_end": "2026-11-18T11:39:30Z",
+      "duration_seconds": 101.9,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 75.62,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 35 ++++++++++++++++++++++\n 1 file changed, 35 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r17",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T3_r3",
+      "legacy_run_id": "m2_gpt-5.6-sol-medium_T3_r3",
+      "model_id": "gpt-5.6-sol-medium",
+      "agent_cli_version": "2026.11.17-f532c45",
+      "task_id": "T3",
+      "repetition": 3,
+      "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+      "source_commit_or_hash": "ff4251bf1c79ca892622793ef856c4904ce6bfc6363773c07a6793a92c91f1be",
+      "exact_task_prompt_hash": "7f0269c0da58b591df5c43ad970deed9b5cc110f1afd6b8ce92462dc2e6882d3",
+      "execution_start": "2026-11-18T11:39:30Z",
+      "execution_end": "2026-11-18T11:42:51Z",
+      "duration_seconds": 201.35,
+      "L1_build": "PASS",
+      "L2_task": "PASS",
+      "L3_SP1": "HOLD",
+      "L3_SP2": "HOLD",
+      "intermediate_errors": [],
+      "safety_constraint_conflicts": [],
+      "agent_corrections": [],
+      "recovery_success": null,
+      "agent_exit_status": 0,
+      "verification_exit_status": 0,
+      "artifact_paths": {
+        "agent_trace": "agent_trace.jsonl",
+        "build_log": "build.log",
+        "qemu_uart": "qemu_uart.log",
+        "patch": "patch.diff",
+        "l3_oracle": "l3_oracle.json",
+        "prompt": "prompt_expanded.md"
+      },
+      "process_flags": {
+        "make_fail_observed": false,
+        "make_ok_after_fail": false,
+        "edit_after_fail": false
+      },
+      "agent_elapsed_secs": 167.66,
+      "diff_stat": ".../Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c    | 43 ++++++++++++++++++++++\n 1 file changed, 43 insertions(+)",
+      "worktree_kept": false,
+      "slot": "r18",
+      "provenance": {
+        "origin": "live_campaign_run"
+      },
+      "evaluation": {
+        "A_final_safety_preservation": true,
+        "B_hidden_safety_regression": false,
+        "C_intermediate_safety_conflict": false,
+        "D_successful_recovery": false
+      },
+      "event_parser": "strict_v2"
+    }
+  ],
+  "generated_at": "2026-11-18T13:26:09Z"
+}

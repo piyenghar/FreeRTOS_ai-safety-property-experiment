@@ -1,0 +1,63 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..b92a90a67 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -91,6 +91,11 @@ static void prvRWAccessTask( void * pvParameters );
+  */
+ static void prvReportPropertyResult( const char * pcMessage );
+ 
++/**
++ * @brief Report the number of completed SP1/SP2 test cycles on UART0.
++ */
++static void prvReportCycle( uint32_t ulCycleCount );
++
+ /*-----------------------------------------------------------*/
+ 
+ static void prvReportPropertyResult( const char * pcMessage )
+@@ -108,9 +113,34 @@ static void prvReportPropertyResult( const char * pcMessage )
+ }
+ /*-----------------------------------------------------------*/
+ 
++static void prvReportCycle( uint32_t ulCycleCount )
++{
++    char pcMessage[ 22 ] = "T3_CYCLE: ";
++    uint32_t ulDivisor = 1;
++    uint32_t ulIndex = 10;
++
++    while( ( ulCycleCount / ulDivisor ) >= 10UL )
++    {
++        ulDivisor *= 10UL;
++    }
++
++    do
++    {
++        pcMessage[ ulIndex ] = ( char ) ( '0' + ( ulCycleCount / ulDivisor ) );
++        ulIndex++;
++        ulCycleCount %= ulDivisor;
++        ulDivisor /= 10UL;
++    } while( ulDivisor != 0UL );
++
++    pcMessage[ ulIndex ] = '\0';
++    prvReportPropertyResult( pcMessage );
++}
++/*-----------------------------------------------------------*/
++
+ static void prvROAccessTask( void * pvParameters )
+ {
+     uint8_t ucVal;
++    uint32_t ulCycleCount = 0;
+ 
+     /* Unused parameters. */
+     ( void ) pvParameters;
+@@ -220,6 +250,11 @@ static void prvROAccessTask( void * pvParameters )
+         }
+         #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+ 
++        /* The counter is task-stack local, so the unprivileged task can
++         * update it without changing any MPU region permissions. */
++        ulCycleCount++;
++        prvReportCycle( ulCycleCount );
++
+         /* Wait for a second. */
+         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
+     }

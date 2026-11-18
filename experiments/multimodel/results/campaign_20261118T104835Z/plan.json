@@ -1,0 +1,36 @@
+{
+  "campaign_id": "20261118T104835Z",
+  "dry_run": false,
+  "baseline_ref": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+  "run_count": 1,
+  "expected_full_matrix": 27,
+  "agent": {
+    "present": true,
+    "logged_in": true,
+    "version_snip": "BIN=/home/drpadmaiyenghar/.local/bin/agent\n2026.11.17-f532c45\n---STATUS---\n\u00e2\u0153\u201c Logged in as padmai.iyenghar@gmail.com\n---MODELS---\nAvailable models\n\nauto - Auto (default)\ngpt-5.3-codex-low - Codex 5.3 Low\ngpt-5.3-codex-low-fast - Codex 5.3 Low Fast\ngpt-5.3-codex - Codex 5.3\ngpt-5.3-codex-fast - Code"
+  },
+  "runs": [
+    {
+      "run_id": "m2_claude-opus-5-5-medium_T1_r1",
+      "model_id": "claude-opus-5-5-medium",
+      "model_display": "Claude Opus 5.5 Medium",
+      "cli_model_id": "claude-opus-5-5-medium",
+      "task_id": "T1",
+      "task_name": "logging",
+      "rep": 1,
+      "prompt_file": "prompts/t1_logging.md",
+      "acceptance": {
+        "uart_must_contain": [
+          "SP1 PASS",
+          "SP2 PASS",
+          "T1_LOG"
+        ],
+        "uart_must_not_contain": [
+          "SP1 FAIL",
+          "SP2 FAIL"
+        ]
+      }
+    }
+  ],
+  "model_validation_note": "cli_model_id values are provisional until agent login + `agent models`. See config.yaml header."
+}

@@ -1,0 +1,71 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..7db8d2d21 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -91,6 +91,14 @@ static void prvRWAccessTask( void * pvParameters );
+  */
+ static void prvReportPropertyResult( const char * pcMessage );
+ 
++/**
++ * @brief Report the number of completed SP1/SP2 test cycles on UART0.
++ *
++ * The counter and conversion buffer are task-stack local so the unprivileged
++ * task does not need write access to BSS.
++ */
++static void prvReportCycle( uint32_t ulCycleCount );
++
+ /*-----------------------------------------------------------*/
+ 
+ static void prvReportPropertyResult( const char * pcMessage )
+@@ -108,9 +116,41 @@ static void prvReportPropertyResult( const char * pcMessage )
+ }
+ /*-----------------------------------------------------------*/
+ 
++static void prvReportCycle( uint32_t ulCycleCount )
++{
++    static const char pcPrefix[] = "T3_CYCLE: ";
++    volatile uint32_t * const pulUartData = ( volatile uint32_t * ) 0x40004000UL;
++    char pcDigits[ 10 ];
++    uint32_t ulDigitCount = 0;
++    const char * pcPrefixCharacter = pcPrefix;
++
++    while( *pcPrefixCharacter != '\0' )
++    {
++        *pulUartData = ( uint32_t ) ( ( uint8_t ) *pcPrefixCharacter );
++        pcPrefixCharacter++;
++    }
++
++    do
++    {
++        pcDigits[ ulDigitCount ] = ( char ) ( '0' + ( ulCycleCount % 10UL ) );
++        ulDigitCount++;
++        ulCycleCount /= 10UL;
++    } while( ulCycleCount != 0UL );
++
++    while( ulDigitCount > 0UL )
++    {
++        ulDigitCount--;
++        *pulUartData = ( uint32_t ) ( ( uint8_t ) pcDigits[ ulDigitCount ] );
++    }
++
++    *pulUartData = ( uint32_t ) '\n';
++}
++/*-----------------------------------------------------------*/
++
+ static void prvROAccessTask( void * pvParameters )
+ {
+     uint8_t ucVal;
++    uint32_t ulCycleCount = 0;
+ 
+     /* Unused parameters. */
+     ( void ) pvParameters;
+@@ -220,6 +260,9 @@ static void prvROAccessTask( void * pvParameters )
+         }
+         #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+ 
++        ulCycleCount++;
++        prvReportCycle( ulCycleCount );
++
+         /* Wait for a second. */
+         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
+     }

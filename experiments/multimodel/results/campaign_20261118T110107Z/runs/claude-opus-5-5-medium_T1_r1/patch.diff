@@ -1,0 +1,35 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..367fbd52a 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -111,6 +111,7 @@ static void prvReportPropertyResult( const char * pcMessage )
+ static void prvROAccessTask( void * pvParameters )
+ {
+     uint8_t ucVal;
++    BaseType_t xSP1Passed;
+ 
+     /* Unused parameters. */
+     ( void ) pvParameters;
+@@ -142,7 +143,9 @@ static void prvROAccessTask( void * pvParameters )
+ 
+         /* SP1: the fault handler clears the tracker only after the expected
+          * MPU fault. A cleared tracker means the write was rejected. */
+-        if( ucROTaskFaultTracker[ 0 ] == 0 )
++        xSP1Passed = ( ucROTaskFaultTracker[ 0 ] == 0 ) ? pdTRUE : pdFALSE;
++
++        if( xSP1Passed == pdTRUE )
+         {
+             prvReportPropertyResult( "SP1 PASS: read-only memory isolation preserved" );
+         }
+@@ -179,6 +182,11 @@ static void prvROAccessTask( void * pvParameters )
+             if( ucROTaskFaultTracker[ 0 ] == 0 )
+             {
+                 prvReportPropertyResult( "SP2 PASS: unauthorized privilege escalation rejected" );
++
++                if( xSP1Passed == pdTRUE )
++                {
++                    prvReportPropertyResult( "T1_LOG: MPU test cycle completed" );
++                }
+             }
+             else
+             {

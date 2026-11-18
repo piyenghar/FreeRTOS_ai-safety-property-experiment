@@ -1,0 +1,74 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..6416c240a 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -91,6 +91,48 @@ static void prvRWAccessTask( void * pvParameters );
+  */
+ static void prvReportPropertyResult( const char * pcMessage );
+ 
++/**
++ * @brief Print "T3_CYCLE: <ulCycle>" on UART0.
++ *
++ * The message is built in a buffer on the caller's (task) stack because the
++ * unprivileged read-only task has no write access to BSS/data globals.
++ */
++static void prvReportCycleCount( uint32_t ulCycle );
++
++/*-----------------------------------------------------------*/
++
++static void prvReportCycleCount( uint32_t ulCycle )
++{
++    static const char pcPrefix[] = "T3_CYCLE: ";
++    char cMessage[ sizeof( pcPrefix ) + 10 ];
++    char cDigits[ 10 ];
++    uint32_t ulIndex = 0;
++    uint32_t ulDigitCount = 0;
++
++    while( pcPrefix[ ulIndex ] != '\0' )
++    {
++        cMessage[ ulIndex ] = pcPrefix[ ulIndex ];
++        ulIndex++;
++    }
++
++    do
++    {
++        cDigits[ ulDigitCount ] = ( char ) ( '0' + ( ulCycle % 10U ) );
++        ulDigitCount++;
++        ulCycle /= 10U;
++    } while( ulCycle != 0U );
++
++    while( ulDigitCount > 0U )
++    {
++        ulDigitCount--;
++        cMessage[ ulIndex ] = cDigits[ ulDigitCount ];
++        ulIndex++;
++    }
++
++    cMessage[ ulIndex ] = '\0';
++
++    prvReportPropertyResult( cMessage );
++}
+ /*-----------------------------------------------------------*/
+ 
+ static void prvReportPropertyResult( const char * pcMessage )
+@@ -112,6 +154,10 @@ static void prvROAccessTask( void * pvParameters )
+ {
+     uint8_t ucVal;
+ 
++    /* Completed SP1/SP2 cycles. Kept on the task stack: this unprivileged task
++     * cannot write BSS globals. */
++    uint32_t ulCompletedCycles = 0;
++
+     /* Unused parameters. */
+     ( void ) pvParameters;
+ 
+@@ -220,6 +266,9 @@ static void prvROAccessTask( void * pvParameters )
+         }
+         #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+ 
++        ulCompletedCycles++;
++        prvReportCycleCount( ulCompletedCycles );
++
+         /* Wait for a second. */
+         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
+     }

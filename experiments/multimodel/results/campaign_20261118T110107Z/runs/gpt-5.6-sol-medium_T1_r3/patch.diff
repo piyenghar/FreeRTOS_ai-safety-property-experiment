@@ -1,0 +1,12 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..c093eeae4 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -179,6 +179,7 @@ static void prvROAccessTask( void * pvParameters )
+             if( ucROTaskFaultTracker[ 0 ] == 0 )
+             {
+                 prvReportPropertyResult( "SP2 PASS: unauthorized privilege escalation rejected" );
++                prvReportPropertyResult( "T1_LOG: MPU test cycle completed" );
+             }
+             else
+             {

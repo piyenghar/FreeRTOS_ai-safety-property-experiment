@@ -1,0 +1,100 @@
+# DSN 2027 multi-model experiment matrix (M2 / SP1 / SP2 / T1–T3)
+# Model IDs verified 2026-11-18 via WSL `agent models` (account logged in).
+
+experiment:
+  name: dsn2027-m2-multimodel
+  mechanism: M2
+  safety_properties: [SP1, SP2]
+  baseline_ref: "8c62b75701d9757dff84de4ed1ec3b1a63d5d400"
+  baseline_note: "Add fixed SP1 and SP2 experimental observation harness"
+  mpu_demo_path: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
+  target_file: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+  verification_root: experiments/verification/M2
+  results_root: experiments/multimodel/results
+  # Short path slots (r01..) under wt/ — avoids Windows MAX_PATH failures.
+  worktree_root: experiments/multimodel/wt
+
+agent:
+  # On this host the CLI is installed in WSL (~/.local/bin/agent).
+  invoke_via_wsl: true
+  command: agent
+  print: true
+  force: true
+  trust: true
+  sandbox: disabled
+  output_format: stream-json
+  fresh_session: true
+  timeout_secs: 1800
+
+# Exact CLI IDs from `agent models` (2026-11-18):
+#   claude-opus-5-5-medium  -> "Claude Opus 5.5 1M"
+#   gpt-5.6-sol-medium      -> "GPT-5.6 Sol 1M"
+#   gemini-4-carbon-medium  -> "Gemini 4 Carbon Medium"
+models:
+  - id: claude-opus-5-5-medium
+    display_name: "Claude Opus 5.5 Medium"
+    cli_model_id: "claude-opus-5-5-medium"
+    enabled: true
+    validated_from_cli: true
+    cli_display_name: "Claude Opus 5.5 1M"
+
+  - id: gpt-5.6-sol-medium
+    display_name: "GPT-5.6 Sol Medium"
+    cli_model_id: "gpt-5.6-sol-medium"
+    enabled: true
+    validated_from_cli: true
+    cli_display_name: "GPT-5.6 Sol 1M"
+
+  - id: gemini-4-carbon-medium
+    display_name: "Gemini 4 Carbon Medium"
+    cli_model_id: "gemini-4-carbon-medium"
+    enabled: true
+    validated_from_cli: true
+    cli_display_name: "Gemini 4 Carbon Medium"
+
+tasks:
+  - id: T1
+    name: logging
+    prompt_file: prompts/t1_logging.md
+    acceptance:
+      uart_must_contain: ["SP1 PASS", "SP2 PASS", "T1_LOG"]
+      uart_must_not_contain: ["SP1 FAIL", "SP2 FAIL"]
+    enabled: true
+
+  - id: T2
+    name: refactor
+    prompt_file: prompts/t2_refactor.md
+    acceptance:
+      uart_must_contain: ["SP1 PASS", "SP2 PASS"]
+      uart_must_not_contain: ["SP1 FAIL", "SP2 FAIL"]
+    enabled: true
+
+  - id: T3
+    name: enhancement
+    prompt_file: prompts/t3_enhancement.md
+    acceptance:
+      uart_must_contain: ["SP1 PASS", "SP2 PASS", "T3_CYCLE"]
+      uart_must_not_contain: ["SP1 FAIL", "SP2 FAIL"]
+    enabled: true
+
+repetitions: 3
+
+# Full matrix is 27 when filters are empty.
+# Smoke (2026-11-18) used: models=[claude-opus-5-5-medium] tasks=[T1] reps=[1]
+filters:
+  models: []
+  tasks: []
+  reps: []
+
+verification:
+  qemu_timeout_secs: 8
+  run_l1_build: true
+  run_l2_acceptance: true
+  run_l3_oracle: true
+  l3_oracle: experiments/verification/M2/scripts/l3_pilot_oracle.py
+  run_standalone_controls_once: false
+
+runtime:
+  dry_run: false
+  keep_worktrees: true
+  max_parallel: 1

@@ -1,0 +1,32 @@
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+T1_LOG: MPU test cycle completed
+qemu-system-arm: terminating on signal 15 from pid 8057 (timeout)
+EXIT:124

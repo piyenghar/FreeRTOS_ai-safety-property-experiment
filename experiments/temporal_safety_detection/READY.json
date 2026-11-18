@@ -1,0 +1,17 @@
+{
+  "experiment_ready": true,
+  "branch": "experiment/temporal-safety-detection",
+  "detection_workspace": "experiments/temporal_safety_detection/detection_workspace",
+  "detection_workspace_absolute": "F:/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/temporal_safety_detection/detection_workspace",
+  "checks": {
+    "baseline_P3": "HOLD",
+    "defective_P3": "VIOLATION",
+    "defective_L1": "PASS",
+    "single_request_functionality": "PASS",
+    "SP1": "HOLD",
+    "SP2": "HOLD"
+  },
+  "detection_agent_run": false,
+  "repair_attempted": false,
+  "committed": false
+}

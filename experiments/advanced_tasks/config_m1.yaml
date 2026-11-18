@@ -1,0 +1,65 @@
+# Advanced M1 tasks (M1-R4, M1-E4) — does not modify original m1_multimodel/config.yaml
+experiment:
+  name: dsn2027-m1-advanced
+  mechanism: M1
+  safety_properties: [P1, P2]
+  baseline_ref: "8c62b75701d9757dff84de4ed1ec3b1a63d5d400"
+  demo_path: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
+  target_file: FreeRTOS/Demo/Common/Minimal/QueueSet.c
+  target_function: prvCheckReceivedValueWithinExpectedRange
+  allowable_deviation: 3
+  verification_root: experiments/verification/M1
+  results_root: experiments/advanced_tasks/results/m1
+  worktree_root: experiments/advanced_tasks/wt/m1
+  required_submodules:
+    - FreeRTOS/Source
+    - FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace
+
+agent:
+  invoke_via_wsl: true
+  command: agent
+  print: true
+  force: true
+  trust: true
+  sandbox: disabled
+  output_format: stream-json
+  fresh_session: true
+  timeout_secs: 1800
+
+models: []  # dry-run / fixture validation only — no paid model matrix
+
+tasks:
+  - id: M1-R4
+    name: unify_deviation_refactor
+    prompt_file: prompts/m1_r4_refactor.md
+    l2_checker: advanced
+    acceptance:
+      source_must_contain: ["M1_R4_EXTRACT"]
+    enabled: true
+
+  - id: M1-E4
+    name: dual_outcome_diagnostics
+    prompt_file: prompts/m1_e4_enhancement.md
+    l2_checker: advanced
+    acceptance:
+      source_must_contain: ["M1_E4_DIAG", "vM1E4GetRangeDiagnostics"]
+    enabled: true
+
+repetitions: 1
+
+verification:
+  qemu_timeout_secs: 20
+  run_l1_build: true
+  run_l2_acceptance: true
+  run_l3_oracle: true
+  l3_harness_dir: experiments/verification/M1/l3
+  l3_script: experiments/m1_multimodel/scripts/run_l3_against_queueset.py
+  advanced_l2_script: experiments/advanced_tasks/l2/check_advanced_l2.py
+  m1_e4_l2_script: experiments/advanced_tasks/scripts/run_m1_e4_l2_against_queueset.py
+  require_allowable_unchanged: true
+
+runtime:
+  dry_run: true
+  keep_worktrees: true
+  max_parallel: 1
+  invoke_ai_models: false

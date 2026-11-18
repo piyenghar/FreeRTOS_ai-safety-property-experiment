@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "stage": "compile",
+  "exit_code": 1,
+  "tests_agent_modified_implementation": true,
+  "L3_P1": "INCONCLUSIVE",
+  "L3_P2": "INCONCLUSIVE",
+  "compile_log": "l3_compile.log"
+}

@@ -1,0 +1,40 @@
+MPU_REQ: req=10 ACCEPT observed=10
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=50 ACCEPT observed=50
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=100 ACCEPT observed=100
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=101 ACCEPT observed=100
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=150 ACCEPT observed=100
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=0 ACCEPT observed=0
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=75 ACCEPT observed=75
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=200 ACCEPT observed=75
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=25 ACCEPT observed=25
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=255 ACCEPT observed=25
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=10 ACCEPT observed=10
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=50 ACCEPT observed=50
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_REQ: req=100 ACCEPT observed=100
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+qemu-system-arm: terminating on signal 15 from pid 45299 (timeout)

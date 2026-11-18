@@ -1,0 +1,15 @@
+SP1 PASS: read-only memory isolation preserved
+SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+SP2 FAIL: privilege containment violated
+qemu-system-arm: terminating on signal 15 from pid 44223 (timeout)

@@ -1,0 +1,54 @@
+diff --git a/FreeRTOS/Demo/Common/Minimal/QueueSet.c b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+index 54dec2a4a..9fa2adbc6 100644
+--- a/FreeRTOS/Demo/Common/Minimal/QueueSet.c
++++ b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+@@ -140,6 +140,11 @@
+     static BaseType_t prvCheckReceivedValueWithinExpectedRange( uint32_t ulReceived,
+                                                                 uint32_t ulExpectedReceived );
+ 
++/*
++ * Record the result of each completed range check for development diagnostics.
++ */
++    static void prvLogRangeCheckResult( BaseType_t xResult );
++
+ /*
+  * Increase test coverage by occasionally change the priorities of the two tasks
+  * relative to each other.
+@@ -205,6 +210,10 @@
+ /* The task handles are stored so their priorities can be changed. */
+     static TaskHandle_t xQueueSetSendingTask, xQueueSetReceivingTask;
+ 
++/* M1_T1_LOG: Lightweight counters expose completed range-check outcomes. */
++    static volatile uint32_t ulM1T1RangeCheckPassCount = 0UL;
++    static volatile uint32_t ulM1T1RangeCheckFailCount = 0UL;
++
+ /*-----------------------------------------------------------*/
+ 
+     void vStartQueueSetTasks( void )
+@@ -575,10 +584,26 @@
+             }
+         }
+ 
++        prvLogRangeCheckResult( xReturn ); /* M1_T1_LOG: Record without altering the result. */
++
+         return xReturn;
+     }
+ /*-----------------------------------------------------------*/
+ 
++    static void prvLogRangeCheckResult( BaseType_t xResult )
++    {
++        /* M1_T1_LOG: This hook records the range result for debugger inspection. */
++        if( xResult == pdPASS )
++        {
++            ulM1T1RangeCheckPassCount++;
++        }
++        else
++        {
++            ulM1T1RangeCheckFailCount++;
++        }
++    }
++/*-----------------------------------------------------------*/
++
+     static void prvReceiveFromQueueInSetFromISR( void )
+     {
+         QueueSetMemberHandle_t xActivatedQueue;

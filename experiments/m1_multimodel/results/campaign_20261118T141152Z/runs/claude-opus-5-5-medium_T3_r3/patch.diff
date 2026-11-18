@@ -1,0 +1,65 @@
+diff --git a/FreeRTOS/Demo/Common/Minimal/QueueSet.c b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+index 54dec2a4a..797a9969a 100644
+--- a/FreeRTOS/Demo/Common/Minimal/QueueSet.c
++++ b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+@@ -146,6 +146,11 @@
+  */
+     static void prvChangeRelativePriorities( void );
+ 
++/*
++ * M1_T3_STATS: returns the number of successful in-range checks.
++ */
++    static uint32_t prvGetInRangeCheckPassCount( void );
++
+ /*
+  * Queue overwrites can only be performed on queues of length of one, requiring
+  * a special test function so a queue of length 1 can temporarily be added to a
+@@ -190,6 +195,15 @@
+  * ulCycleCounter will only be incremented if xQueueSetTasksStatus equals pdPASS. */
+     static volatile BaseType_t xQueueSetTasksStatus = pdPASS;
+ 
++/* M1_T3_STATS: number of times prvCheckReceivedValueWithinExpectedRange()
++ * returned pdPASS.  Updated from both task and ISR context without a critical
++ * section, so the value is approximate and must only be used for diagnostics. */
++    static volatile uint32_t ulInRangeCheckPassCount = 0UL;
++
++/* Snapshot of ulInRangeCheckPassCount taken by xAreQueueSetTasksStillRunning(),
++ * for inspection in a debugger. */
++    static volatile uint32_t ulLastInRangeCheckPassCount = 0UL;
++
+ /* Just a flag to let the function that writes to a queue from an ISR know that
+  * the queues are setup and can be used. */
+     static volatile BaseType_t xSetupComplete = pdFALSE;
+@@ -270,6 +284,9 @@
+             ulLastISRTxValue = ulISRTxValue;
+         }
+ 
++        /* M1_T3_STATS: diagnostics snapshot only, does not affect xReturn. */
++        ulLastInRangeCheckPassCount = prvGetInRangeCheckPassCount();
++
+         return xReturn;
+     }
+ /*-----------------------------------------------------------*/
+@@ -575,10 +592,22 @@
+             }
+         }
+ 
++        if( xReturn == pdPASS )
++        {
++            /* M1_T3_STATS: diagnostics only, never read by the pass/fail logic. */
++            ulInRangeCheckPassCount++;
++        }
++
+         return xReturn;
+     }
+ /*-----------------------------------------------------------*/
+ 
++    static uint32_t prvGetInRangeCheckPassCount( void )
++    {
++        return ulInRangeCheckPassCount;
++    }
++/*-----------------------------------------------------------*/
++
+     static void prvReceiveFromQueueInSetFromISR( void )
+     {
+         QueueSetMemberHandle_t xActivatedQueue;

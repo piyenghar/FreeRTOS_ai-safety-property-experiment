@@ -1,0 +1,33 @@
+{
+  "generated": "2026-11-18T19:50:25Z",
+  "m1": {
+    "n": 27,
+    "valid_executions": 17,
+    "incomplete": 10,
+    "L2_strengthened_PASS": 17,
+    "L3_P1_HOLD": 27,
+    "L3_P2_HOLD": 27,
+    "A": 17
+  },
+  "m2": {
+    "n": 27,
+    "valid_executions": 25,
+    "incomplete": 1,
+    "L2_strengthened_PASS": 25,
+    "L3_SP1_HOLD": 26,
+    "L3_SP2_HOLD": 26,
+    "A": 25
+  },
+  "m2_sp2_neg_sensitivity": {
+    "tested": 4,
+    "oracle_detected_violation": 4,
+    "all_detected": true,
+    "method": "invert_sp2_self_check_strings"
+  },
+  "publication_support": {
+    "safety_preservation_completed_runs": true,
+    "task_semantics_strengthened_l2": true,
+    "m2_sp2_neg_on_mpu_demo_path": true,
+    "verdict": "SUPPORTED_WITH_STATED_LIMITS"
+  }
+}

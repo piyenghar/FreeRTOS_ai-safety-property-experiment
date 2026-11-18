@@ -1,0 +1,83 @@
+[
+  {
+    "L1_build": "PASS",
+    "source_sha256": "0c5e0a936bc6e46b6c1d1fd983e9b021e9435b8f167bc7da461ff4f99b8040dc",
+    "make_stdout_tail": "AXF=/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/build/pilot_baseline_sp2neg_neg/RTOSDemo.axf L1=PASS\n",
+    "uart_preview": "SP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nqemu-system-arm: terminating on signal 15 from pid 44223 (timeout)\n",
+    "kind": "pilot_mpu_demo_uart_sp2_neg",
+    "expect": "VIOLATION_DETECTED",
+    "counts": {
+      "sp1_pass": 7,
+      "sp2_pass": 0,
+      "sp2_fail": 7
+    },
+    "L3_SP2": "VIOLATION_DETECTED",
+    "L3_SP1": "HOLD",
+    "oracle_detects_sp2_violation": true,
+    "verdict": "PASS",
+    "pilot_id": "baseline"
+  },
+  {
+    "L1_build": "PASS",
+    "source_sha256": "b6c72e6be768581c73ccf67a9f88507d88590fd1b04eae8dd1f813a7d488e4d6",
+    "make_stdout_tail": "AXF=/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/build/pilot_claude_opus_5_5_medium_T1_r1_sp2neg_neg/RTOSDemo.axf L1=PASS\n",
+    "uart_preview": "SP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nqemu-system-arm: terminating on signal 15 from pid 44311 (timeout)\n",
+    "kind": "pilot_mpu_demo_uart_sp2_neg",
+    "expect": "VIOLATION_DETECTED",
+    "counts": {
+      "sp1_pass": 9,
+      "sp2_pass": 0,
+      "sp2_fail": 9
+    },
+    "L3_SP2": "VIOLATION_DETECTED",
+    "L3_SP1": "HOLD",
+    "oracle_detects_sp2_violation": true,
+    "verdict": "PASS",
+    "pilot_id": "claude-opus-5-5-medium_T1_r1"
+  },
+  {
+    "L1_build": "PASS",
+    "source_sha256": "98030493dac38e2356852fe29f11ece173430a393d844e72121d01630d858b9b",
+    "make_stdout_tail": "AXF=/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/build/pilot_claude_opus_5_5_medium_T3_r1_sp2neg_neg/RTOSDemo.axf L1=PASS\n",
+    "uart_preview": "SP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 1\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 2\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 3\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 4\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 5\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 6\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 7\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 8\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 9\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT3_CYCLE: 10\nqemu-system-arm: terminating on signal 15 from pid 44408 (timeout)\n",
+    "kind": "pilot_mpu_demo_uart_sp2_neg",
+    "expect": "VIOLATION_DETECTED",
+    "counts": {
+      "sp1_pass": 10,
+      "sp2_pass": 0,
+      "sp2_fail": 10
+    },
+    "L3_SP2": "VIOLATION_DETECTED",
+    "L3_SP1": "HOLD",
+    "oracle_detects_sp2_violation": true,
+    "verdict": "PASS",
+    "pilot_id": "claude-opus-5-5-medium_T3_r1"
+  },
+  {
+    "L1_build": "PASS",
+    "source_sha256": "dde0de402b1ac93bf774f8373171fb9b55fc721f49a50b60b766894809ac60e3",
+    "make_stdout_tail": "AXF=/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/build/pilot_claude_opus_5_5_medium_T2_r1_sp2neg_neg/RTOSDemo.axf L1=PASS\n",
+    "uart_preview": "SP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: p",
+    "kind": "pilot_mpu_demo_uart_sp2_neg",
+    "expect": "VIOLATION_DETECTED",
+    "counts": {
+      "sp1_pass": 10,
+      "sp2_pass": 0,
+      "sp2_fail": 10
+    },
+    "L3_SP2": "VIOLATION_DETECTED",
+    "L3_SP1": "HOLD",
+    "oracle_detects_sp2_violation": true,
+    "verdict": "PASS",
+    "pilot_id": "claude-opus-5-5-medium_T2_r1",
+    "inject": {
+      "ok": true,
+      "already_injected": false,
+      "dst": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\validity_revision\\m2\\sp2_neg\\claude-opus-5-5-medium_T2_r1\\claude-opus-5-5-medium_T2_r1_mpu_demo_sp2neg.c",
+      "method": "invert_sp2_self_check_strings",
+      "note": "Wrappers-v2 + ENFORCE=1 prevent true user-mode privilege raise; isolated copy uses a deliberately incorrect SP2 self-check that emits SP2 FAIL while SP1 remains honest."
+    },
+    "original_src": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\validity_revision\\m2\\reconstructed\\claude-opus-5-5-medium_T2_r1\\mpu_demo.c",
+    "original_sha256": "f3c6555b3169c13f19cedd66568725e0309d3fbb4595d17ddf1a64aa3a05c0f7"
+  }
+]

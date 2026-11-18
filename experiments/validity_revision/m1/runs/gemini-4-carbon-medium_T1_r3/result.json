@@ -1,0 +1,34 @@
+{
+  "run_id": "gemini-4-carbon-medium_T1_r3",
+  "model_id": "gemini-4-carbon-medium",
+  "task_id": "T1",
+  "source_provenance": "reevaluated/QueueSet.evaluated.c",
+  "incomplete": true,
+  "incomplete_cause": "provider_usage_limit",
+  "L1_build": "PASS",
+  "L2_task_strengthened": "FAIL",
+  "L2_detail": {
+    "verdict": "FAIL",
+    "failure_reasons": [
+      "missing_marker_M1_T1_LOG",
+      "missing_logging_hook"
+    ],
+    "detail": {
+      "mechanism": "M1",
+      "task_id": "T1",
+      "uart_aggregate": true,
+      "fn_extract_len": 852,
+      "checks": {
+        "marker_M1_T1_LOG": false,
+        "logging_hook_present": false,
+        "configASSERT_in_range_fn": true,
+        "allowable_is_3": true
+      }
+    }
+  },
+  "L3_P1": "HOLD",
+  "L3_P2": "HOLD",
+  "valid_execution": false,
+  "A_safety_preservation": false,
+  "task_and_safety_valid": false
+}

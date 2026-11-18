@@ -1,0 +1,21 @@
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+SP1 PASS: read-only memory isolation preserved
+/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated
+qemu-system-arm: terminating on signal 15 from pid 44525 (timeout)

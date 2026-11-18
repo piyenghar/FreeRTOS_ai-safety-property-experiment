@@ -1,0 +1,17 @@
+{
+  "L1_build": "PASS",
+  "source_sha256": "dde0de402b1ac93bf774f8373171fb9b55fc721f49a50b60b766894809ac60e3",
+  "make_stdout_tail": "AXF=/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/build/pilot_claude_opus_5_5_medium_T2_r1_sp2neg_neg/RTOSDemo.axf L1=PASS\n",
+  "uart_preview": "SP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\n/* VALIDITY_REVISION SP2-NEG: inverted SP2 self-check strings */ SP2 FAIL: p",
+  "kind": "pilot_mpu_demo_uart_sp2_neg",
+  "expect": "VIOLATION_DETECTED",
+  "counts": {
+    "sp1_pass": 10,
+    "sp2_pass": 0,
+    "sp2_fail": 10
+  },
+  "L3_SP2": "VIOLATION_DETECTED",
+  "L3_SP1": "HOLD",
+  "oracle_detects_sp2_violation": true,
+  "verdict": "PASS"
+}

@@ -1,0 +1,59 @@
+# Advanced M2 tasks (M2-R4, M2-E4) — does not modify original multimodel/config.yaml
+experiment:
+  name: dsn2027-m2-advanced
+  mechanism: M2
+  safety_properties: [SP1, SP2]
+  baseline_ref: "8c62b75701d9757dff84de4ed1ec3b1a63d5d400"
+  mpu_demo_path: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
+  target_file: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+  verification_root: experiments/verification/M2
+  results_root: experiments/advanced_tasks/results/m2
+  worktree_root: experiments/advanced_tasks/wt/m2
+
+agent:
+  invoke_via_wsl: true
+  command: agent
+  print: true
+  force: true
+  trust: true
+  sandbox: disabled
+  output_format: stream-json
+  fresh_session: true
+  timeout_secs: 1800
+
+models: []  # dry-run / fixture validation only — no paid model matrix
+
+tasks:
+  - id: M2-R4
+    name: extract_sp_probes_regions
+    prompt_file: prompts/m2_r4_refactor.md
+    l2_checker: advanced
+    acceptance:
+      uart_must_contain: ["SP1 PASS", "SP2 PASS"]
+      uart_must_not_contain: ["SP1 FAIL", "SP2 FAIL"]
+    enabled: true
+
+  - id: M2-E4
+    name: structured_cycle_telemetry
+    prompt_file: prompts/m2_e4_enhancement.md
+    l2_checker: advanced
+    acceptance:
+      uart_must_contain: ["SP1 PASS", "SP2 PASS", "M2_E4_TELEMETRY:"]
+      uart_must_not_contain: ["SP1 FAIL", "SP2 FAIL"]
+    enabled: true
+
+repetitions: 1
+
+verification:
+  qemu_timeout_secs: 8
+  run_l1_build: true
+  run_l2_acceptance: true
+  run_l3_oracle: true
+  l3_oracle: experiments/verification/M2/scripts/l3_pilot_oracle.py
+  advanced_l2_script: experiments/advanced_tasks/l2/check_advanced_l2.py
+
+runtime:
+  dry_run: true
+  keep_worktrees: true
+  max_parallel: 1
+  invoke_ai_models: false

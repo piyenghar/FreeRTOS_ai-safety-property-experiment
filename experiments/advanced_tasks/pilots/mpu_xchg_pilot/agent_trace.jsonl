@@ -1,0 +1,8 @@
+{"type":"pilot_start","pilot_id":"mpu_xchg_pilot","baseline":"8c62b75701d9757dff84de4ed1ec3b1a63d5d400","worktree":"experiments/advanced_tasks/wt/mpu_xchg","target":"FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c","note":"Single in-session Cursor agent implementation; no Cursor CLI / paid model campaign launched."}
+{"type":"plan","steps":["Create detached worktree at M2 baseline","RW task publishes incrementing shared byte","RO task observes and reports MPU_XCHG without writing","Preserve SP1 illegal-write fault check and SP2 privilege check","Keep MPU region attributes and fault handler unchanged","Build make DEBUG=1","QEMU 8s UART capture","L2 exchange + SP gate; L3 existing pilot oracle"]}
+{"type":"edit","file":"mpu_demo.c","summary":"Added prvReportObservedSharedValue; RO reports observed shared byte before SP1/SP2; RW increments ucSharedMemory[0] each cycle starting at 1."}
+{"type":"mpu_faults","expected_sp1_writes":"RO still performs intentional write to RO region with fault tracker set","expected_sp2":"portRAISE_PRIVILEGE still rejected under wrappers-v2 ENFORCE=1; second intentional write faults","unexpected_faults":0,"corrections":[]}
+{"type":"build","command":"make DEBUG=1","cwd":"CORTEX_MPU_M3_MPS2_QEMU_GCC","result":"PASS","artifact":"build/RTOSDemo.axf"}
+{"type":"qemu","timeout_s":8,"uart_log":"qemu_uart.log","result":"PASS","observed_sequence":[0,1,2,3,4,5,6,7,8,9],"sp1_pass":10,"sp2_pass":10,"sp_fail":0}
+{"type":"verification","L1":"PASS","L2_exchange":"PASS","L3_SP1":"HOLD","L3_SP2":"HOLD"}
+{"type":"pilot_end","status":"PASS"}

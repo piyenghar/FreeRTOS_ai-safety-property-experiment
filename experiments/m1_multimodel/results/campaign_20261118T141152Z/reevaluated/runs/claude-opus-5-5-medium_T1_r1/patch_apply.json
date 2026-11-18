@@ -1,0 +1,8 @@
+{
+  "patch_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\results\\campaign_20261118T141152Z\\runs\\claude-opus-5-5-medium_T1_r1\\patch.diff",
+  "patch_bytes": 3563,
+  "applied": true,
+  "empty_patch": false,
+  "method": "git_apply_ignore_whitespace",
+  "stderr": ""
+}

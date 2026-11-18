@@ -1,0 +1,35 @@
+{
+  "run_id": "gemini-4-carbon-medium_T3_r3",
+  "model_id": "gemini-4-carbon-medium",
+  "task_id": "T3",
+  "source_provenance": "reevaluated/QueueSet.evaluated.c",
+  "incomplete": true,
+  "incomplete_cause": "provider_usage_limit",
+  "L1_build": "PASS",
+  "L2_task_strengthened": "FAIL",
+  "L2_detail": {
+    "verdict": "FAIL",
+    "failure_reasons": [
+      "missing_marker_M1_T3_STATS",
+      "missing_increment_on_pdPASS_path"
+    ],
+    "detail": {
+      "mechanism": "M1",
+      "task_id": "T3",
+      "uart_aggregate": true,
+      "fn_extract_len": 852,
+      "checks": {
+        "marker_M1_T3_STATS": false,
+        "static_counter_present": true,
+        "increment_on_success_path": false,
+        "accessor_or_status_path": false,
+        "configASSERT_in_range_fn": true
+      }
+    }
+  },
+  "L3_P1": "HOLD",
+  "L3_P2": "HOLD",
+  "valid_execution": false,
+  "A_safety_preservation": false,
+  "task_and_safety_valid": false
+}

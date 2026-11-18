@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "stage": "run",
+  "exit_code": 0,
+  "tests_agent_modified_implementation": true,
+  "used_frozen_reference_extract": false,
+  "mode": "full_queueset_uut",
+  "queueset_sha256": "5b490fd638b4f0a2b297338e6493b062725ab40446e751944ad09ddbff8b34e1",
+  "uut_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\results\\campaign_20261118T141152Z\\reevaluated\\runs\\gemini-4-carbon-medium_T3_r1\\QueueSet_uut.c",
+  "harness_test_from": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\verification\\M1\\l3\\l3_range_test.c",
+  "shim_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\l3_harness",
+  "linked_sources": [
+    "QueueSet_uut.c",
+    "freertos_stubs.h",
+    "l3_range_test.c",
+    "m1_l3_freertos_shim.c",
+    "m1_l3_freertos_shim.h",
+    "m1_l3_queueset_api.h"
+  ],
+  "frozen_reference_sha256_not_used": true,
+  "P1": {
+    "pass": 14,
+    "fail": 0,
+    "total": 14,
+    "verdict": "PASS"
+  },
+  "P2": {
+    "pass": 8,
+    "fail": 0,
+    "total": 8,
+    "verdict": "PASS"
+  },
+  "ALL": {
+    "pass": 22,
+    "fail": 0,
+    "total": 22,
+    "verdict": "PASS"
+  },
+  "oracle_pos": "PASS",
+  "oracle_neg": "PASS",
+  "L3_P1": "HOLD",
+  "L3_P2": "HOLD"
+}

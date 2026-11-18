@@ -1,0 +1,17 @@
+{
+  "verdict": "FAIL",
+  "stage": "behavioural",
+  "failure_reasons": [
+    "behavioural_acceptance_failed"
+  ],
+  "stdout": "",
+  "stderr": "M1-E4 L2 FAIL: AT4_out_of_range\nM1-E4 behavioural L2 (QueueSet UUT): FAIL\n",
+  "returncode": 1,
+  "tests_agent_modified_implementation": true,
+  "used_frozen_reference_extract": false,
+  "queueset": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\fixtures\\generated\\m1_e4_fault_QueueSet.c",
+  "structural": {
+    "has_token": true,
+    "has_api": true
+  }
+}

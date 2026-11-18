@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "mode": "full_queueset_m1_e4_uut",
+  "diagnostics_api": "vM1E4GetRangeDiagnostics",
+  "diagnostics_export_rewrites": 0,
+  "allowable": 3,
+  "queueset_sha256": "67efef85a97aad281a6d9236a217c003aabda1c8805ed2c31505c622054e0af2",
+  "queueset_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\fixtures\\generated\\m1_e4_pass_QueueSet.c",
+  "out": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202421Z\\M1-E4\\pass\\l2\\QueueSet_m1_e4_uut.c",
+  "tests_agent_modified_implementation": true,
+  "used_frozen_reference_extract": false
+}

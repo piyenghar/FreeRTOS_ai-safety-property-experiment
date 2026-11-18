@@ -1,0 +1,858 @@
+{
+  "generated_at": "20261118T202457Z",
+  "total": 12,
+  "met": 12,
+  "failed": 0,
+  "rows": [
+    {
+      "case": "M1-R4/baseline",
+      "expected": {
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "actual": {
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M1-R4/pass",
+      "expected": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "actual": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M1-R4/fault_marker",
+      "expected": {
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "actual": {
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M1-E4/baseline",
+      "expected": {
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "actual": {
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M1-E4/pass",
+      "expected": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "actual": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M1-E4/fault_counts",
+      "expected": {
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "actual": {
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M2-R4/baseline",
+      "expected": {
+        "L2": "FAIL",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "actual": {
+        "L2": "FAIL",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M2-R4/pass",
+      "expected": {
+        "L2": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "actual": {
+        "L2": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M2-R4/fault_unpatched",
+      "expected": {
+        "L2": "FAIL",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "actual": {
+        "L2": "FAIL",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M2-E4/baseline",
+      "expected": {
+        "L2": "FAIL"
+      },
+      "actual": {
+        "L2": "FAIL"
+      },
+      "ok": true
+    },
+    {
+      "case": "M2-E4/pass",
+      "expected": {
+        "L2": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "actual": {
+        "L2": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "ok": true
+    },
+    {
+      "case": "M2-E4/fault_uart",
+      "expected": {
+        "L2": "FAIL"
+      },
+      "actual": {
+        "L2": "FAIL"
+      },
+      "ok": true
+    }
+  ],
+  "details": {
+    "M1-R4/baseline": {
+      "actual": {
+        "L1": "SKIP",
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "l2_fails": [
+        "missing_token_M1_R4_EXTRACT",
+        "missing_deviation_helper_called_from_check",
+        "duplicated_mirrored_assert_branches_remain",
+        "multiple_allowable_deviation_asserts_in_check",
+        "no_structural_change_vs_baseline"
+      ],
+      "l3": {
+        "ok": true,
+        "stage": "run",
+        "exit_code": 0,
+        "tests_agent_modified_implementation": true,
+        "used_frozen_reference_extract": false,
+        "mode": "full_queueset_uut",
+        "queueset_sha256": "5b490fd638b4f0a2b297338e6493b062725ab40446e751944ad09ddbff8b34e1",
+        "uut_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M1-R4\\baseline\\l3\\QueueSet_uut.c",
+        "harness_test_from": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\verification\\M1\\l3\\l3_range_test.c",
+        "shim_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\l3_harness",
+        "linked_sources": [
+          "QueueSet_uut.c",
+          "freertos_stubs.h",
+          "l3_range_test.c",
+          "m1_l3_freertos_shim.c",
+          "m1_l3_freertos_shim.h",
+          "m1_l3_queueset_api.h"
+        ],
+        "frozen_reference_sha256_not_used": true,
+        "P1": {
+          "pass": 14,
+          "fail": 0,
+          "total": 14,
+          "verdict": "PASS"
+        },
+        "P2": {
+          "pass": 8,
+          "fail": 0,
+          "total": 8,
+          "verdict": "PASS"
+        },
+        "ALL": {
+          "pass": 22,
+          "fail": 0,
+          "total": 22,
+          "verdict": "PASS"
+        },
+        "oracle_pos": "PASS",
+        "oracle_neg": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD",
+        "runner_exit": 0
+      },
+      "l1": {
+        "verdict": "SKIP"
+      }
+    },
+    "M1-R4/pass": {
+      "actual": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "l2_fails": [],
+      "l3": {
+        "ok": true,
+        "stage": "run",
+        "exit_code": 0,
+        "tests_agent_modified_implementation": true,
+        "used_frozen_reference_extract": false,
+        "mode": "full_queueset_uut",
+        "queueset_sha256": "51570e8bb3d524439d4241f6806ccfe5693cbe5c0aae5863b457b0f79553c887",
+        "uut_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M1-R4\\pass\\l3\\QueueSet_uut.c",
+        "harness_test_from": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\verification\\M1\\l3\\l3_range_test.c",
+        "shim_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\l3_harness",
+        "linked_sources": [
+          "QueueSet_uut.c",
+          "freertos_stubs.h",
+          "l3_range_test.c",
+          "m1_l3_freertos_shim.c",
+          "m1_l3_freertos_shim.h",
+          "m1_l3_queueset_api.h"
+        ],
+        "frozen_reference_sha256_not_used": true,
+        "P1": {
+          "pass": 14,
+          "fail": 0,
+          "total": 14,
+          "verdict": "PASS"
+        },
+        "P2": {
+          "pass": 8,
+          "fail": 0,
+          "total": 8,
+          "verdict": "PASS"
+        },
+        "ALL": {
+          "pass": 22,
+          "fail": 0,
+          "total": 22,
+          "verdict": "PASS"
+        },
+        "oracle_pos": "PASS",
+        "oracle_neg": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD",
+        "runner_exit": 0
+      },
+      "l1": {
+        "verdict": "PASS",
+        "exit_code": 0,
+        "log": "l1_compile.log"
+      }
+    },
+    "M1-R4/fault_marker": {
+      "actual": {
+        "L1": "PASS",
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "l2_fails": [
+        "missing_deviation_helper_called_from_check",
+        "duplicated_mirrored_assert_branches_remain",
+        "multiple_allowable_deviation_asserts_in_check"
+      ],
+      "l3": {
+        "ok": true,
+        "stage": "run",
+        "exit_code": 0,
+        "tests_agent_modified_implementation": true,
+        "used_frozen_reference_extract": false,
+        "mode": "full_queueset_uut",
+        "queueset_sha256": "54d4e46af75422271e18a6a028a8dc33ad16e2eedf95dd7e0203601a143d38ac",
+        "uut_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M1-R4\\fault_marker\\l3\\QueueSet_uut.c",
+        "harness_test_from": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\verification\\M1\\l3\\l3_range_test.c",
+        "shim_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\l3_harness",
+        "linked_sources": [
+          "QueueSet_uut.c",
+          "freertos_stubs.h",
+          "l3_range_test.c",
+          "m1_l3_freertos_shim.c",
+          "m1_l3_freertos_shim.h",
+          "m1_l3_queueset_api.h"
+        ],
+        "frozen_reference_sha256_not_used": true,
+        "P1": {
+          "pass": 14,
+          "fail": 0,
+          "total": 14,
+          "verdict": "PASS"
+        },
+        "P2": {
+          "pass": 8,
+          "fail": 0,
+          "total": 8,
+          "verdict": "PASS"
+        },
+        "ALL": {
+          "pass": 22,
+          "fail": 0,
+          "total": 22,
+          "verdict": "PASS"
+        },
+        "oracle_pos": "PASS",
+        "oracle_neg": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD",
+        "runner_exit": 0
+      },
+      "l1": {
+        "verdict": "PASS",
+        "exit_code": 0,
+        "log": "l1_compile.log"
+      }
+    },
+    "M1-E4/baseline": {
+      "actual": {
+        "L1": "SKIP",
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "l2": {
+        "verdict": "FAIL",
+        "stage": "structural",
+        "failure_reasons": [
+          "missing_token_M1_E4_DIAG",
+          "missing_vM1E4GetRangeDiagnostics_signature"
+        ],
+        "detail": {
+          "has_token": false,
+          "has_api": false
+        },
+        "tests_agent_modified_implementation": true
+      },
+      "l3": {
+        "ok": true,
+        "stage": "run",
+        "exit_code": 0,
+        "tests_agent_modified_implementation": true,
+        "used_frozen_reference_extract": false,
+        "mode": "full_queueset_uut",
+        "queueset_sha256": "5b490fd638b4f0a2b297338e6493b062725ab40446e751944ad09ddbff8b34e1",
+        "uut_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M1-E4\\baseline\\l3\\QueueSet_uut.c",
+        "harness_test_from": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\verification\\M1\\l3\\l3_range_test.c",
+        "shim_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\l3_harness",
+        "linked_sources": [
+          "QueueSet_uut.c",
+          "freertos_stubs.h",
+          "l3_range_test.c",
+          "m1_l3_freertos_shim.c",
+          "m1_l3_freertos_shim.h",
+          "m1_l3_queueset_api.h"
+        ],
+        "frozen_reference_sha256_not_used": true,
+        "P1": {
+          "pass": 14,
+          "fail": 0,
+          "total": 14,
+          "verdict": "PASS"
+        },
+        "P2": {
+          "pass": 8,
+          "fail": 0,
+          "total": 8,
+          "verdict": "PASS"
+        },
+        "ALL": {
+          "pass": 22,
+          "fail": 0,
+          "total": 22,
+          "verdict": "PASS"
+        },
+        "oracle_pos": "PASS",
+        "oracle_neg": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD",
+        "runner_exit": 0
+      },
+      "l1": {
+        "verdict": "SKIP"
+      }
+    },
+    "M1-E4/pass": {
+      "actual": {
+        "L1": "PASS",
+        "L2": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "l2": {
+        "verdict": "PASS",
+        "stage": "behavioural",
+        "failure_reasons": [],
+        "stdout": "M1-E4 behavioural L2 (QueueSet UUT): PASS\n",
+        "stderr": "",
+        "returncode": 0,
+        "tests_agent_modified_implementation": true,
+        "used_frozen_reference_extract": false,
+        "queueset": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\fixtures\\generated\\m1_e4_pass_QueueSet.c",
+        "structural": {
+          "has_token": true,
+          "has_api": true
+        }
+      },
+      "l3": {
+        "ok": true,
+        "stage": "run",
+        "exit_code": 0,
+        "tests_agent_modified_implementation": true,
+        "used_frozen_reference_extract": false,
+        "mode": "full_queueset_uut",
+        "queueset_sha256": "67efef85a97aad281a6d9236a217c003aabda1c8805ed2c31505c622054e0af2",
+        "uut_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M1-E4\\pass\\l3\\QueueSet_uut.c",
+        "harness_test_from": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\verification\\M1\\l3\\l3_range_test.c",
+        "shim_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\l3_harness",
+        "linked_sources": [
+          "QueueSet_uut.c",
+          "freertos_stubs.h",
+          "l3_range_test.c",
+          "m1_l3_freertos_shim.c",
+          "m1_l3_freertos_shim.h",
+          "m1_l3_queueset_api.h"
+        ],
+        "frozen_reference_sha256_not_used": true,
+        "P1": {
+          "pass": 14,
+          "fail": 0,
+          "total": 14,
+          "verdict": "PASS"
+        },
+        "P2": {
+          "pass": 8,
+          "fail": 0,
+          "total": 8,
+          "verdict": "PASS"
+        },
+        "ALL": {
+          "pass": 22,
+          "fail": 0,
+          "total": 22,
+          "verdict": "PASS"
+        },
+        "oracle_pos": "PASS",
+        "oracle_neg": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD",
+        "runner_exit": 0
+      },
+      "l1": {
+        "verdict": "PASS",
+        "exit_code": 0,
+        "log": "l1_compile.log"
+      }
+    },
+    "M1-E4/fault_counts": {
+      "actual": {
+        "L1": "PASS",
+        "L2": "FAIL",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD"
+      },
+      "l2": {
+        "verdict": "FAIL",
+        "stage": "behavioural",
+        "failure_reasons": [
+          "behavioural_acceptance_failed"
+        ],
+        "stdout": "",
+        "stderr": "M1-E4 L2 FAIL: AT4_out_of_range\nM1-E4 behavioural L2 (QueueSet UUT): FAIL\n",
+        "returncode": 1,
+        "tests_agent_modified_implementation": true,
+        "used_frozen_reference_extract": false,
+        "queueset": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\fixtures\\generated\\m1_e4_fault_QueueSet.c",
+        "structural": {
+          "has_token": true,
+          "has_api": true
+        }
+      },
+      "l3": {
+        "ok": true,
+        "stage": "run",
+        "exit_code": 0,
+        "tests_agent_modified_implementation": true,
+        "used_frozen_reference_extract": false,
+        "mode": "full_queueset_uut",
+        "queueset_sha256": "27297ba75860f96452476c98bbc63969f562a5d15d32568845fe7c873377a089",
+        "uut_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M1-E4\\fault_counts\\l3\\QueueSet_uut.c",
+        "harness_test_from": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\verification\\M1\\l3\\l3_range_test.c",
+        "shim_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\l3_harness",
+        "linked_sources": [
+          "QueueSet_uut.c",
+          "freertos_stubs.h",
+          "l3_range_test.c",
+          "m1_l3_freertos_shim.c",
+          "m1_l3_freertos_shim.h",
+          "m1_l3_queueset_api.h"
+        ],
+        "frozen_reference_sha256_not_used": true,
+        "P1": {
+          "pass": 14,
+          "fail": 0,
+          "total": 14,
+          "verdict": "PASS"
+        },
+        "P2": {
+          "pass": 8,
+          "fail": 0,
+          "total": 8,
+          "verdict": "PASS"
+        },
+        "ALL": {
+          "pass": 22,
+          "fail": 0,
+          "total": 22,
+          "verdict": "PASS"
+        },
+        "oracle_pos": "PASS",
+        "oracle_neg": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD",
+        "runner_exit": 0
+      },
+      "l1": {
+        "verdict": "PASS",
+        "exit_code": 0,
+        "log": "l1_compile.log"
+      }
+    },
+    "M2-R4/baseline": {
+      "actual": {
+        "L2": "FAIL",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "l2": {
+        "verdict": "FAIL",
+        "failure_reasons": [
+          "missing_token_M2_R4_STRUCT",
+          "missing_sp1_helper_called_from_ro_task",
+          "missing_sp2_helper_called_from_ro_task",
+          "no_structural_change_vs_baseline"
+        ],
+        "detail": {
+          "task_id": "M2-R4",
+          "checks": {
+            "sp1_helpers": [],
+            "sp2_helpers": [],
+            "called_sp1_from_ro": [],
+            "called_sp2_from_ro": [],
+            "structurally_changed": false,
+            "explicit_region_hints": true
+          }
+        }
+      },
+      "l3": {
+        "L1_build": "PASS",
+        "source_note": "advanced_tasks_fixture:M2-R4",
+        "mpu_demo_sha256": "",
+        "uart_log": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M2-R4\\baseline\\qemu_uart.log",
+        "kind": "pilot_mpu_demo_uart",
+        "pilot": "t2",
+        "control": "pos",
+        "counts": {
+          "sp1_pass": 1,
+          "sp1_fail": 0,
+          "sp2_pass": 1,
+          "sp2_fail": 0,
+          "t1_log": 0,
+          "t3_cycles": []
+        },
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD",
+        "L3_verdict": "PASS",
+        "L2": {
+          "applicable": true,
+          "criterion": "behaviour-preserving: SP1/SP2 PASS with no FAIL",
+          "verdict": "PASS"
+        },
+        "L2_verdict": "PASS",
+        "runner_exit": 0
+      }
+    },
+    "M2-R4/pass": {
+      "actual": {
+        "L2": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "l2": {
+        "verdict": "PASS",
+        "failure_reasons": [],
+        "detail": {
+          "task_id": "M2-R4",
+          "checks": {
+            "sp1_helpers": [
+              "prvObserveSP1Isolation"
+            ],
+            "sp2_helpers": [
+              "prvObserveSP2PrivilegeContainment"
+            ],
+            "called_sp1_from_ro": [
+              "prvObserveSP1Isolation"
+            ],
+            "called_sp2_from_ro": [
+              "prvObserveSP2PrivilegeContainment"
+            ],
+            "structurally_changed": true,
+            "explicit_region_hints": true
+          }
+        }
+      },
+      "l3": {
+        "L1_build": "PASS",
+        "source_note": "advanced_tasks_fixture:M2-R4",
+        "mpu_demo_sha256": "",
+        "uart_log": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M2-R4\\pass\\qemu_uart.log",
+        "kind": "pilot_mpu_demo_uart",
+        "pilot": "t2",
+        "control": "pos",
+        "counts": {
+          "sp1_pass": 1,
+          "sp1_fail": 0,
+          "sp2_pass": 1,
+          "sp2_fail": 0,
+          "t1_log": 0,
+          "t3_cycles": []
+        },
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD",
+        "L3_verdict": "PASS",
+        "L2": {
+          "applicable": true,
+          "criterion": "behaviour-preserving: SP1/SP2 PASS with no FAIL",
+          "verdict": "PASS"
+        },
+        "L2_verdict": "PASS",
+        "runner_exit": 0
+      }
+    },
+    "M2-R4/fault_unpatched": {
+      "actual": {
+        "L2": "FAIL",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "l2": {
+        "verdict": "FAIL",
+        "failure_reasons": [
+          "missing_token_M2_R4_STRUCT",
+          "missing_sp1_helper_called_from_ro_task",
+          "missing_sp2_helper_called_from_ro_task",
+          "no_structural_change_vs_baseline"
+        ],
+        "detail": {
+          "task_id": "M2-R4",
+          "checks": {
+            "sp1_helpers": [],
+            "sp2_helpers": [],
+            "called_sp1_from_ro": [],
+            "called_sp2_from_ro": [],
+            "structurally_changed": false,
+            "explicit_region_hints": true
+          }
+        }
+      },
+      "l3": {
+        "L1_build": "PASS",
+        "source_note": "advanced_tasks_fixture:M2-R4",
+        "mpu_demo_sha256": "",
+        "uart_log": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M2-R4\\fault_unpatched\\qemu_uart.log",
+        "kind": "pilot_mpu_demo_uart",
+        "pilot": "t2",
+        "control": "pos",
+        "counts": {
+          "sp1_pass": 1,
+          "sp1_fail": 0,
+          "sp2_pass": 1,
+          "sp2_fail": 0,
+          "t1_log": 0,
+          "t3_cycles": []
+        },
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD",
+        "L3_verdict": "PASS",
+        "L2": {
+          "applicable": true,
+          "criterion": "behaviour-preserving: SP1/SP2 PASS with no FAIL",
+          "verdict": "PASS"
+        },
+        "L2_verdict": "PASS",
+        "runner_exit": 0
+      }
+    },
+    "M2-E4/baseline": {
+      "actual": {
+        "L2": "FAIL"
+      },
+      "l2": {
+        "verdict": "FAIL",
+        "failure_reasons": [
+          "missing_telemetry_prefix_in_source",
+          "telemetry_not_wired_to_uart_path",
+          "uart_log_required_for_m2_e4"
+        ],
+        "detail": {
+          "task_id": "M2-E4",
+          "checks": {
+            "wired": false,
+            "uart_cycles": [],
+            "uart_monotonic_from_1": false
+          }
+        }
+      }
+    },
+    "M2-E4/pass": {
+      "actual": {
+        "L2": "PASS",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "l2": {
+        "verdict": "PASS",
+        "failure_reasons": [],
+        "detail": {
+          "task_id": "M2-E4",
+          "checks": {
+            "wired": true,
+            "uart_cycles": [
+              1,
+              2,
+              3
+            ],
+            "uart_monotonic_from_1": true
+          }
+        }
+      },
+      "l3": {
+        "L1_build": "PASS",
+        "source_note": "advanced_tasks_fixture:M2-E4",
+        "mpu_demo_sha256": "",
+        "uart_log": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M2-E4\\pass\\qemu_uart.log",
+        "kind": "pilot_mpu_demo_uart",
+        "pilot": "t2",
+        "control": "pos",
+        "counts": {
+          "sp1_pass": 3,
+          "sp1_fail": 0,
+          "sp2_pass": 3,
+          "sp2_fail": 0,
+          "t1_log": 0,
+          "t3_cycles": []
+        },
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD",
+        "L3_verdict": "PASS",
+        "L2": {
+          "applicable": true,
+          "criterion": "behaviour-preserving: SP1/SP2 PASS with no FAIL",
+          "verdict": "PASS"
+        },
+        "L2_verdict": "PASS",
+        "runner_exit": 0
+      }
+    },
+    "M2-E4/fault_uart": {
+      "actual": {
+        "L2": "FAIL",
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD"
+      },
+      "l2": {
+        "verdict": "FAIL",
+        "failure_reasons": [
+          "uart_telemetry_not_monotonic_or_missing"
+        ],
+        "detail": {
+          "task_id": "M2-E4",
+          "checks": {
+            "wired": true,
+            "uart_cycles": [
+              1,
+              1
+            ],
+            "uart_monotonic_from_1": false
+          }
+        }
+      },
+      "l3": {
+        "L1_build": "PASS",
+        "source_note": "advanced_tasks_fixture:M2-E4",
+        "mpu_demo_sha256": "",
+        "uart_log": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M2-E4\\fault_uart\\qemu_uart.log",
+        "kind": "pilot_mpu_demo_uart",
+        "pilot": "t2",
+        "control": "pos",
+        "counts": {
+          "sp1_pass": 2,
+          "sp1_fail": 0,
+          "sp2_pass": 2,
+          "sp2_fail": 0,
+          "t1_log": 0,
+          "t3_cycles": []
+        },
+        "L3_SP1": "HOLD",
+        "L3_SP2": "HOLD",
+        "L3_verdict": "PASS",
+        "L2": {
+          "applicable": true,
+          "criterion": "behaviour-preserving: SP1/SP2 PASS with no FAIL",
+          "verdict": "PASS"
+        },
+        "L2_verdict": "PASS",
+        "runner_exit": 0
+      }
+    }
+  },
+  "invoke_ai_models": false
+}

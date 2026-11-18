@@ -1,0 +1,33 @@
+{
+  "dry_run": true,
+  "stamp": "20261118T202456Z",
+  "invoke_ai_models": false,
+  "agent_invocations": 0,
+  "models": [],
+  "tasks_m1": [
+    "M1-R4",
+    "M1-E4"
+  ],
+  "tasks_m2": [
+    "M2-R4",
+    "M2-E4"
+  ],
+  "prompt_hashes": {
+    "M1-R4": "aa63a0f919a0908b2e8ed4db92d8f0ef60a63f5666717f2f203507adc38d74de",
+    "M1-E4": "fbbd32b579f94ee5d1a3376bde4172adf32cf910aaff08129551ef31b3214c4f",
+    "M2-R4": "a9f82eb23cc5e43c322885270eeef71ab14a6201cb262ef75e1b791575fa04a6",
+    "M2-E4": "270b7069274fae5d29674e72480e82c70c9b69ae0179770bd2e5cd5e9ff19993"
+  },
+  "generate_variants_exit": 0,
+  "integrated_validation_exit": 0,
+  "integrated_met": 12,
+  "integrated_total": 12,
+  "baseline_advanced_l2": {
+    "M1-R4": "FAIL",
+    "M1-E4": "FAIL",
+    "M2-R4": "FAIL",
+    "M2-E4": "FAIL"
+  },
+  "baseline_all_l2_fail": true,
+  "out_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\results\\dryrun_20261118T202456Z"
+}

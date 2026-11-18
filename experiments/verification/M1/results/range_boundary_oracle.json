@@ -1,0 +1,98 @@
+{
+  "function": "prvCheckReceivedValueWithinExpectedRange",
+  "source": "FreeRTOS/Demo/Common/Minimal/QueueSet.c",
+  "constants": {
+    "queuesetALLOWABLE_RX_DEVIATION": 3,
+    "queuesetIGNORED_BOUNDARY": 6,
+    "queuesetINITIAL_ISR_TX_VALUE": 65535
+  },
+  "properties": {
+    "P1_accept_within_range": {
+      "statement": "If |ulReceived - ulExpectedReceived| <= 3, the check returns pdPASS and configASSERT does not fire.",
+      "examples": [
+        {
+          "ulReceived": 1000,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 0,
+          "within_range": true
+        },
+        {
+          "ulReceived": 1001,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 1,
+          "within_range": true
+        },
+        {
+          "ulReceived": 999,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 1,
+          "within_range": true
+        },
+        {
+          "ulReceived": 1002,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 2,
+          "within_range": true
+        },
+        {
+          "ulReceived": 998,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 2,
+          "within_range": true
+        },
+        {
+          "ulReceived": 1003,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 3,
+          "within_range": true
+        },
+        {
+          "ulReceived": 997,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 3,
+          "within_range": true
+        }
+      ]
+    },
+    "P2_reject_outside_range": {
+      "statement": "If |ulReceived - ulExpectedReceived| > 3, configASSERT fires (when asserts enabled) and the function returns pdFALSE, causing xQueueSetTasksStatus = pdFAIL.",
+      "examples": [
+        {
+          "ulReceived": 1004,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 4,
+          "within_range": false
+        },
+        {
+          "ulReceived": 996,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 4,
+          "within_range": false
+        },
+        {
+          "ulReceived": 1005,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 5,
+          "within_range": false
+        },
+        {
+          "ulReceived": 995,
+          "ulExpectedReceived": 1000,
+          "abs_deviation": 5,
+          "within_range": false
+        }
+      ]
+    }
+  },
+  "caller_notes": {
+    "ignored_near_wrap_boundaries": "Callers skip invoking the checker when values are within queuesetIGNORED_BOUNDARY of wrap/partition edges.",
+    "task_value_domain": "0 .. 0xFFFE",
+    "isr_value_domain": "0xFFFF .. ULONG_MAX"
+  },
+  "self_check": {
+    "all_accept_have_dev_le_3": true,
+    "all_reject_have_dev_gt_3": true,
+    "accept_count": 7,
+    "reject_count": 4
+  }
+}

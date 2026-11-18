@@ -1,0 +1,15 @@
+{
+  "verdict": "PASS",
+  "stage": "behavioural",
+  "failure_reasons": [],
+  "stdout": "M1-E4 behavioural L2 (QueueSet UUT): PASS\n",
+  "stderr": "",
+  "returncode": 0,
+  "tests_agent_modified_implementation": true,
+  "used_frozen_reference_extract": false,
+  "queueset": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\fixtures\\generated\\m1_e4_pass_QueueSet.c",
+  "structural": {
+    "has_token": true,
+    "has_api": true
+  }
+}

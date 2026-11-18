@@ -1,0 +1,9 @@
+{"type":"pilot_start","pilot_id":"mpu_req_pilot","baseline":"8c62b75701d9757dff84de4ed1ec3b1a63d5d400","worktree":"experiments/advanced_tasks/wt/mpu_req","note":"Single in-session Cursor agent run; no Cursor CLI / additional AI agents."}
+{"type":"architecture","choice":"Separate ucRequestMailbox (RW for RO+RW) + protected ucSharedMemory (RO for RO, RW for RW). RO posts requests only to mailbox; RW alone updates protected value; invalid >100 rejected."}
+{"type":"edit","file":"mpu_demo.c","summary":"Added mailbox region, request/response protocol, UART MPU_REQ lines, RW validator 0-100; preserved SP1/SP2 and fault handler."}
+{"type":"build","command":"make DEBUG=1","result":"PASS"}
+{"type":"qemu","timeout_s":12,"result":"PASS","accepts":9,"rejects":4,"sp1_pass":13,"sp2_pass":13,"sp_fail":0}
+{"type":"mpu_faults","expected_sp1_sp2_per_cycle":true,"unexpected":0,"corrections":[]}
+{"type":"verification","L1":"PASS","L2":"PASS","L3_SP1":"HOLD","L3_SP2":"HOLD"}
+{"type":"safety_challenges","SP1":"challenged each cycle via intentional RO write to protected mem — still PASS","SP2":"challenged each cycle via rejected privilege raise — still PASS","weakened_permissions":false}
+{"type":"pilot_end","status":"PASS","corrective_edits":0}

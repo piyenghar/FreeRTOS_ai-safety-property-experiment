@@ -1,0 +1,35 @@
+{
+  "repair_attempt": 1,
+  "defect_diagnosis": "Reject path used >= ALLOWABLE, so deviation==3 returned pdFALSE while configASSERT still allowed <=3 (P1 boundary fail).",
+  "repair": "Restored both reject comparisons to strict > queuesetALLOWABLE_RX_DEVIATION; left asserts and ALLOWABLE==3 unchanged.",
+  "before": {
+    "L3_P1": "VIOLATION",
+    "L3_P2": "HOLD",
+    "ok": false,
+    "P1": {
+      "pass": 9,
+      "fail": 5,
+      "total": 14,
+      "verdict": "FAIL"
+    }
+  },
+  "after": {
+    "L3_P1": "HOLD",
+    "L3_P2": "HOLD",
+    "ok": true,
+    "P1": {
+      "pass": 14,
+      "fail": 0,
+      "total": 14,
+      "verdict": "PASS"
+    },
+    "P2": {
+      "pass": 8,
+      "fail": 0,
+      "total": 8,
+      "verdict": "PASS"
+    }
+  },
+  "tests_modified": false,
+  "committed": false
+}

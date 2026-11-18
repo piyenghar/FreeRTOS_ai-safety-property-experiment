@@ -1,0 +1,66 @@
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/tasks.d" -MT output/tasks.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Source/tasks.c -o output/tasks.o
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/list.d" -MT output/list.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Source/list.c -o output/list.o
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/queue.d" -MT output/queue.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Source/queue.c -o output/queue.o
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/timers.d" -MT output/timers.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Source/timers.c -o output/timers.o
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/event_groups.d" -MT output/event_groups.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Source/event_groups.c -o output/event_groups.o
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/stream_buffer.d" -MT output/stream_buffer.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Source/stream_buffer.c -o output/stream_buffer.o
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/heap_4.d" -MT output/heap_4.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Source/portable/MemMang/heap_4.c -o output/heap_4.o
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/port.d" -MT output/port.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Source/portable/GCC/ARM_CM3/port.c -o output/port.o
+
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Source/portable/GCC/ARM_CM3/port.c:34:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Source/list.c:37:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Source/timers.c:37:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Source/event_groups.c:38:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Source/stream_buffer.c:38:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Source/tasks.c:40:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Makefile:151: output/tasks.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Makefile:151: output/list.o] Error 1
+make: *** [Makefile:151: output/timers.o] Error 1
+make: *** [Makefile:151: output/event_groups.o] Error 1
+make: *** [Makefile:151: output/stream_buffer.o] Error 1
+make: *** [Makefile:151: output/port.o] Error 1
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Source/queue.c:37:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Makefile:151: output/queue.o] Error 1
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Source/portable/MemMang/heap_4.c:45:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Makefile:151: output/heap_4.o] Error 1

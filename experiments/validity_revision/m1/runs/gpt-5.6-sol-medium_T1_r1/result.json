@@ -1,0 +1,31 @@
+{
+  "run_id": "gpt-5.6-sol-medium_T1_r1",
+  "model_id": "gpt-5.6-sol-medium",
+  "task_id": "T1",
+  "source_provenance": "reevaluated/QueueSet.evaluated.c",
+  "incomplete": false,
+  "incomplete_cause": null,
+  "L1_build": "PASS",
+  "L2_task_strengthened": "PASS",
+  "L2_detail": {
+    "verdict": "PASS",
+    "failure_reasons": [],
+    "detail": {
+      "mechanism": "M1",
+      "task_id": "T1",
+      "uart_aggregate": true,
+      "fn_extract_len": 949,
+      "checks": {
+        "marker_M1_T1_LOG": true,
+        "logging_hook_present": true,
+        "configASSERT_in_range_fn": true,
+        "allowable_is_3": true
+      }
+    }
+  },
+  "L3_P1": "HOLD",
+  "L3_P2": "HOLD",
+  "valid_execution": true,
+  "A_safety_preservation": true,
+  "task_and_safety_valid": true
+}

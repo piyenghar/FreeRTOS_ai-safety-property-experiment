@@ -1,0 +1,78 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c b/FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c
+index ae15d2f0a..b44ffc532 100644
+--- a/FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c
++++ b/FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c
+@@ -71,7 +71,7 @@
+  * If mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is not 1 then the comprehensive test and
+  * demo application will be built.  The comprehensive test and demo application is
+  * implemented and described in main_full.c. */
+-#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1
++#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    0
+ 
+ /* printf() output uses the UART.  These constants define the addresses of the
+  * required UART registers. */
+diff --git a/FreeRTOS/Demo/Common/Minimal/QueueSet.c b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+index 54dec2a4a..53fa143ac 100644
+--- a/FreeRTOS/Demo/Common/Minimal/QueueSet.c
++++ b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+@@ -140,6 +140,11 @@
+     static BaseType_t prvCheckReceivedValueWithinExpectedRange( uint32_t ulReceived,
+                                                                 uint32_t ulExpectedReceived );
+ 
++/*
++ * M1_T3_STATS: returns the number of in-range checks that passed.
++ */
++    static uint32_t prvGetInRangePassCount( void );
++
+ /*
+  * Increase test coverage by occasionally change the priorities of the two tasks
+  * relative to each other.
+@@ -190,6 +195,11 @@
+  * ulCycleCounter will only be incremented if xQueueSetTasksStatus equals pdPASS. */
+     static volatile BaseType_t xQueueSetTasksStatus = pdPASS;
+ 
++/* M1_T3_STATS: diagnostics only.  Counts the calls to
++ * prvCheckReceivedValueWithinExpectedRange() that returned pdPASS.  It is
++ * never used to decide test pass/fail. */
++    static volatile uint32_t ulM1_T3_STATS_InRangePassCount = 0UL;
++
+ /* Just a flag to let the function that writes to a queue from an ISR know that
+  * the queues are setup and can be used. */
+     static volatile BaseType_t xSetupComplete = pdFALSE;
+@@ -230,8 +240,14 @@
+     {
+         static uint32_t ulLastCycleCounter, ulLastISRTxValue = 0;
+         static uint32_t ulLastQueueUsedCounter[ queuesetNUM_QUEUES_IN_SET ] = { 0 };
++        static volatile uint32_t ulLastInRangePassCount = 0;
+         BaseType_t xReturn = pdPASS, x;
+ 
++        /* M1_T3_STATS: snapshot for inspection in a debugger only - does not
++         * affect xReturn. */
++        ulLastInRangePassCount = prvGetInRangePassCount();
++        ( void ) ulLastInRangePassCount;
++
+         if( ulLastCycleCounter == ulCycleCounter )
+         {
+             /* The cycle counter is no longer being incremented.  Either one of the
+@@ -575,10 +591,21 @@
+             }
+         }
+ 
++        if( xReturn == pdPASS )
++        {
++            ulM1_T3_STATS_InRangePassCount++;
++        }
++
+         return xReturn;
+     }
+ /*-----------------------------------------------------------*/
+ 
++    static uint32_t prvGetInRangePassCount( void )
++    {
++        return ulM1_T3_STATS_InRangePassCount;
++    }
++/*-----------------------------------------------------------*/
++
+     static void prvReceiveFromQueueInSetFromISR( void )
+     {
+         QueueSetMemberHandle_t xActivatedQueue;

@@ -1,0 +1,80 @@
+diff --git a/FreeRTOS/Demo/Common/Minimal/QueueSet.c b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+index 54dec2a4a..e1c9d72e3 100644
+--- a/FreeRTOS/Demo/Common/Minimal/QueueSet.c
++++ b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+@@ -140,6 +140,11 @@
+     static BaseType_t prvCheckReceivedValueWithinExpectedRange( uint32_t ulReceived,
+                                                                 uint32_t ulExpectedReceived );
+ 
++/*
++ * Record range-check outcomes for development diagnostics.
++ */
++    static void prvLogRangeCheckResult( BaseType_t xResult );
++
+ /*
+  * Increase test coverage by occasionally change the priorities of the two tasks
+  * relative to each other.
+@@ -190,6 +195,10 @@
+  * ulCycleCounter will only be incremented if xQueueSetTasksStatus equals pdPASS. */
+     static volatile BaseType_t xQueueSetTasksStatus = pdPASS;
+ 
++/* M1_T1_LOG: debugger-visible counters for range-check outcomes. */
++    static volatile uint32_t ulM1T1RangeCheckCount = 0UL;
++    static volatile uint32_t ulM1T1RangeCheckFailureCount = 0UL;
++
+ /* Just a flag to let the function that writes to a queue from an ISR know that
+  * the queues are setup and can be used. */
+     static volatile BaseType_t xSetupComplete = pdFALSE;
+@@ -555,30 +564,41 @@
+                                                                 uint32_t ulExpectedReceived )
+     {
+         BaseType_t xReturn = pdPASS;
++        uint32_t ulDeviation;
+ 
+         if( ulReceived > ulExpectedReceived )
+         {
+-            configASSERT( ( ulReceived - ulExpectedReceived ) <= queuesetALLOWABLE_RX_DEVIATION );
+-
+-            if( ( ulReceived - ulExpectedReceived ) > queuesetALLOWABLE_RX_DEVIATION )
+-            {
+-                xReturn = pdFALSE;
+-            }
++            ulDeviation = ulReceived - ulExpectedReceived;
+         }
+         else
+         {
+-            configASSERT( ( ulExpectedReceived - ulReceived ) <= queuesetALLOWABLE_RX_DEVIATION );
++            ulDeviation = ulExpectedReceived - ulReceived;
++        }
+ 
+-            if( ( ulExpectedReceived - ulReceived ) > queuesetALLOWABLE_RX_DEVIATION )
+-            {
+-                xReturn = pdFALSE;
+-            }
++        if( ulDeviation > queuesetALLOWABLE_RX_DEVIATION )
++        {
++            xReturn = pdFALSE;
+         }
+ 
++        prvLogRangeCheckResult( xReturn ); /* M1_T1_LOG */
++        configASSERT( ulDeviation <= queuesetALLOWABLE_RX_DEVIATION );
++
+         return xReturn;
+     }
+ /*-----------------------------------------------------------*/
+ 
++    static void prvLogRangeCheckResult( BaseType_t xResult )
++    {
++        /* M1_T1_LOG: retain each outcome for debugger inspection. */
++        ulM1T1RangeCheckCount++;
++
++        if( xResult != pdPASS )
++        {
++            ulM1T1RangeCheckFailureCount++;
++        }
++    }
++/*-----------------------------------------------------------*/
++
+     static void prvReceiveFromQueueInSetFromISR( void )
+     {
+         QueueSetMemberHandle_t xActivatedQueue;

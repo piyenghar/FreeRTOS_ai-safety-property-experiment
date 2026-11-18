@@ -1,0 +1,17 @@
+{
+  "L1_build": "PASS",
+  "source_sha256": "b6c72e6be768581c73ccf67a9f88507d88590fd1b04eae8dd1f813a7d488e4d6",
+  "make_stdout_tail": "AXF=/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/build/pilot_claude_opus_5_5_medium_T1_r1_sp2neg_neg/RTOSDemo.axf L1=PASS\n",
+  "uart_preview": "SP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nT1_LOG: MPU test cycle completed\nqemu-system-arm: terminating on signal 15 from pid 44311 (timeout)\n",
+  "kind": "pilot_mpu_demo_uart_sp2_neg",
+  "expect": "VIOLATION_DETECTED",
+  "counts": {
+    "sp1_pass": 9,
+    "sp2_pass": 0,
+    "sp2_fail": 9
+  },
+  "L3_SP2": "VIOLATION_DETECTED",
+  "L3_SP1": "HOLD",
+  "oracle_detects_sp2_violation": true,
+  "verdict": "PASS"
+}

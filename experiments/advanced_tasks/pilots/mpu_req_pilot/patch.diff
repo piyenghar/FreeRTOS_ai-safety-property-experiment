@@ -1,0 +1,271 @@
+﻿diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..9695cdb7d 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -46,10 +46,31 @@
+ #define SHARED_MEMORY_SIZE    32
+ 
+ /**
+- * @brief Memory region shared between two tasks.
++ * @brief Protected application value region.
++ *
++ * RO task: unprivileged read-only. RW task: read-write.
++ * Only the RW task may update ucSharedMemory[ 0 ].
+  */
+ static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
+ 
++/**
++ * @brief Request mailbox for RO→RW authorized update requests.
++ *
++ * Layout:
++ *   [0] state: 0=idle, 1=pending, 2=accepted, 3=rejected
++ *   [1] requested value (0–255; valid application range is 0–100)
++ *
++ * Mapped RW for both tasks so RO can post requests without writing the
++ * protected value region (SP1 still applies to ucSharedMemory).
++ */
++static volatile uint8_t ucRequestMailbox[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) ) = { 0 };
++
++#define REQ_STATE_IDLE        ( ( uint8_t ) 0 )
++#define REQ_STATE_PENDING     ( ( uint8_t ) 1 )
++#define REQ_STATE_ACCEPTED    ( ( uint8_t ) 2 )
++#define REQ_STATE_REJECTED    ( ( uint8_t ) 3 )
++#define REQ_MAX_VALID_VALUE   ( ( uint8_t ) 100 )
++
+ /**
+  * @brief Memory region used to track Memory Fault intentionally caused by the
+  * RO Access task.
+@@ -91,6 +112,15 @@ static void prvRWAccessTask( void * pvParameters );
+  */
+ static void prvReportPropertyResult( const char * pcMessage );
+ 
++/** Append decimal digits for ucVal into pcOut; returns updated pointer. */
++static char * prvAppendDecimal( char * pcOut,
++                                uint8_t ucVal );
++
++/** Report one request/response observation line on UART. */
++static void prvReportRequestOutcome( uint8_t ucRequested,
++                                     uint8_t ucState,
++                                     uint8_t ucObserved );
++
+ /*-----------------------------------------------------------*/
+ 
+ static void prvReportPropertyResult( const char * pcMessage )
+@@ -108,9 +138,99 @@ static void prvReportPropertyResult( const char * pcMessage )
+ }
+ /*-----------------------------------------------------------*/
+ 
++static char * prvAppendDecimal( char * pcOut,
++                                uint8_t ucVal )
++{
++    char acDigits[ 3 ];
++    int iCount = 0;
++    int i;
++    uint8_t ucTmp = ucVal;
++
++    do
++    {
++        acDigits[ iCount ] = ( char ) ( '0' + ( ucTmp % 10u ) );
++        iCount++;
++        ucTmp = ( uint8_t ) ( ucTmp / 10u );
++    } while( ucTmp > 0u );
++
++    for( i = iCount - 1; i >= 0; i-- )
++    {
++        *pcOut = acDigits[ i ];
++        pcOut++;
++    }
++
++    return pcOut;
++}
++/*-----------------------------------------------------------*/
++
++static void prvReportRequestOutcome( uint8_t ucRequested,
++                                     uint8_t ucState,
++                                     uint8_t ucObserved )
++{
++    char pcLine[ 48 ];
++    char * pc = pcLine;
++    const char * pcPrefix = "MPU_REQ: req=";
++    const char * pcMid;
++    const char * pcObs = " observed=";
++
++    while( *pcPrefix != '\0' )
++    {
++        *pc = *pcPrefix;
++        pc++;
++        pcPrefix++;
++    }
++
++    pc = prvAppendDecimal( pc, ucRequested );
++    *pc = ' ';
++    pc++;
++
++    if( ucState == REQ_STATE_ACCEPTED )
++    {
++        pcMid = "ACCEPT";
++    }
++    else if( ucState == REQ_STATE_REJECTED )
++    {
++        pcMid = "REJECT";
++    }
++    else
++    {
++        pcMid = "PENDING";
++    }
++
++    while( *pcMid != '\0' )
++    {
++        *pc = *pcMid;
++        pc++;
++        pcMid++;
++    }
++
++    while( *pcObs != '\0' )
++    {
++        *pc = *pcObs;
++        pc++;
++        pcObs++;
++    }
++
++    pc = prvAppendDecimal( pc, ucObserved );
++    *pc = '\0';
++    prvReportPropertyResult( pcLine );
++}
++/*-----------------------------------------------------------*/
++
+ static void prvROAccessTask( void * pvParameters )
+ {
+-    uint8_t ucVal;
++    /* Demonstration request sequence: several valid and invalid values. */
++    static const uint8_t ucRequestSequence[] =
++    {
++        10, 50, 100, 101, 150, 0, 75, 200, 25, 255
++    };
++    static const UBaseType_t uxRequestCount =
++        ( UBaseType_t ) ( sizeof( ucRequestSequence ) / sizeof( ucRequestSequence[ 0 ] ) );
++    UBaseType_t uxReqIndex = 0;
++    uint8_t ucRequested;
++    uint8_t ucState;
++    uint8_t ucObserved;
++    UBaseType_t uxWait;
+ 
+     /* Unused parameters. */
+     ( void ) pvParameters;
+@@ -119,12 +239,35 @@ static void prvROAccessTask( void * pvParameters )
+ 
+     for( ; ; )
+     {
+-        /* This task has RO access to ucSharedMemory and therefore it can read
+-         * it but cannot modify it. */
+-        ucVal = ucSharedMemory[ 0 ];
++        /* --- Authorized update request path (does not write protected mem) --- */
++        ucRequested = ucRequestSequence[ uxReqIndex ];
++        uxReqIndex++;
++
++        if( uxReqIndex >= uxRequestCount )
++        {
++            uxReqIndex = 0;
++        }
++
++        /* Post request into the RW-mapped mailbox only. */
++        ucRequestMailbox[ 1 ] = ucRequested;
++        ucRequestMailbox[ 0 ] = REQ_STATE_PENDING;
++
++        /* Allow the RW task time to process (preserves cooperative schedule). */
++        for( uxWait = 0; uxWait < 5; uxWait++ )
++        {
++            vTaskDelay( pdMS_TO_TICKS( 50 ) );
++            ucState = ucRequestMailbox[ 0 ];
++
++            if( ( ucState == REQ_STATE_ACCEPTED ) || ( ucState == REQ_STATE_REJECTED ) )
++            {
++                break;
++            }
++        }
+ 
+-        /* Silent compiler warnings about unused variables. */
+-        ( void ) ucVal;
++        /* Observe protected value via legal RO read — never written by RO. */
++        ucObserved = ucSharedMemory[ 0 ];
++        ucState = ucRequestMailbox[ 0 ];
++        prvReportRequestOutcome( ucRequested, ucState, ucObserved );
+ 
+         /* Since this task has Read Only access to the ucSharedMemory region,
+          * writing to it results in Memory Fault. Set ucROTaskFaultTracker[ 0 ]
+@@ -229,17 +372,36 @@ static void prvROAccessTask( void * pvParameters )
+ 
+ static void prvRWAccessTask( void * pvParameters )
+ {
++    uint8_t ucState;
++    uint8_t ucRequested;
++
+     /* Unused parameters. */
+     ( void ) pvParameters;
+ 
+     for( ; ; )
+     {
+-        /* This task has RW access to ucSharedMemory and therefore can write to
+-         * it. */
+-        ucSharedMemory[ 0 ] = 0;
++        /* Process authorized update requests from the RO task. Only this task
++         * writes the protected application value in ucSharedMemory. */
++        ucState = ucRequestMailbox[ 0 ];
+ 
+-        /* Wait for a second. */
+-        vTaskDelay( pdMS_TO_TICKS( 1000 ) );
++        if( ucState == REQ_STATE_PENDING )
++        {
++            ucRequested = ucRequestMailbox[ 1 ];
++
++            if( ucRequested <= REQ_MAX_VALID_VALUE )
++            {
++                ucSharedMemory[ 0 ] = ucRequested;
++                ucRequestMailbox[ 0 ] = REQ_STATE_ACCEPTED;
++            }
++            else
++            {
++                /* Reject without modifying the protected value. */
++                ucRequestMailbox[ 0 ] = REQ_STATE_REJECTED;
++            }
++        }
++
++        /* Poll frequently enough to service RO requests within its wait window. */
++        vTaskDelay( pdMS_TO_TICKS( 50 ) );
+     }
+ }
+ 
+@@ -266,12 +428,15 @@ void vStartMPUDemo( void )
+         .puxStackBuffer = xROAccessTaskStack,
+         .xRegions       =
+         {
++            /* Protected value: RO for this task (SP1 still enforced). */
+             { ucSharedMemory,                  SHARED_MEMORY_SIZE,
+               portMPU_REGION_PRIVILEGED_READ_WRITE_UNPRIV_READ_ONLY |
+               portMPU_REGION_EXECUTE_NEVER },
+             { ( void * ) ucROTaskFaultTracker, SHARED_MEMORY_SIZE,
+               portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER },
+-            { 0,                               0,                 0},
++            /* Request mailbox: RW so RO can post without touching protected mem. */
++            { ( void * ) ucRequestMailbox,     SHARED_MEMORY_SIZE,
++              portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER },
+         }
+     };
+ 
+@@ -285,10 +450,13 @@ void vStartMPUDemo( void )
+         .puxStackBuffer = xRWAccessTaskStack,
+         .xRegions       =
+         {
+-            { ucSharedMemory, SHARED_MEMORY_SIZE,
++            /* Protected value: only RW task may update. */
++            { ucSharedMemory,              SHARED_MEMORY_SIZE,
++              portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER },
++            /* Request mailbox: RW reads requests / writes accept/reject status. */
++            { ( void * ) ucRequestMailbox, SHARED_MEMORY_SIZE,
+               portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER },
+-            { 0,              0,                 0  },
+-            { 0,              0,                 0  },
++            { 0,                           0,                 0  },
+         }
+     };
+ 

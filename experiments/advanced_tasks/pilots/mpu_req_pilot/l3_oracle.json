@@ -1,0 +1,26 @@
+{
+  "L1_build": "PASS",
+  "source_note": "mpu_req_pilot",
+  "mpu_demo_sha256": "e10e0cad406b95c34028d1f4c2aaaf3d227f7cd33e812750f769f49a05d98863",
+  "uart_log": "experiments\\advanced_tasks\\pilots\\mpu_req_pilot\\qemu_uart.log",
+  "kind": "pilot_mpu_demo_uart",
+  "pilot": "t2",
+  "control": "pos",
+  "counts": {
+    "sp1_pass": 13,
+    "sp1_fail": 0,
+    "sp2_pass": 13,
+    "sp2_fail": 0,
+    "t1_log": 0,
+    "t3_cycles": []
+  },
+  "L3_SP1": "HOLD",
+  "L3_SP2": "HOLD",
+  "L3_verdict": "PASS",
+  "L2": {
+    "applicable": true,
+    "criterion": "behaviour-preserving: SP1/SP2 PASS with no FAIL",
+    "verdict": "PASS"
+  },
+  "L2_verdict": "PASS"
+}

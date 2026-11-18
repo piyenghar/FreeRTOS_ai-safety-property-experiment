@@ -1,0 +1,7 @@
+﻿# M1 L3 host build evidence
+date: 2026-11-18T11:02:15.2465184+01:00
+compiler: gcc.exe (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r4) 16.1.0
+command: gcc -std=c11 -Wall -Wextra -Werror -O0 -g -I. l3_range_test.c range_check_under_test.c -o build\l3_range_test.exe
+run: .\experiments\verification\M1\scripts\run_m1_l3.ps1
+stdout: P1 14/14  P2 8/8  ALL 22/22  oracle_pos=PASS oracle_neg=PASS
+exit: 0

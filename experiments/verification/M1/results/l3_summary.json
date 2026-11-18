@@ -1,0 +1,192 @@
+{
+  "P1": {
+    "pass": 14,
+    "fail": 0,
+    "total": 14,
+    "verdict": "PASS"
+  },
+  "P2": {
+    "pass": 8,
+    "fail": 0,
+    "total": 8,
+    "verdict": "PASS"
+  },
+  "ALL": {
+    "pass": 22,
+    "fail": 0,
+    "total": 22,
+    "verdict": "PASS"
+  },
+  "oracle_pos": "PASS",
+  "oracle_neg": "PASS",
+  "cases": [
+    {
+      "property": "P1",
+      "name": "eq",
+      "rx": 1000,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "plus1",
+      "rx": 1001,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "minus1",
+      "rx": 999,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "plus2",
+      "rx": 1002,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "minus2",
+      "rx": 998,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "plus3_bound",
+      "rx": 1003,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "minus3_bound",
+      "rx": 997,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P2",
+      "name": "plus4",
+      "rx": 1004,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P2",
+      "name": "minus4",
+      "rx": 996,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P2",
+      "name": "plus5",
+      "rx": 1005,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P2",
+      "name": "minus10",
+      "rx": 990,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "zero_eq",
+      "rx": 0,
+      "exp": 0,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "zero_plus3",
+      "rx": 3,
+      "exp": 0,
+      "result": "PASS"
+    },
+    {
+      "property": "P2",
+      "name": "zero_plus4",
+      "rx": 4,
+      "exp": 0,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "max_eq",
+      "rx": 4294967295,
+      "exp": 4294967295,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "max_minus3",
+      "rx": 4294967292,
+      "exp": 4294967295,
+      "result": "PASS"
+    },
+    {
+      "property": "P2",
+      "name": "max_minus4",
+      "rx": 4294967291,
+      "exp": 4294967295,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "near_wrap_ok",
+      "rx": 4294967295,
+      "exp": 4294967293,
+      "result": "PASS"
+    },
+    {
+      "property": "P2",
+      "name": "u_large_dev",
+      "rx": 4294967295,
+      "exp": 0,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "isr_split_eq",
+      "rx": 65535,
+      "exp": 65535,
+      "result": "PASS"
+    },
+    {
+      "property": "P1",
+      "name": "isr_split_p3",
+      "rx": 65538,
+      "exp": 65535,
+      "result": "PASS"
+    },
+    {
+      "property": "P2",
+      "name": "isr_split_p4",
+      "rx": 65539,
+      "exp": 65535,
+      "result": "PASS"
+    },
+    {
+      "property": "CTRL",
+      "name": "oracle_pos_ctrl",
+      "rx": 1001,
+      "exp": 1000,
+      "result": "PASS"
+    },
+    {
+      "property": "CTRL",
+      "name": "oracle_neg_ctrl",
+      "rx": 1004,
+      "exp": 1000,
+      "result": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "total": 11,
+  "passed_expectations": 11,
+  "failed_expectations": 0,
+  "cases": [
+    {
+      "case": "M1-R4_baseline_QueueSet",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "failure_reasons": [
+        "missing_token_M1_R4_EXTRACT",
+        "missing_deviation_helper_called_from_check",
+        "duplicated_mirrored_assert_branches_remain",
+        "multiple_allowable_deviation_asserts_in_check",
+        "no_structural_change_vs_baseline"
+      ],
+      "detail": {
+        "task_id": "M1-R4",
+        "checks": {
+          "helpers_called_from_check": [],
+          "allowable_assert_count_in_check": 2,
+          "mirrored_branch_asserts": 2,
+          "structurally_changed": false,
+          "source_sha256": "ef02730a6ddb2f71f3002a699c34d2672e66d1eb1e803d69cabc3e412b5f2b05",
+          "unified_path": false
+        }
+      }
+    },
+    {
+      "case": "M1-R4_fixture_pass",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "failure_reasons": [],
+      "detail": {
+        "task_id": "M1-R4",
+        "checks": {
+          "helpers_called_from_check": [
+            "prvAbsoluteDeviation"
+          ],
+          "allowable_assert_count_in_check": 1,
+          "mirrored_branch_asserts": 0,
+          "structurally_changed": true,
+          "source_sha256": "db655644a7b2a57840337aaf98ea4d8e3f3a01b4018d841be95ad55c75c8a48e",
+          "unified_path": true
+        }
+      }
+    },
+    {
+      "case": "M1-R4_fixture_marker_only",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "failure_reasons": [
+        "missing_deviation_helper_called_from_check",
+        "duplicated_mirrored_assert_branches_remain",
+        "multiple_allowable_deviation_asserts_in_check"
+      ],
+      "detail": {
+        "task_id": "M1-R4",
+        "checks": {
+          "helpers_called_from_check": [],
+          "allowable_assert_count_in_check": 2,
+          "mirrored_branch_asserts": 2,
+          "structurally_changed": true,
+          "source_sha256": "ed95c2555acae4d2e437321721bf66a0f1949192bceefc8fd52bf86769ba3b1e",
+          "unified_path": false
+        }
+      }
+    },
+    {
+      "case": "M1-E4_baseline_QueueSet_structural",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "failure_reasons": [
+        "missing_token_M1_E4_DIAG",
+        "missing_vM1E4GetRangeDiagnostics_signature"
+      ],
+      "detail": {
+        "task_id": "M1-E4",
+        "structural": {
+          "has_token": false,
+          "has_api": false
+        }
+      }
+    },
+    {
+      "case": "M1-E4_fixture_pass_behavioural",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "failure_reasons": [],
+      "detail": {
+        "task_id": "M1-E4",
+        "structural": {
+          "has_token": true,
+          "has_api": true
+        },
+        "behavioural": {
+          "verdict": "PASS",
+          "failure_reasons": [],
+          "detail": {
+            "stdout": "M1-E4 behavioural L2: PASS\n",
+            "stderr": "",
+            "returncode": 0
+          }
+        }
+      }
+    },
+    {
+      "case": "M1-E4_fixture_wrong_counts",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "failure_reasons": [
+        "behavioural_acceptance_failed"
+      ],
+      "detail": {
+        "task_id": "M1-E4",
+        "structural": {
+          "has_token": true,
+          "has_api": true
+        },
+        "behavioural": {
+          "verdict": "FAIL",
+          "failure_reasons": [
+            "behavioural_acceptance_failed"
+          ],
+          "detail": {
+            "stdout": "",
+            "stderr": "M1-E4 L2 FAIL: AT4_out_of_range\nM1-E4 behavioural L2: FAIL\n",
+            "returncode": 1
+          }
+        }
+      }
+    },
+    {
+      "case": "M2-R4_baseline_mpu_demo",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "failure_reasons": [
+        "missing_token_M2_R4_STRUCT",
+        "missing_sp1_helper_called_from_ro_task",
+        "missing_sp2_helper_called_from_ro_task",
+        "no_structural_change_vs_baseline"
+      ],
+      "detail": {
+        "task_id": "M2-R4",
+        "checks": {
+          "sp1_helpers": [],
+          "sp2_helpers": [],
+          "called_sp1_from_ro": [],
+          "called_sp2_from_ro": [],
+          "structurally_changed": false,
+          "explicit_region_hints": true
+        }
+      }
+    },
+    {
+      "case": "M2-R4_fixture_pass",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "failure_reasons": [],
+      "detail": {
+        "task_id": "M2-R4",
+        "checks": {
+          "sp1_helpers": [
+            "prvObserveSP1Isolation"
+          ],
+          "sp2_helpers": [
+            "prvObserveSP2PrivilegeContainment"
+          ],
+          "called_sp1_from_ro": [
+            "prvObserveSP1Isolation"
+          ],
+          "called_sp2_from_ro": [
+            "prvObserveSP2PrivilegeContainment"
+          ],
+          "structurally_changed": true,
+          "explicit_region_hints": true
+        }
+      }
+    },
+    {
+      "case": "M2-E4_baseline_mpu_demo",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "failure_reasons": [
+        "missing_telemetry_prefix_in_source",
+        "telemetry_not_wired_to_uart_path",
+        "uart_log_required_for_m2_e4"
+      ],
+      "detail": {
+        "task_id": "M2-E4",
+        "checks": {
+          "wired": false,
+          "uart_cycles": [],
+          "uart_monotonic_from_1": false
+        }
+      }
+    },
+    {
+      "case": "M2-E4_fixture_pass",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "failure_reasons": [],
+      "detail": {
+        "task_id": "M2-E4",
+        "checks": {
+          "wired": true,
+          "uart_cycles": [
+            1,
+            2,
+            3
+          ],
+          "uart_monotonic_from_1": true
+        }
+      }
+    },
+    {
+      "case": "M2-E4_fixture_non_monotonic_uart",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "failure_reasons": [
+        "uart_telemetry_not_monotonic_or_missing"
+      ],
+      "detail": {
+        "task_id": "M2-E4",
+        "checks": {
+          "wired": true,
+          "uart_cycles": [
+            1,
+            1
+          ],
+          "uart_monotonic_from_1": false
+        }
+      }
+    }
+  ]
+}

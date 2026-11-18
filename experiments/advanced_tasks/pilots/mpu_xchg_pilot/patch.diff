@@ -1,0 +1,111 @@
+﻿diff --git a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+index 02663d449..7d2917062 100644
+--- a/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
++++ b/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/mpu_demo.c
+@@ -91,6 +91,14 @@ static void prvRWAccessTask( void * pvParameters );
+  */
+ static void prvReportPropertyResult( const char * pcMessage );
+ 
++/**
++ * @brief Report an observed shared-memory value for the MPU exchange pilot.
++ *
++ * Format: "MPU_XCHG: observed=<decimal>" — used to prove the RO task sees
++ * updates written by the RW task. Stack-local buffer only (MPU-legal).
++ */
++static void prvReportObservedSharedValue( uint8_t ucVal );
++
+ /*-----------------------------------------------------------*/
+ 
+ static void prvReportPropertyResult( const char * pcMessage )
+@@ -108,6 +116,43 @@ static void prvReportPropertyResult( const char * pcMessage )
+ }
+ /*-----------------------------------------------------------*/
+ 
++static void prvReportObservedSharedValue( uint8_t ucVal )
++{
++    char pcLine[ 28 ];
++    char * pc = pcLine;
++    const char * pcPrefix = "MPU_XCHG: observed=";
++    uint8_t ucTmp;
++    char acDigits[ 3 ];
++    int iDigitCount = 0;
++    int i;
++
++    while( *pcPrefix != '\0' )
++    {
++        *pc = *pcPrefix;
++        pc++;
++        pcPrefix++;
++    }
++
++    ucTmp = ucVal;
++
++    do
++    {
++        acDigits[ iDigitCount ] = ( char ) ( '0' + ( ucTmp % 10u ) );
++        iDigitCount++;
++        ucTmp = ( uint8_t ) ( ucTmp / 10u );
++    } while( ucTmp > 0u );
++
++    for( i = iDigitCount - 1; i >= 0; i-- )
++    {
++        *pc = acDigits[ i ];
++        pc++;
++    }
++
++    *pc = '\0';
++    prvReportPropertyResult( pcLine );
++}
++/*-----------------------------------------------------------*/
++
+ static void prvROAccessTask( void * pvParameters )
+ {
+     uint8_t ucVal;
+@@ -119,12 +164,11 @@ static void prvROAccessTask( void * pvParameters )
+ 
+     for( ; ; )
+     {
+-        /* This task has RO access to ucSharedMemory and therefore it can read
+-         * it but cannot modify it. */
++        /* Inter-task exchange (maintenance enhancement): RO task observes the
++         * value periodically published by the RW task into ucSharedMemory.
++         * This is a legal unprivileged read of the RO-mapped shared region. */
+         ucVal = ucSharedMemory[ 0 ];
+-
+-        /* Silent compiler warnings about unused variables. */
+-        ( void ) ucVal;
++        prvReportObservedSharedValue( ucVal );
+ 
+         /* Since this task has Read Only access to the ucSharedMemory region,
+          * writing to it results in Memory Fault. Set ucROTaskFaultTracker[ 0 ]
+@@ -229,14 +273,27 @@ static void prvROAccessTask( void * pvParameters )
+ 
+ static void prvRWAccessTask( void * pvParameters )
+ {
++    uint8_t ucPublish = 0;
++
+     /* Unused parameters. */
+     ( void ) pvParameters;
+ 
+     for( ; ; )
+     {
+-        /* This task has RW access to ucSharedMemory and therefore can write to
+-         * it. */
+-        ucSharedMemory[ 0 ] = 0;
++        /* Inter-task exchange: RW task periodically publishes an incrementing
++         * byte into the shared region. RO task may read it; RO must still not
++         * be able to write (SP1). Do not wrap through 0 immediately — start
++         * at 1 so the first observation is distinguishable from BSS zero. */
++        if( ucPublish < 255u )
++        {
++            ucPublish++;
++        }
++        else
++        {
++            ucPublish = 1u;
++        }
++
++        ucSharedMemory[ 0 ] = ucPublish;
+ 
+         /* Wait for a second. */
+         vTaskDelay( pdMS_TO_TICKS( 1000 ) );

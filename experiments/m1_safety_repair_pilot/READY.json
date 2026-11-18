@@ -1,0 +1,23 @@
+{
+  "defective_ready": true,
+  "baseline_L3": {
+    "ok": true,
+    "L3_P1": "HOLD",
+    "L3_P2": "HOLD"
+  },
+  "defective_L3": {
+    "ok": false,
+    "L3_P1": "VIOLATION",
+    "L3_P2": "HOLD",
+    "P1": {
+      "pass": 9,
+      "fail": 5,
+      "total": 14,
+      "verdict": "FAIL"
+    }
+  },
+  "defective_compiles": true,
+  "original_queueset_untouched": true,
+  "repair_attempted": false,
+  "committed": false
+}

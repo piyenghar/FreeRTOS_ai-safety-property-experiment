@@ -1,0 +1,119 @@
+{
+  "audit_version": "empty_patch_trace_audit_v1",
+  "baseline_queueset_sha256": "5b490fd638b4f0a2b297338e6493b062725ab40446e751944ad09ddbff8b34e1",
+  "runs": [
+    {
+      "run_id": "gemini-4-carbon-medium_T1_r1",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 3.63,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "not": ["model_refusal", "noop", "compile_error"],
+      "evidence": [
+        "agent_trace.jsonl: ActionRequiredError usage limit for Gemini",
+        "AGENT_EXIT:1",
+        "no assistant or tool_call events"
+      ]
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T1_r2",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 3.42,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": ["same ActionRequiredError Gemini usage limit pattern"]
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T1_r3",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 4.76,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": ["same ActionRequiredError Gemini usage limit pattern"]
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T2_r1",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 4.4,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": ["same ActionRequiredError Gemini usage limit pattern"]
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T2_r2",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 5.17,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": ["same ActionRequiredError Gemini usage limit pattern"]
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T2_r3",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 3.89,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": ["same ActionRequiredError Gemini usage limit pattern"]
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T3_r1",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 3.34,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": ["same ActionRequiredError Gemini usage limit pattern"]
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T3_r2",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 3.64,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": ["same ActionRequiredError Gemini usage limit pattern"]
+    },
+    {
+      "run_id": "gemini-4-carbon-medium_T3_r3",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 3.39,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": ["same ActionRequiredError Gemini usage limit pattern"]
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T2_r2",
+      "agent_exit_status": 0,
+      "agent_elapsed_secs": 731.89,
+      "audited_cause": "patch_capture_failure_after_successful_edit",
+      "category": "tool_workspace_artifact_capture",
+      "not": ["noop", "model_refusal", "usage_limit"],
+      "live_original": {
+        "L1_build": "PASS",
+        "L2_task": "PASS",
+        "L3_P1": "HOLD",
+        "L3_P2": "HOLD",
+        "A": true,
+        "queueset_sha256": "2847ce7278b6e322517dbfeacf721bafc385aaf94f2dee04951153439dd8596f"
+      },
+      "evidence": [
+        "editToolCall QueueSet.c success linesAdded=7 linesRemoved=14 with M1_T2_REFACTOR",
+        "editToolCall on .git gitdir Windows->WSL path",
+        "shell fatal: not a git repository after gitdir rewrite",
+        "result.json source hash differs from baseline; L1/L2 PASS",
+        "QueueSet_uut.c retains /* M1_T2_REFACTOR */",
+        "patch.diff empty despite modified on-disk QueueSet at capture time"
+      ]
+    },
+    {
+      "run_id": "gpt-5.6-sol-medium_T3_r3",
+      "agent_exit_status": 1,
+      "agent_elapsed_secs": 3.61,
+      "audited_cause": "provider_usage_limit",
+      "category": "agent_execution_failure",
+      "evidence": [
+        "agent_trace.jsonl: ActionRequiredError usage limit for this model (GPT)",
+        "AGENT_EXIT:1",
+        "no assistant or tool_call events"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+﻿diff --git a/experiments/m1_safety_repair_pilot/snapshots/defective_QueueSet.c b/experiments/m1_safety_repair_pilot/repair_workspace/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+index be8be798f..54dec2a4a 100644
+--- a/experiments/m1_safety_repair_pilot/snapshots/defective_QueueSet.c
++++ b/experiments/m1_safety_repair_pilot/repair_workspace/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+@@ -560,7 +560,7 @@
+         {
+             configASSERT( ( ulReceived - ulExpectedReceived ) <= queuesetALLOWABLE_RX_DEVIATION );
+ 
+-            if( ( ulReceived - ulExpectedReceived ) >= queuesetALLOWABLE_RX_DEVIATION )
++            if( ( ulReceived - ulExpectedReceived ) > queuesetALLOWABLE_RX_DEVIATION )
+             {
+                 xReturn = pdFALSE;
+             }
+@@ -569,7 +569,7 @@
+         {
+             configASSERT( ( ulExpectedReceived - ulReceived ) <= queuesetALLOWABLE_RX_DEVIATION );
+ 
+-            if( ( ulExpectedReceived - ulReceived ) >= queuesetALLOWABLE_RX_DEVIATION )
++            if( ( ulExpectedReceived - ulReceived ) > queuesetALLOWABLE_RX_DEVIATION )
+             {
+                 xReturn = pdFALSE;
+             }

@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "mode": "full_queueset_uut",
+  "function": "prvCheckReceivedValueWithinExpectedRange",
+  "allowable": 3,
+  "expected_allowable": 3,
+  "queueset_sha256": "5b490fd638b4f0a2b297338e6493b062725ab40446e751944ad09ddbff8b34e1",
+  "queueset_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\wt\\reeval\\FreeRTOS\\Demo\\Common\\Minimal\\QueueSet.c",
+  "out": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\results\\campaign_20261118T141152Z\\reevaluated\\runs\\gemini-4-carbon-medium_T1_r2\\QueueSet_uut.c",
+  "tests_agent_modified_implementation": true,
+  "used_frozen_reference_extract": false,
+  "preserves_helpers_and_statics": true,
+  "uut_bytes": 46317
+}

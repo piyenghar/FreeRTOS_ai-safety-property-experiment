@@ -1,0 +1,32 @@
+# Advanced tasks — integrated L1/L2/L3 validation
+
+**Stamp:** `20261118T202421Z`
+**Met expectations:** 12/12
+**AI models invoked:** no
+
+| Case | Expected | Actual | OK |
+|------|----------|--------|----|
+| `M1-R4/baseline` | `{'L2': 'FAIL', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | `{'L2': 'FAIL', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | yes |
+| `M1-R4/pass` | `{'L1': 'PASS', 'L2': 'PASS', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | `{'L1': 'PASS', 'L2': 'PASS', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | yes |
+| `M1-R4/fault_marker` | `{'L2': 'FAIL', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | `{'L2': 'FAIL', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | yes |
+| `M1-E4/baseline` | `{'L2': 'FAIL', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | `{'L2': 'FAIL', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | yes |
+| `M1-E4/pass` | `{'L1': 'PASS', 'L2': 'PASS', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | `{'L1': 'PASS', 'L2': 'PASS', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | yes |
+| `M1-E4/fault_counts` | `{'L2': 'FAIL', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | `{'L2': 'FAIL', 'L3_P1': 'HOLD', 'L3_P2': 'HOLD'}` | yes |
+| `M2-R4/baseline` | `{'L2': 'FAIL', 'L3_SP1': 'HOLD', 'L3_SP2': 'HOLD'}` | `{'L2': 'FAIL', 'L3_SP1': 'HOLD', 'L3_SP2': 'HOLD'}` | yes |
+| `M2-R4/pass` | `{'L2': 'PASS', 'L3_SP1': 'HOLD', 'L3_SP2': 'HOLD'}` | `{'L2': 'PASS', 'L3_SP1': 'HOLD', 'L3_SP2': 'HOLD'}` | yes |
+| `M2-R4/fault_unpatched` | `{'L2': 'FAIL', 'L3_SP1': 'HOLD', 'L3_SP2': 'HOLD'}` | `{'L2': 'FAIL', 'L3_SP1': 'HOLD', 'L3_SP2': 'HOLD'}` | yes |
+| `M2-E4/baseline` | `{'L2': 'FAIL'}` | `{'L2': 'FAIL'}` | yes |
+| `M2-E4/pass` | `{'L2': 'PASS', 'L3_SP1': 'HOLD', 'L3_SP2': 'HOLD'}` | `{'L2': 'PASS', 'L3_SP1': 'HOLD', 'L3_SP2': 'HOLD'}` | yes |
+| `M2-E4/fault_uart` | `{'L2': 'FAIL'}` | `{'L2': 'FAIL'}` | yes |
+
+## Task readiness
+
+| Task | Pipeline validation |
+|------|---------------------|
+| M1-R4 | **PASS** |
+| M1-E4 | **PASS** |
+| M2-R4 | **PASS** |
+| M2-E4 | **PASS** |
+
+Artifacts: `F:/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/advanced_tasks/validation/integrated/20261118T202421Z`
+

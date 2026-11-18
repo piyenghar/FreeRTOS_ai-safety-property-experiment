@@ -1,0 +1,100 @@
+# DSN 2027 multi-model experiment matrix (M1 / P1 / P2 / T1–T3)
+# Model IDs verified for M2 campaign 2026-11-18 via WSL `agent models`.
+
+experiment:
+  name: dsn2027-m1-multimodel
+  mechanism: M1
+  safety_properties: [P1, P2]
+  baseline_ref: "8c62b75701d9757dff84de4ed1ec3b1a63d5d400"
+  baseline_note: "Frozen source tip used for M2; QueueSet range-check unchanged"
+  demo_path: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
+  target_file: FreeRTOS/Demo/Common/Minimal/QueueSet.c
+  target_function: prvCheckReceivedValueWithinExpectedRange
+  allowable_deviation: 3
+  verification_root: experiments/verification/M1
+  results_root: experiments/m1_multimodel/results
+  worktree_root: experiments/m1_multimodel/wt
+
+agent:
+  invoke_via_wsl: true
+  command: agent
+  print: true
+  force: true
+  trust: true
+  sandbox: disabled
+  output_format: stream-json
+  fresh_session: true
+  timeout_secs: 1800
+
+models:
+  - id: claude-opus-5-5-medium
+    display_name: "Claude Opus 5.5 Medium"
+    cli_model_id: "claude-opus-5-5-medium"
+    enabled: true
+    validated_from_cli: true
+    cli_display_name: "Claude Opus 5.5 1M"
+
+  - id: gpt-5.6-sol-medium
+    display_name: "GPT-5.6 Sol Medium"
+    cli_model_id: "gpt-5.6-sol-medium"
+    enabled: true
+    validated_from_cli: true
+    cli_display_name: "GPT-5.6 Sol 1M"
+
+  - id: gemini-4-carbon-medium
+    display_name: "Gemini 4 Carbon Medium"
+    cli_model_id: "gemini-4-carbon-medium"
+    enabled: true
+    validated_from_cli: true
+    cli_display_name: "Gemini 4 Carbon Medium"
+
+tasks:
+  - id: T1
+    name: logging
+    prompt_file: prompts/t1_logging.md
+    acceptance:
+      source_must_contain: ["M1_T1_LOG"]
+      uart_must_contain: ["PASS"]
+      uart_must_not_contain: ["ASSERT!"]
+    enabled: true
+
+  - id: T2
+    name: refactor
+    prompt_file: prompts/t2_refactor.md
+    acceptance:
+      source_must_contain: ["M1_T2_REFACTOR"]
+      uart_must_contain: ["PASS"]
+      uart_must_not_contain: ["ASSERT!"]
+    enabled: true
+
+  - id: T3
+    name: enhancement
+    prompt_file: prompts/t3_enhancement.md
+    acceptance:
+      source_must_contain: ["M1_T3_STATS"]
+      uart_must_contain: ["PASS"]
+      uart_must_not_contain: ["ASSERT!"]
+    enabled: true
+
+repetitions: 3
+
+filters:
+  models: []
+  tasks: []
+  reps: []
+
+verification:
+  qemu_timeout_secs: 20
+  run_l1_build: true
+  run_l2_acceptance: true
+  run_l3_oracle: true
+  # L3 builds host harness against a per-run extract FROM the agent QueueSet.c
+  l3_harness_dir: experiments/verification/M1/l3
+  l3_extract_script: experiments/m1_multimodel/scripts/extract_range_check.py
+  require_oracle_controls: true
+  require_allowable_unchanged: true
+
+runtime:
+  dry_run: false
+  keep_worktrees: true
+  max_parallel: 1

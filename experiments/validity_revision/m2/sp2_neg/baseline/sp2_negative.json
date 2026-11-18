@@ -1,0 +1,17 @@
+{
+  "L1_build": "PASS",
+  "source_sha256": "0c5e0a936bc6e46b6c1d1fd983e9b021e9435b8f167bc7da461ff4f99b8040dc",
+  "make_stdout_tail": "AXF=/mnt/f/RDProjects/safetyProperties/FreeRTOS_ai-safety-property-experiment/experiments/verification/M2/build/pilot_baseline_sp2neg_neg/RTOSDemo.axf L1=PASS\n",
+  "uart_preview": "SP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nSP1 PASS: read-only memory isolation preserved\nSP2 FAIL: privilege containment violated\nqemu-system-arm: terminating on signal 15 from pid 44223 (timeout)\n",
+  "kind": "pilot_mpu_demo_uart_sp2_neg",
+  "expect": "VIOLATION_DETECTED",
+  "counts": {
+    "sp1_pass": 7,
+    "sp2_pass": 0,
+    "sp2_fail": 7
+  },
+  "L3_SP2": "VIOLATION_DETECTED",
+  "L3_SP1": "HOLD",
+  "oracle_detects_sp2_violation": true,
+  "verdict": "PASS"
+}

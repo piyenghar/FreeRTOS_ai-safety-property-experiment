@@ -1,0 +1,82 @@
+diff --git a/FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c b/FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c
+index ae15d2f0a..b44ffc532 100644
+--- a/FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c
++++ b/FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c
+@@ -71,7 +71,7 @@
+  * If mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is not 1 then the comprehensive test and
+  * demo application will be built.  The comprehensive test and demo application is
+  * implemented and described in main_full.c. */
+-#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1
++#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    0
+ 
+ /* printf() output uses the UART.  These constants define the addresses of the
+  * required UART registers. */
+diff --git a/FreeRTOS/Demo/Common/Minimal/QueueSet.c b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+index 54dec2a4a..ca50cdb0e 100644
+--- a/FreeRTOS/Demo/Common/Minimal/QueueSet.c
++++ b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+@@ -140,6 +140,14 @@
+     static BaseType_t prvCheckReceivedValueWithinExpectedRange( uint32_t ulReceived,
+                                                                 uint32_t ulExpectedReceived );
+ 
++/*
++ * M1_T1_LOG: Development logging hook that records the outcome of a range
++ * check.  It only observes the result and never alters it.
++ */
++    static void prvLogRangeCheckOutcome( uint32_t ulReceived,
++                                         uint32_t ulExpectedReceived,
++                                         BaseType_t xResult );
++
+ /*
+  * Increase test coverage by occasionally change the priorities of the two tasks
+  * relative to each other.
+@@ -205,6 +213,15 @@
+ /* The task handles are stored so their priorities can be changed. */
+     static TaskHandle_t xQueueSetSendingTask, xQueueSetReceivingTask;
+ 
++/* M1_T1_LOG: Development logging state for range-check outcomes, intended to
++ * be inspected from a debugger. */
++    static const char * const pcRangeCheckLogMarker = "M1_T1_LOG: prvCheckReceivedValueWithinExpectedRange";
++    static volatile uint32_t ulRangeCheckPassCount = 0UL;
++    static volatile uint32_t ulRangeCheckFailCount = 0UL;
++    static volatile uint32_t ulLastRangeCheckReceived = 0UL;
++    static volatile uint32_t ulLastRangeCheckExpected = 0UL;
++    static volatile const char * pcLastRangeCheckLog = NULL;
++
+ /*-----------------------------------------------------------*/
+ 
+     void vStartQueueSetTasks( void )
+@@ -575,10 +592,33 @@
+             }
+         }
+ 
++        /* M1_T1_LOG: Record the outcome; xReturn is not modified. */
++        prvLogRangeCheckOutcome( ulReceived, ulExpectedReceived, xReturn );
++
+         return xReturn;
+     }
+ /*-----------------------------------------------------------*/
+ 
++    static void prvLogRangeCheckOutcome( uint32_t ulReceived,
++                                         uint32_t ulExpectedReceived,
++                                         BaseType_t xResult )
++    {
++        /* M1_T1_LOG: Observation only - no effect on acceptance or rejection. */
++        ulLastRangeCheckReceived = ulReceived;
++        ulLastRangeCheckExpected = ulExpectedReceived;
++        pcLastRangeCheckLog = pcRangeCheckLogMarker;
++
++        if( xResult == pdPASS )
++        {
++            ulRangeCheckPassCount++;
++        }
++        else
++        {
++            ulRangeCheckFailCount++;
++        }
++    }
++/*-----------------------------------------------------------*/
++
+     static void prvReceiveFromQueueInSetFromISR( void )
+     {
+         QueueSetMemberHandle_t xActivatedQueue;

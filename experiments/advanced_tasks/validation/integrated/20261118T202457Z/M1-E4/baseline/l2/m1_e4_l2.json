@@ -1,0 +1,13 @@
+{
+  "verdict": "FAIL",
+  "stage": "structural",
+  "failure_reasons": [
+    "missing_token_M1_E4_DIAG",
+    "missing_vM1E4GetRangeDiagnostics_signature"
+  ],
+  "detail": {
+    "has_token": false,
+    "has_api": false
+  },
+  "tests_agent_modified_implementation": true
+}

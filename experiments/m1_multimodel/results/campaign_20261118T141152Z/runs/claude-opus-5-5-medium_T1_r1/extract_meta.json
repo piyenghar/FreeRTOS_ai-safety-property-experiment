@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "function": "prvCheckReceivedValueWithinExpectedRange",
+  "allowable": 3,
+  "queueset_sha256": "895cccd1244ce1046c85200f2de166cbc2bc35a4416c8c8967118560ead6953e",
+  "queueset_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\wt\\r01\\FreeRTOS\\Demo\\Common\\Minimal\\QueueSet.c",
+  "out": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\results\\campaign_20261118T141152Z\\runs\\claude-opus-5-5-medium_T1_r1\\range_check_under_test.agent.c",
+  "tests_agent_modified_implementation": true,
+  "note": "Host L3 compiles this extract derived from the agent QueueSet.c; it does not link the frozen reference range_check_under_test.c."
+}

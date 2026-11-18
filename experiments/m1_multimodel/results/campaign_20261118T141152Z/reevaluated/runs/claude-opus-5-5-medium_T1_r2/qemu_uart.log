@@ -1,0 +1,4 @@
+PASS : 5116 (390)
+PASS : 10040 (695)
+PASS : 15047 (989)
+qemu-system-arm: terminating on signal 15 from pid 42033 (timeout)

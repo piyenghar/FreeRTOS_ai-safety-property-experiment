@@ -1,0 +1,43 @@
+{
+  "ok": false,
+  "stage": "run",
+  "exit_code": 1,
+  "tests_agent_modified_implementation": true,
+  "used_frozen_reference_extract": false,
+  "mode": "full_queueset_uut",
+  "queueset_sha256": "fe7f672ef945005a5a9c8f0da2178104a3c79e9f4d2fb31de1d013c0370899c1",
+  "uut_path": "experiments\\m1_safety_repair_pilot\\verification_runs\\defective_l3\\QueueSet_uut.c",
+  "harness_test_from": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\verification\\M1\\l3\\l3_range_test.c",
+  "shim_dir": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\l3_harness",
+  "linked_sources": [
+    "QueueSet_uut.c",
+    "freertos_stubs.h",
+    "l3_range_test.c",
+    "m1_l3_freertos_shim.c",
+    "m1_l3_freertos_shim.h",
+    "m1_l3_queueset_api.h"
+  ],
+  "frozen_reference_sha256_not_used": true,
+  "P1": {
+    "pass": 9,
+    "fail": 5,
+    "total": 14,
+    "verdict": "FAIL"
+  },
+  "P2": {
+    "pass": 8,
+    "fail": 0,
+    "total": 8,
+    "verdict": "PASS"
+  },
+  "ALL": {
+    "pass": 17,
+    "fail": 5,
+    "total": 22,
+    "verdict": "FAIL"
+  },
+  "oracle_pos": "PASS",
+  "oracle_neg": "PASS",
+  "L3_P1": "VIOLATION",
+  "L3_P2": "HOLD"
+}

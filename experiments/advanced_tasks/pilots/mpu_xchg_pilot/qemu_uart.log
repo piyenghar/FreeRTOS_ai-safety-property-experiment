@@ -1,0 +1,31 @@
+MPU_XCHG: observed=0
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=1
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=2
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=3
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=4
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=5
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=6
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=7
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=8
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+MPU_XCHG: observed=9
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+qemu-system-arm: terminating on signal 15 from pid 44864 (timeout)

@@ -1,0 +1,9 @@
+{
+  "baseline": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+  "trace_header": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\wt\\reeval\\FreeRTOS-Plus\\Source\\FreeRTOS-Plus-Trace\\include\\trcRecorder.h",
+  "trace_header_exists": true,
+  "submodules": [
+    "FreeRTOS/Source",
+    "FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace"
+  ]
+}

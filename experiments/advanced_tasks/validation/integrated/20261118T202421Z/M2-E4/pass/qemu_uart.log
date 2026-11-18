@@ -1,0 +1,9 @@
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+M2_E4_TELEMETRY: cycle=1 sp1=PASS sp2=PASS
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+M2_E4_TELEMETRY: cycle=2 sp1=PASS sp2=PASS
+SP1 PASS: read-only memory isolation preserved
+SP2 PASS: unauthorized privilege escalation rejected
+M2_E4_TELEMETRY: cycle=3 sp1=PASS sp2=PASS

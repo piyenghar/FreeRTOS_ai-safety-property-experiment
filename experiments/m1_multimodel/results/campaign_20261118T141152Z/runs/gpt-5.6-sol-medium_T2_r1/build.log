@@ -1,0 +1,18 @@
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/QueueSet.d" -MT output/QueueSet.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Demo/Common/Minimal/QueueSet.c -o output/QueueSet.o
+arm-none-eabi-gcc -mthumb -mcpu=cortex-m3 -ffreestanding -g3 -Os -ffunction-sections -fdata-sections -Wall -Wextra -Wshadow -Wno-unused-value -MMD -MP -MF"output/main.d" -MT output/main.o -I./../../../../Source/include -I./../../../../Source/portable/GCC/ARM_CM3 -I./../../../../Demo/Common/include -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/CMSIS -I./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/TraceRecorderConfig -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/kernelports/FreeRTOS/include -I./../../../../Demo/../../FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/RingBuffer/include -c ./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c -o output/main.o
+
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/main.c:50:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ./../../../../Source/include/FreeRTOS.h:58,
+                 from ./../../../../Demo/Common/Minimal/QueueSet.c:46:
+./../../../../Demo/CORTEX_MPS2_QEMU_IAR_GCC/FreeRTOSConfig.h:140:14: fatal error: trcRecorder.h: No such file or directory
+  140 |     #include "trcRecorder.h"
+      |              ^~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Makefile:151: output/QueueSet.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Makefile:151: output/main.o] Error 1

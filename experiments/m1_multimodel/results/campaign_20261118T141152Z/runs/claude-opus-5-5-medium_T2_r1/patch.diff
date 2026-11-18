@@ -1,0 +1,41 @@
+diff --git a/FreeRTOS/Demo/Common/Minimal/QueueSet.c b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+index 54dec2a4a..03d312031 100644
+--- a/FreeRTOS/Demo/Common/Minimal/QueueSet.c
++++ b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+@@ -554,25 +554,25 @@
+     static BaseType_t prvCheckReceivedValueWithinExpectedRange( uint32_t ulReceived,
+                                                                 uint32_t ulExpectedReceived )
+     {
++        /* M1_T2_REFACTOR: compute |ulReceived - ulExpectedReceived| once, with
++         * the larger operand first so the unsigned subtraction cannot wrap. */
+         BaseType_t xReturn = pdPASS;
++        uint32_t ulDeviation;
+ 
+         if( ulReceived > ulExpectedReceived )
+         {
+-            configASSERT( ( ulReceived - ulExpectedReceived ) <= queuesetALLOWABLE_RX_DEVIATION );
+-
+-            if( ( ulReceived - ulExpectedReceived ) > queuesetALLOWABLE_RX_DEVIATION )
+-            {
+-                xReturn = pdFALSE;
+-            }
++            ulDeviation = ulReceived - ulExpectedReceived;
+         }
+         else
+         {
+-            configASSERT( ( ulExpectedReceived - ulReceived ) <= queuesetALLOWABLE_RX_DEVIATION );
++            ulDeviation = ulExpectedReceived - ulReceived;
++        }
+ 
+-            if( ( ulExpectedReceived - ulReceived ) > queuesetALLOWABLE_RX_DEVIATION )
+-            {
+-                xReturn = pdFALSE;
+-            }
++        configASSERT( ulDeviation <= queuesetALLOWABLE_RX_DEVIATION );
++
++        if( ulDeviation > queuesetALLOWABLE_RX_DEVIATION )
++        {
++            xReturn = pdFALSE;
+         }
+ 
+         return xReturn;

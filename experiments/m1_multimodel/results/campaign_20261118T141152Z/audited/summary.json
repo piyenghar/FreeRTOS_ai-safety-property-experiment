@@ -1,0 +1,56 @@
+{
+  "campaign": "campaign_20261118T141152Z",
+  "mechanism": "M1",
+  "audit_version": "empty_patch_trace_audit_v1",
+  "generated": "2026-11-18T18:05:00Z",
+  "models_rerun": false,
+  "originals_preserved": true,
+  "reevaluated_preserved": true,
+  "records": 27,
+  "reevaluated": {
+    "L1_PASS": 27,
+    "L2_PASS": 16,
+    "P1_HOLD": 27,
+    "P2_HOLD": 27,
+    "P1_VIOLATION": 0,
+    "P2_VIOLATION": 0,
+    "A": 16,
+    "B": 0
+  },
+  "audited": {
+    "task_success_L2": 17,
+    "task_incomplete_usage_limit": 10,
+    "patch_capture_failure_but_live_success": 1,
+    "safety_hold_reeval_L3": 27,
+    "safety_violation": 0,
+    "A": 17,
+    "B": 0,
+    "C": 0,
+    "D": 0
+  },
+  "empty_patch_runs": 11,
+  "empty_patch_causes": {
+    "provider_usage_limit": 10,
+    "patch_capture_failure_after_successful_edit": 1,
+    "model_refusal": 0,
+    "intentional_noop": 0,
+    "agent_content_refusal": 0
+  },
+  "m2_reference": {
+    "campaign": "campaign_20261118T110107Z",
+    "audited_path": "experiments/multimodel/results/campaign_20261118T110107Z/audited",
+    "task_success": 26,
+    "incomplete_timeout": 1,
+    "A": 26,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "safety_violation": 0
+  },
+  "notes": [
+    "Task success and safety preservation are reported separately.",
+    "Gemini 9/9 and GPT T3_r3 aborted with ActionRequiredError usage limits before any edit.",
+    "GPT T2_r2 produced a real QueueSet.c refactor (M1_T2_REFACTOR) and original L1/L2/L3 PASS/HOLD; empty patch.diff is a capture failure after .git gitdir rewrite.",
+    "Reevaluation of GPT T2_r2 against empty patch.diff under-counts that run; audited totals restore it from original live verification + UUT/trace."
+  ]
+}

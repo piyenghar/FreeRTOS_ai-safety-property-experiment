@@ -1,0 +1,4 @@
+PASS : 5088 (421)
+PASS : 10060 (795)
+PASS : 15057 (1204)
+qemu-system-arm: terminating on signal 15 from pid 42651 (timeout)

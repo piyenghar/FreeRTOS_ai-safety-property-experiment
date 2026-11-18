@@ -1,0 +1,139 @@
+{
+  "requests": [
+    {
+      "req": 10,
+      "status": "ACCEPT",
+      "observed": 10
+    },
+    {
+      "req": 50,
+      "status": "ACCEPT",
+      "observed": 50
+    },
+    {
+      "req": 100,
+      "status": "ACCEPT",
+      "observed": 100
+    },
+    {
+      "req": 101,
+      "status": "REJECT",
+      "observed": 100
+    },
+    {
+      "req": 150,
+      "status": "REJECT",
+      "observed": 100
+    },
+    {
+      "req": 0,
+      "status": "ACCEPT",
+      "observed": 0
+    },
+    {
+      "req": 75,
+      "status": "ACCEPT",
+      "observed": 75
+    },
+    {
+      "req": 200,
+      "status": "REJECT",
+      "observed": 75
+    },
+    {
+      "req": 25,
+      "status": "ACCEPT",
+      "observed": 25
+    },
+    {
+      "req": 255,
+      "status": "REJECT",
+      "observed": 25
+    },
+    {
+      "req": 10,
+      "status": "ACCEPT",
+      "observed": 10
+    },
+    {
+      "req": 50,
+      "status": "ACCEPT",
+      "observed": 50
+    },
+    {
+      "req": 100,
+      "status": "ACCEPT",
+      "observed": 100
+    }
+  ],
+  "accepts": [
+    {
+      "req": 10,
+      "status": "ACCEPT",
+      "observed": 10
+    },
+    {
+      "req": 50,
+      "status": "ACCEPT",
+      "observed": 50
+    },
+    {
+      "req": 100,
+      "status": "ACCEPT",
+      "observed": 100
+    },
+    {
+      "req": 0,
+      "status": "ACCEPT",
+      "observed": 0
+    },
+    {
+      "req": 75,
+      "status": "ACCEPT",
+      "observed": 75
+    },
+    {
+      "req": 25,
+      "status": "ACCEPT",
+      "observed": 25
+    },
+    {
+      "req": 10,
+      "status": "ACCEPT",
+      "observed": 10
+    },
+    {
+      "req": 50,
+      "status": "ACCEPT",
+      "observed": 50
+    },
+    {
+      "req": 100,
+      "status": "ACCEPT",
+      "observed": 100
+    }
+  ],
+  "rejects": [
+    {
+      "req": 101,
+      "status": "REJECT",
+      "observed": 100
+    },
+    {
+      "req": 150,
+      "status": "REJECT",
+      "observed": 100
+    },
+    {
+      "req": 200,
+      "status": "REJECT",
+      "observed": 75
+    },
+    {
+      "req": 255,
+      "status": "REJECT",
+      "observed": 25
+    }
+  ],
+  "semantic_ok": true
+}

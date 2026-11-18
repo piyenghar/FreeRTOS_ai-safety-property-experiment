@@ -1,0 +1,20 @@
+# Detached experiment worktrees (full FreeRTOS checkouts)
+wt/
+worktrees/
+
+# Local caches / build debris
+**/__pycache__/
+*.pyc
+*.o
+*.axf
+*.elf
+*.map
+*.d
+*.exe
+
+# Large local archives
+*.zip
+
+# Transient validation scratch
+validation/tmp_*/
+validation/manual_*/

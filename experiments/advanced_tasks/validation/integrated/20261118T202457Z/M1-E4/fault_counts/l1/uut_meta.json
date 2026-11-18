@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "mode": "full_queueset_uut",
+  "function": "prvCheckReceivedValueWithinExpectedRange",
+  "allowable": 3,
+  "expected_allowable": 3,
+  "queueset_sha256": "27297ba75860f96452476c98bbc63969f562a5d15d32568845fe7c873377a089",
+  "queueset_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\fixtures\\generated\\m1_e4_fault_QueueSet.c",
+  "out": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\advanced_tasks\\validation\\integrated\\20261118T202457Z\\M1-E4\\fault_counts\\l1\\QueueSet_uut.c",
+  "tests_agent_modified_implementation": true,
+  "used_frozen_reference_extract": false,
+  "preserves_helpers_and_statics": true,
+  "uut_bytes": 46677
+}

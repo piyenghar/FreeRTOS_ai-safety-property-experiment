@@ -1,0 +1,5 @@
+
+range_check_under_test.c: In function 'prvCheckReceivedValueWithinExpectedRange':
+range_check_under_test.c:37:9: error: implicit declaration of function 'prvLogRangeCheckResult' [-Wimplicit-function-declaration]
+   37 |         prvLogRangeCheckResult( ulReceived, ulExpectedReceived, xReturn );
+      |         ^~~~~~~~~~~~~~~~~~~~~~

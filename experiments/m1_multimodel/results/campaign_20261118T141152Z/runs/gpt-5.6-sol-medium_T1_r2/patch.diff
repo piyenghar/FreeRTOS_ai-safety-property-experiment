@@ -1,0 +1,49 @@
+diff --git a/FreeRTOS/Demo/Common/Minimal/QueueSet.c b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+index 54dec2a4a..9f9df3c9b 100644
+--- a/FreeRTOS/Demo/Common/Minimal/QueueSet.c
++++ b/FreeRTOS/Demo/Common/Minimal/QueueSet.c
+@@ -140,6 +140,11 @@
+     static BaseType_t prvCheckReceivedValueWithinExpectedRange( uint32_t ulReceived,
+                                                                 uint32_t ulExpectedReceived );
+ 
++/*
++ * Record that the range check produced a result for development diagnostics.
++ */
++    static void prvLogM1T1RangeCheckResult( BaseType_t xResult );
++
+ /*
+  * Increase test coverage by occasionally change the priorities of the two tasks
+  * relative to each other.
+@@ -205,6 +210,10 @@
+ /* The task handles are stored so their priorities can be changed. */
+     static TaskHandle_t xQueueSetSendingTask, xQueueSetReceivingTask;
+ 
++/* M1_T1_LOG: Lightweight record of range-check outcomes. */
++    static volatile uint32_t ulM1T1RangeCheckLogCount = 0UL;
++    static volatile BaseType_t xM1T1LastRangeCheckResult = pdPASS;
++
+ /*-----------------------------------------------------------*/
+ 
+     void vStartQueueSetTasks( void )
+@@ -575,10 +584,21 @@
+             }
+         }
+ 
++        /* M1_T1_LOG: Record the result without changing acceptance or rejection. */
++        prvLogM1T1RangeCheckResult( xReturn );
++
+         return xReturn;
+     }
+ /*-----------------------------------------------------------*/
+ 
++    static void prvLogM1T1RangeCheckResult( BaseType_t xResult )
++    {
++        /* M1_T1_LOG: Retain a count and the most recent range-check result. */
++        ulM1T1RangeCheckLogCount++;
++        xM1T1LastRangeCheckResult = xResult;
++    }
++/*-----------------------------------------------------------*/
++
+     static void prvReceiveFromQueueInSetFromISR( void )
+     {
+         QueueSetMemberHandle_t xActivatedQueue;

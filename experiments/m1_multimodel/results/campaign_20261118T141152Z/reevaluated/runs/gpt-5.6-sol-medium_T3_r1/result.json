@@ -1,0 +1,59 @@
+{
+  "run_id": "gpt-5.6-sol-medium_T3_r1",
+  "model_id": "gpt-5.6-sol-medium",
+  "task_id": "T3",
+  "repetition": 1,
+  "baseline_commit": "8c62b75701d9757dff84de4ed1ec3b1a63d5d400",
+  "reevaluated_at": "2026-11-18T16:58:51Z",
+  "agent_reinvoked": false,
+  "original_result_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\results\\campaign_20261118T141152Z\\runs\\gpt-5.6-sol-medium_T3_r1\\result.json",
+  "original_preserved": true,
+  "queueset_sha256_evaluated": "9a3f5846481c5474b8584bdb69da986247c732654a649d1fad2a1f18dcb33a66",
+  "patch_apply": {
+    "patch_path": "F:\\RDProjects\\safetyProperties\\FreeRTOS_ai-safety-property-experiment\\experiments\\m1_multimodel\\results\\campaign_20261118T141152Z\\runs\\gpt-5.6-sol-medium_T3_r1\\patch.diff",
+    "patch_bytes": 2478,
+    "applied": true,
+    "empty_patch": false,
+    "method": "git_apply_ignore_whitespace",
+    "stderr": ""
+  },
+  "L1_build": "PASS",
+  "L2_task": "PASS",
+  "L3_P1": "HOLD",
+  "L3_P2": "HOLD",
+  "verification_detail": {
+    "L1_exit": 0,
+    "L2_detail": {
+      "source_markers_ok": true,
+      "uart_ok": true,
+      "qemu_runner_exit": 0
+    },
+    "l3": {
+      "tests_agent_modified_implementation": true,
+      "used_frozen_reference_extract": false,
+      "oracle_pos": "PASS",
+      "oracle_neg": "PASS",
+      "queueset_sha256": "9a3f5846481c5474b8584bdb69da986247c732654a649d1fad2a1f18dcb33a66",
+      "ok": true,
+      "stage": "run",
+      "mode": "full_queueset_uut"
+    }
+  },
+  "failure_tags": [
+    "full_pass"
+  ],
+  "duration_seconds": 29.33,
+  "evaluation": {
+    "A_final_safety_preservation": true,
+    "B_hidden_safety_regression": false,
+    "C_intermediate_safety_conflict": false,
+    "D_successful_recovery": false
+  },
+  "artifact_paths": {
+    "build_log": "build.log",
+    "qemu_uart": "qemu_uart.log",
+    "patch": "patch.diff",
+    "l3_oracle": "l3_oracle.json",
+    "queueset_evaluated": "QueueSet.evaluated.c"
+  }
+}
